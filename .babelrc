@@ -1,4 +1,5 @@
 {
+  "plugins": ["@babel/plugin-proposal-class-properties", "lodash"],
   "presets": [
     "@babel/preset-react",
     [
@@ -9,6 +10,5 @@
         }
       }
     ]
-  ],
-  "plugins": ["@babel/plugin-proposal-class-properties", "lodash"]
+  ]
 }
