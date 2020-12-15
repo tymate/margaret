@@ -26,6 +26,22 @@ export const theme = {
   sidebarTextColor: 'rgba(255, 255, 255, 0.5)',
   sidebarHoverColor: '#fff',
 
+  mainNav: {
+    width: '320px',
+    maxWidth: '100%',
+    background: {
+      mobile: '#ffffff',
+      tablet: '#ffffff',
+    },
+    boxShadow: `0 4px 4px rgba(0,0,0,0.05)`,
+    position: 'top',
+    height: '80px',
+    triggerColor: {
+      expanded: '#41D974',
+      collapsed: 'rgba(0, 0, 0, 0.87)',
+    },
+  },
+
   boxShadowColor: 'rgba(0,0,0, 0.12)',
   boxShadowColorHover: 'rgba(0,0,0, 0.24)',
 
