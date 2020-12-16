@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { StyledList, StyledButtonReset, RawLink } from './base';
+import { List, ButtonReset, RawLink } from './base';
 import { media } from './utils';
 
-export const Tabs = styled(StyledList)`
+export const Tabs = styled(List)`
   display: flex;
   margin-bottom: ${({ theme }) => theme.spacing()};
   max-width: 100vw;
@@ -22,7 +22,7 @@ export const Tab = styled.li`
   }
 `;
 
-export const TabNavButton = styled(StyledButtonReset)`
+export const TabNavButton = styled(ButtonReset)`
   background: transparent;
   border: 0;
   appearance: none;

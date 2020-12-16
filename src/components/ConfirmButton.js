@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Buttons, StyledButtonReset } from '../ui/base';
+import { Buttons, ButtonReset } from '../ui/base';
 import Button from './Button';
 import Modal from './Modal';
 
@@ -16,9 +16,9 @@ const ConfirmButton = ({
 
   return (
     <>
-      <StyledButtonReset onClick={() => setModalIsShown(true)}>
+      <ButtonReset onClick={() => setModalIsShown(true)}>
         {confirmElement}
-      </StyledButtonReset>
+      </ButtonReset>
       <Modal
         onRequestClose={() => setModalIsShown(false)}
         isOpen={modalIsShown}

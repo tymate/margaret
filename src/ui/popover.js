@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { StyledButtonReset } from './base';
+import { ButtonReset } from './base';
 
 export const PopoverContainer = styled.div`
   position: relative;
@@ -47,7 +47,7 @@ export const PopoverMenu = styled.div`
     `}
 `;
 
-export const PopoverItemButton = styled(StyledButtonReset)`
+export const PopoverItemButton = styled(ButtonReset)`
   display: flex;
   text-align: center;
   text-decoration: none;

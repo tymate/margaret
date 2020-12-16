@@ -9,7 +9,6 @@ export { default as Modal } from './Modal';
 export { default as SegmentedControls } from './SegmentedControls';
 export { default as Spinner } from './Spinner';
 
-export * from './Basics';
 export * from './MargaretProvider';
 export * from './Pills';
 // export { default as DataTable } from './DataTable';

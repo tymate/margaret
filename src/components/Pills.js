@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { media, StyledButtonReset, InlineList } from '../ui';
+import { media, ButtonReset, InlineList } from '../ui';
 
 export const PillsNavBar = styled.nav`
   display: flex;
@@ -34,7 +34,7 @@ export const PillItem = styled.li`
   white-space: nowrap;
 `;
 
-export const PillButton = styled(StyledButtonReset)`
+export const PillButton = styled(ButtonReset)`
   box-shadow: inset 0 0 0 1px ${({ theme }) => theme.separator};
   padding: ${({ theme }) => theme.spacing(0.5)}
     ${({ theme }) => theme.spacing(0.75)};
