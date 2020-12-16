@@ -15,10 +15,10 @@ const ButtonWrapper = styled(StyledButtonReset)`
   transition: background 150ms ease;
   white-space: nowrap;
   font-size: 1em;
-  border-radius: ${({ theme }) => theme.borderButtonRadius};
+  border-radius: ${({ theme }) => theme.buttonBorderRadius};
   position: relative;
-  padding: ${({ theme }) => theme.spacing(0.825)} ${({ theme }) =>
-  theme.spacing(1.5)};
+  padding: ${({ theme }) => theme.spacing(0.825)}
+    ${({ theme }) => theme.spacing(1.5)};
 
   &:hover {
     color: ${({ theme }) => theme.primaryLight};
