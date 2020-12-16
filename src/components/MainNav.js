@@ -183,8 +183,8 @@ const MainNavSection = ({ children, header }) => {
   );
 };
 
-const MainNavSectionHeaderBase = styled(Stack).attrs(
-  ({ isExpanded, disabled, id }) => ({
+const MainNavSectionHeaderBase = styled(ButtonReset).attrs(
+  ({ disabled, id }) => ({
     gutterSize: 0.5,
     alignY: 'center',
     alignX: 'space-between',
@@ -211,7 +211,7 @@ const MainNavSectionHeader = ({
 }) => {
   return (
     <MainNavSectionHeaderBase
-      as={ButtonReset}
+      as={Stack}
       onClick={onToggle}
       isExpanded={isExpanded}
       {...props}
