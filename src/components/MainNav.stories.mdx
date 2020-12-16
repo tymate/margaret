@@ -1,0 +1,61 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import MainNav from './MainNav';
+
+<Meta
+  title="Design System/MainNav"
+  component={MainNav}
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+/>
+
+# Main Nav
+
+A set of compound components to easily create mobile-first top-level navigations
+
+## Elements
+
+### `<MainNav />`
+
+<Props of={MainNav} />
+
+### `<MainNav.Section />`
+
+### `<MainNav.MainContent />`
+
+### `<MainNav.Items />`
+
+### `<MainNav.Item />`
+
+### `<MainNav.Header />`
+
+### `<MainNav.Trigger />`
+
+### `<MainNav.Footer />`
+
+## Usage
+
+<Preview>
+  <Story name="Default">
+    <div style={{ height: 400, backgroundColor: '#f4f5f6', paddingLeft: 300 }}>
+      <MainNav>
+        <MainNav.Items>
+          <MainNav.Item>
+            <SidebarNavLink to="/" exact>
+              Home
+            </SidebarNavLink>
+          </MainNav.Item>
+          <MainNav.Item>
+            <SidebarNavLink to="/profile">Profile</SidebarNavLink>
+          </MainNav.Item>
+          <MainNav.Item>
+            <SidebarNavLink to="/preferences">Preferences</SidebarNavLink>
+          </MainNav.Item>
+          <MainNav.Item>
+            <SidebarNavLink to="/messages">Messages</SidebarNavLink>
+          </MainNav.Item>
+        </MainNav.Items>
+      </MainNav>
+      <MainNav.Trigger />
+    </div>
+  </Story>
+</Preview>
