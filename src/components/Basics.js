@@ -12,7 +12,6 @@ export const Stack = props => <StyledStack {...props} />;
 
 Stack.defaultProps = {
   direction: 'row',
-  gutterSize: 'none',
   alignX: 'flex-start',
   alignY: 'flex-start',
 };
