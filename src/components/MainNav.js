@@ -183,17 +183,15 @@ const MainNavSection = ({ children, header }) => {
   );
 };
 
-const MainNavSectionHeaderBase = styled(ButtonReset).attrs(
-  ({ disabled, id }) => ({
-    gutterSize: 0.5,
-    alignY: 'center',
-    alignX: 'space-between',
-    size: 'full',
-    role: 'button',
-    'aria-controls': id,
-    disabled,
-  }),
-)`
+const MainNavSectionHeaderBase = styled(Stack).attrs(({ disabled, id }) => ({
+  gutterSize: 0.5,
+  alignY: 'center',
+  alignX: 'space-between',
+  size: 'full',
+  role: 'button',
+  'aria-controls': id,
+  disabled,
+}))`
   text-transform: uppercase;
   font-size: 14px;
 `;
@@ -211,7 +209,7 @@ const MainNavSectionHeader = ({
 }) => {
   return (
     <MainNavSectionHeaderBase
-      as={Stack}
+      as={ButtonReset}
       onClick={onToggle}
       isExpanded={isExpanded}
       {...props}
