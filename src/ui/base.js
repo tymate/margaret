@@ -146,15 +146,15 @@ export const Box = styled.div`
     `}
 `;
 
-export const StyledStack = styled(Box)`
+export const Stack = styled(Box)`
   display: flex;
-  
+
   ${({ direction }) =>
     typeof direction === 'string' &&
     css`
       flex-direction: ${({ direction }) => direction};
     `}
-  
+
   ${({ direction }) =>
     typeof direction === 'object' &&
     css`
@@ -284,11 +284,23 @@ export const StyledStack = styled(Box)`
     `}
 `;
 
-export const StyledList = styled(StyledStack)`
+Stack.defaultProps = {
+  direction: 'row',
+  alignX: 'flex-start',
+  alignY: 'flex-start',
+};
+
+export const List = styled(Stack)`
   list-style-type: none;
 `;
 
-export const InlineList = styled(StyledList)`
+List.defaultProps = {
+  as: 'ul',
+  margin: 0,
+  padding: 0,
+};
+
+export const InlineList = styled(List)`
   flex-wrap: wrap;
 `;
 
@@ -298,7 +310,7 @@ InlineList.defaultProps = {
   marginBottom: 0,
 };
 
-export const Subtitle = styled(StyledStack)`
+export const Subtitle = styled(Stack)`
   font-size: 1.189em;
   font-weight: 600;
 `;
@@ -308,7 +320,7 @@ Subtitle.defaultProps = {
   marginBottom: 0.5,
 };
 
-export const StyledButtonReset = styled.button`
+export const ButtonReset = styled.button`
   border: 0;
   background-color: transparent;
   text-decoration: none;
@@ -381,12 +393,12 @@ export const Container = styled.div`
     `}
 
     ${props =>
-      props.alignment === 'center' &&
-      css`
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-      `}
+    props.alignment === 'center' &&
+    css`
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    `}
 `;
 
 export const Buttons = styled(Box)`

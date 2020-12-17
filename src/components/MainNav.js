@@ -1,7 +1,6 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import styled, { useTheme } from 'styled-components';
-import { Stack, ButtonReset } from './Basics';
-import { media } from '../ui';
+import { media, Stack, ButtonReset } from '../ui';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMargaret } from './MargaretProvider';
@@ -14,7 +13,19 @@ const Scrollbars = styled.div`
 
 // https://www.aditus.io/patterns/accordion/
 
-const MainNavSectionContext = createContext();
+export const MainNavSectionContext = createContext();
+
+export const useSectionPanel = () => {
+  const context = useContext(MainNavSectionContext);
+
+  if (context === undefined) {
+    throw new Error(
+      `useSectionPanel must be used within a MainNavSectionContext provider`,
+    );
+  }
+
+  return context;
+};
 
 const MainNavBase = styled(Stack).attrs(({ as, theme }) => ({
   as: as || 'aside',
@@ -148,7 +159,15 @@ const MainNavItem = styled.li`
   flex: 1;
 `;
 
-const MainNavHeader = styled(Stack)``;
+const MainNavHeader = styled(Stack)`
+  color: ${({ theme }) => theme.mainNav.sectionPanelHeaderColor};
+
+  ${({ isExpanded, theme }) =>
+    isExpanded &&
+    `
+      color: ${theme.mainNav.sectionPanelHeaderColorActive};
+    `};
+`;
 
 const MainNavSectionBase = styled(Stack).attrs({
   direction: 'column',
@@ -183,17 +202,15 @@ const MainNavSection = ({ children, header }) => {
   );
 };
 
-const MainNavSectionHeaderBase = styled(Stack).attrs(
-  ({ isExpanded, disabled, id }) => ({
-    gutterSize: 0.5,
-    alignY: 'center',
-    alignX: 'space-between',
-    size: 'full',
-    role: 'button',
-    'aria-controls': id,
-    disabled,
-  }),
-)`
+const MainNavSectionHeaderBase = styled(Stack).attrs(({ disabled, id }) => ({
+  gutterSize: 0.5,
+  alignY: 'center',
+  alignX: 'space-between',
+  size: 'full',
+  role: 'button',
+  'aria-controls': id,
+  disabled,
+}))`
   text-transform: uppercase;
   font-size: 14px;
 `;
@@ -202,13 +219,7 @@ const ToggleIcon = styled(Stack)`
   transition: transform 100ms ease;
 `;
 
-const MainNavSectionHeader = ({
-  icon,
-  children,
-  isExpanded,
-  onToggle,
-  ...props
-}) => {
+const MainNavSectionHeader = ({ children, isExpanded, onToggle, ...props }) => {
   return (
     <MainNavSectionHeaderBase
       as={ButtonReset}
@@ -217,7 +228,6 @@ const MainNavSectionHeader = ({
       {...props}
     >
       <Stack gutterSize={0.5} alignY="center">
-        {Boolean(icon) && icon}
         <span>{children}</span>
       </Stack>
       {Boolean(onToggle) && (
@@ -235,7 +245,9 @@ const MainNavSectionPanel = ({ header, children }) => {
   const handleToggleSection = () => setIsExpanded(!isExpanded);
 
   return (
-    <MainNavSectionContext.Provider value={{ isExpanded }}>
+    <MainNavSectionContext.Provider
+      value={{ isExpanded, toggle: handleToggleSection }}
+    >
       <MainNavSectionBase>
         {Boolean(header) && (
           <MainNavSectionHeader

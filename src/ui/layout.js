@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { StyledButtonReset } from './base';
+import { ButtonReset } from './base';
 
 const MAIN_SIDEBAR_WIDTH = 260;
 
@@ -95,7 +95,7 @@ export const HeaderWrapper = styled.div`
     `}
 `;
 
-export const LogOutButton = styled(StyledButtonReset)`
+export const LogOutButton = styled(ButtonReset)`
   padding: ${({ theme }) => theme.spacing()};
   color: ${({ theme }) => theme.secondary};
   font-weight: 600;
