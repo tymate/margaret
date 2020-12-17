@@ -228,7 +228,6 @@ const MainNavSectionHeader = ({ children, isExpanded, onToggle, ...props }) => {
       {...props}
     >
       <Stack gutterSize={0.5} alignY="center">
-        {Boolean(icon) && icon}
         <span>{children}</span>
       </Stack>
       {Boolean(onToggle) && (
