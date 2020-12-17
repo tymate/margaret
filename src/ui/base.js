@@ -284,9 +284,21 @@ export const Stack = styled(Box)`
     `}
 `;
 
+Stack.defaultProps = {
+  direction: 'row',
+  alignX: 'flex-start',
+  alignY: 'flex-start',
+};
+
 export const List = styled(Stack)`
   list-style-type: none;
 `;
+
+List.defaultProps = {
+  as: 'ul',
+  margin: 0,
+  padding: 0,
+};
 
 export const InlineList = styled(List)`
   flex-wrap: wrap;
