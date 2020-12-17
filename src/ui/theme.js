@@ -17,7 +17,48 @@ export const theme = {
   spacing,
 
   borderRadius: '6px',
-  buttonBorderRadius: '6px',
+
+  button: {
+    transition: 'background 150ms ease',
+    borderRadius: '6px',
+    alignY: 'center',
+    alignX: 'center',
+    fontSize: '1em',
+    fontWeight: 600,
+    paddingHorizontal: '0',
+    paddingVertical: '0',
+    minWidth: '220px',
+    color: 'hsl(137, 54%, 61%)',
+    colorHover: 'hsl(137, 54%, 70%)',
+
+    primary: {
+      background: 'hsl(137, 54%, 61%)',
+      color: '#fff',
+      boxShadow: '',
+      backgroundHover: 'hsl(137, 54%, 70%)',
+      colorHover: '#fff',
+      transformHover: '',
+      boxShadowHover: '',
+      paddingHorizontal: '24px',
+      paddingVertical: '14px',
+      borderRadius: '6px',
+      minWidth: '220px',
+    },
+
+    secondary: {
+      background: 'hsl(137, 54%, 61%)',
+      color: '#fff',
+      boxShadow: '',
+      backgroundHover: 'hsl(137, 54%, 70%)',
+      colorHover: '#fff',
+      transformHover: '',
+      boxShadowHover: '',
+      paddingHorizontal: '24px',
+      paddingVertical: '14px',
+      borderRadius: '6px',
+      minWidth: '220px',
+    },
+  },
 
   buttonsDefaultAlignX: 'flex-start',
 
