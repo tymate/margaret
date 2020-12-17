@@ -13,7 +13,19 @@ const Scrollbars = styled.div`
 
 // https://www.aditus.io/patterns/accordion/
 
-const MainNavSectionContext = createContext();
+export const MainNavSectionContext = createContext();
+
+export const useSectionPanel = () => {
+  const context = useContext(MainNavSectionContext);
+
+  if (context === undefined) {
+    throw new Error(
+      `useSectionPanel must be used within a MainNavSectionContext provider`,
+    );
+  }
+
+  return context;
+};
 
 const MainNavBase = styled(Stack).attrs(({ as, theme }) => ({
   as: as || 'aside',
@@ -147,7 +159,15 @@ const MainNavItem = styled.li`
   flex: 1;
 `;
 
-const MainNavHeader = styled(Stack)``;
+const MainNavHeader = styled(Stack)`
+  color: ${({ theme }) => theme.mainNav.sectionPanelHeaderColor};
+
+  ${({ isExpanded, theme }) =>
+    isExpanded &&
+    `
+      color: ${theme.mainNav.sectionPanelHeaderColorActive};
+    `};
+`;
 
 const MainNavSectionBase = styled(Stack).attrs({
   direction: 'column',
@@ -199,13 +219,7 @@ const ToggleIcon = styled(Stack)`
   transition: transform 100ms ease;
 `;
 
-const MainNavSectionHeader = ({
-  icon,
-  children,
-  isExpanded,
-  onToggle,
-  ...props
-}) => {
+const MainNavSectionHeader = ({ children, isExpanded, onToggle, ...props }) => {
   return (
     <MainNavSectionHeaderBase
       as={ButtonReset}
@@ -232,7 +246,9 @@ const MainNavSectionPanel = ({ header, children }) => {
   const handleToggleSection = () => setIsExpanded(!isExpanded);
 
   return (
-    <MainNavSectionContext.Provider value={{ isExpanded }}>
+    <MainNavSectionContext.Provider
+      value={{ isExpanded, toggle: handleToggleSection }}
+    >
       <MainNavSectionBase>
         {Boolean(header) && (
           <MainNavSectionHeader
