@@ -30,7 +30,7 @@ const ButtonWrapper = styled(ButtonReset)`
     box-shadow: ${({ theme }) => theme.button.boxShadowFocus};
   }
 
-  &:disabled { {
+  &:disabled {
     color: ${({ theme }) => theme.button.colorDisabled};
     box-shadow: ${({ theme }) => theme.button.boxShadowDisabled};
   }
