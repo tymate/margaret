@@ -18,9 +18,16 @@ const ButtonWrapper = styled(ButtonReset)`
   font-weight: ${({ theme }) => theme.button.fontWeight};
   color: ${({ theme }) => theme.button.color};
   min-width: ${({ theme }) => theme.button.minWidth};
+  box-shadow: ${({ theme }) => theme.button.boxShadow};
 
   &:hover {
     color: ${({ theme }) => theme.button.colorHover};
+    box-shadow: ${({ theme }) => theme.button.boxShadowHover};
+  }
+
+  &:focus {
+    color: ${({ theme }) => theme.button.colorFocus};
+    box-shadow: ${({ theme }) => theme.button.boxShadowFocus};
   }
 
   > svg {
@@ -39,13 +46,13 @@ const ButtonWrapper = styled(ButtonReset)`
       color: ${({ theme }) =>
         theme.button?.[variant]?.color || theme.button.color};
       padding: ${({ theme }) =>
-          theme.button?.[variant]?.paddingVertical ||
-          theme.button.paddingVertical}
+        theme.button?.[variant]?.paddingVertical ||
+        theme.button.paddingVertical}
         ${({ theme }) =>
           theme.button?.[variant]?.paddingHorizontal ||
           theme.button.paddingHorizontal};
       min-width: ${({ theme }) =>
-          theme.button?.[variant]?.minWidth || theme.button.minWidth}
+        theme.button?.[variant]?.minWidth || theme.button.minWidth}
         || ${({ theme }) => theme.button.minWidth};
 
       &:hover {
@@ -62,6 +69,20 @@ const ButtonWrapper = styled(ButtonReset)`
           theme.button.transformHover};
       }
 
+      &:focus {
+        background: ${({ theme }) =>
+          theme.button?.[variant]?.backgroundFocus ||
+          theme.button.backgroundFocus};
+        color: ${({ theme }) =>
+          theme.button?.[variant]?.colorFocus || theme.button.colorFocus};
+        box-shadow: ${({ theme }) =>
+          theme.button?.[variant]?.boxShadowFocus ||
+          theme.button.boxShadowFocus};
+        transform: ${({ theme }) => theme.button?.[variant]?.transformFocus} ||
+          theme.button.transformFocus};
+      }
+      
+
       &:disabled {
         background: ${({ theme }) =>
           theme.button?.[variant]?.backgroundDisabled ||
@@ -73,6 +94,8 @@ const ButtonWrapper = styled(ButtonReset)`
           theme.button.boxShadowDisabled};
         transform: ${({ theme }) => theme.button?.[variant]?.transformDisabled};
       }
+
+      
     `}
 
   ${({ isLoading, theme }) =>

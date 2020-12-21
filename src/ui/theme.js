@@ -28,7 +28,11 @@ export const theme = {
     paddingVertical: 0,
     minWidth: 0,
     color: 'hsl(137, 54%, 61%)',
+    boxShadow: '',
     colorHover: 'hsl(137, 54%, 70%)',
+    boxShadowHover: '',
+    colorFocus: '',
+    boxShadowFocus: '',
 
     primary: {
       background: 'hsl(137, 54%, 61%)',
