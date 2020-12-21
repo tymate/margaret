@@ -58,11 +58,15 @@ const ButtonWrapper = styled(ButtonReset)`
       &:hover {
         background: ${({ theme }) =>
           theme.button?.[variant]?.backgroundHover ||
+          theme.button?.[variant]?.background ||
           theme.button.backgroundHover};
         color: ${({ theme }) =>
-          theme.button?.[variant]?.colorHover || theme.button.colorHover};
+          theme.button?.[variant]?.colorHover ||
+          theme.button?.[variant]?.color ||
+          theme.button.colorHover};
         box-shadow: ${({ theme }) =>
           theme.button?.[variant]?.boxShadowHover ||
+          theme.button?.[variant]?.boxShadow ||
           theme.button.boxShadowHover};
         transform: ${({ theme }) =>
           theme.button?.[variant]?.transformHover ||
@@ -72,11 +76,15 @@ const ButtonWrapper = styled(ButtonReset)`
       &:focus {
         background: ${({ theme }) =>
           theme.button?.[variant]?.backgroundFocus ||
+          theme.button?.[variant]?.background ||
           theme.button.backgroundFocus};
         color: ${({ theme }) =>
-          theme.button?.[variant]?.colorFocus || theme.button.colorFocus};
+          theme.button?.[variant]?.colorFocus ||
+          theme.button?.[variant]?.color ||
+          theme.button.colorFocus};
         box-shadow: ${({ theme }) =>
           theme.button?.[variant]?.boxShadowFocus ||
+          theme.button?.[variant]?.boxShadow ||
           theme.button.boxShadowFocus};
         transform: ${({ theme }) => theme.button?.[variant]?.transformFocus} ||
           theme.button.transformFocus};
@@ -86,16 +94,18 @@ const ButtonWrapper = styled(ButtonReset)`
       &:disabled {
         background: ${({ theme }) =>
           theme.button?.[variant]?.backgroundDisabled ||
+          theme.button?.[variant]?.background ||
           theme.button.backgroundDisabled};
         color: ${({ theme }) =>
-          theme.button?.[variant]?.colorDisabled || theme.button.colorDisabled};
+          theme.button?.[variant]?.colorDisabled ||
+          theme.button?.[variant]?.color ||
+          theme.button.colorDisabled};
         box-shadow: ${({ theme }) =>
           theme.button?.[variant]?.boxShadowDisabled ||
+          theme.button?.[variant]?.boxShadow ||
           theme.button.boxShadowDisabled};
         transform: ${({ theme }) => theme.button?.[variant]?.transformDisabled};
       }
-
-      
     `}
 
   ${({ isLoading, theme }) =>
