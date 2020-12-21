@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { List, ButtonReset } from './base';
-import { media } from './utils';
+import { List, ButtonReset } from '../ui/base';
+import { media } from '../ui/utils';
 
 export const Tabs = styled(List)`
   display: flex;
