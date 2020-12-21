@@ -23,11 +23,10 @@ export const theme = {
     borderRadius: '6px',
     alignY: 'center',
     alignX: 'center',
-    fontSize: '1em',
     fontWeight: 600,
-    paddingHorizontal: '0',
-    paddingVertical: '0',
-    minWidth: '220px',
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+    minWidth: 0,
     color: 'hsl(137, 54%, 61%)',
     colorHover: 'hsl(137, 54%, 70%)',
 
@@ -35,24 +34,17 @@ export const theme = {
       background: 'hsl(137, 54%, 61%)',
       color: '#fff',
       boxShadow: '',
-      backgroundHover: 'hsl(137, 54%, 70%)',
-      colorHover: '#fff',
-      transformHover: '',
-      boxShadowHover: '',
-      paddingHorizontal: '24px',
-      paddingVertical: '14px',
-      borderRadius: '6px',
-      minWidth: '220px',
-    },
 
-    secondary: {
-      background: 'hsl(137, 54%, 61%)',
-      color: '#fff',
-      boxShadow: '',
       backgroundHover: 'hsl(137, 54%, 70%)',
-      colorHover: '#fff',
+      colorHover: '',
       transformHover: '',
       boxShadowHover: '',
+
+      backgroundDisabled: 'rgba(4%, 6%, 13%, 0.2)',
+      colorDisabled: 'rgba(0, 0, 0, 0.38)',
+      boxShadowDisabled: '',
+      transformDisabled: '',
+
       paddingHorizontal: '24px',
       paddingVertical: '14px',
       borderRadius: '6px',
@@ -61,11 +53,6 @@ export const theme = {
   },
 
   buttonsDefaultAlignX: 'flex-start',
-
-  sidebarSize: '260px',
-  sidebarBackground: 'hsl(137, 54%, 61%)',
-  sidebarTextColor: 'rgba(255, 255, 255, 0.5)',
-  sidebarHoverColor: '#fff',
 
   mainNav: {
     width: '320px',

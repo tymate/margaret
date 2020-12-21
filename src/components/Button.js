@@ -1,11 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { ButtonReset } from '../ui/base';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { ButtonReset } from '../ui';
 import Spinner from './Spinner';
 
-const ButtonWrapper = styled(StyledButtonReset)`
+const ButtonWrapper = styled(ButtonReset)`
   position: relative;
   display: flex;
   white-space: nowrap;
@@ -16,7 +15,6 @@ const ButtonWrapper = styled(StyledButtonReset)`
   padding: ${({ theme }) => theme.button.paddingHorizontal}
     ${({ theme }) => theme.button.paddingHorizontal};
   line-height: 1;
-  font-size: ${({ theme }) => theme.button.fontSize};
   font-weight: ${({ theme }) => theme.button.fontWeight};
   color: ${({ theme }) => theme.button.color};
   min-width: ${({ theme }) => theme.button.minWidth};
@@ -63,6 +61,18 @@ const ButtonWrapper = styled(StyledButtonReset)`
           theme.button?.[variant]?.transformHover ||
           theme.button.transformHover};
       }
+
+      &:disabled {
+        background: ${({ theme }) =>
+          theme.button?.[variant]?.backgroundDisabled ||
+          theme.button.backgroundDisabled};
+        color: ${({ theme }) =>
+          theme.button?.[variant]?.colorDisabled || theme.button.colorDisabled};
+        box-shadow: ${({ theme }) =>
+          theme.button?.[variant]?.boxShadowDisabled ||
+          theme.button.boxShadowDisabled};
+        transform: ${({ theme }) => theme.button?.[variant]?.transformDisabled};
+      }
     `}
 
   ${({ isLoading, theme }) =>
@@ -77,33 +87,34 @@ const ButtonWrapper = styled(StyledButtonReset)`
       width: 100%;
     `};
 
-  ${({ size }) =>
-    size === 'big' &&
+  ${({ fontSize }) =>
+    fontSize &&
     `
-      font-size: 1.5em;
+      font-size: ${fontSize};
     `}
 
   &:disabled {
     cursor: not-allowed;
-    background-color: ${({ theme }) => theme.disabled};
-    color: rgba(0, 0, 0, 0.38);
-    box-shadow: none;
-    color: ${({ theme }) => theme.textLight};
-    box-shadow: none;
+    background: ${({ theme }) => theme.button.backgroundDisabled};
+    color: ${({ theme }) => theme.button.colorDisabled};
+    box-shadow: ${({ theme }) => theme.button.boxShadowDisabled};
   }
 `;
 
-const Button = ({ isLoading, children, icon, as, ...props }) => (
-  <ButtonWrapper
-    {...props}
-    as={Boolean(props.to) ? Link : Boolean(as) ? as : null}
-    disabled={props.disabled || isLoading}
-  >
-    {isLoading && <Spinner variant="button" />}
+const Button = ({ isLoading, children, icon, disabled, loader, ...props }) => (
+  <ButtonWrapper {...props} disabled={disabled || isLoading}>
+    {isLoading && <Spinner variant="button" loader={loader} />}
     {!isLoading && icon}
     {children}
   </ButtonWrapper>
 );
+
+Button.defaultProps = {
+  loader: 'ball-spin-fade-loader',
+  isLoading: false,
+  disabled: false,
+  fontSize: '1em',
+};
 
 Button.propTypes = {
   /**
@@ -113,19 +124,53 @@ Button.propTypes = {
   /**
    * Changes the appearance of the button
    */
-  variant: PropTypes.oneOf(['primary', 'secondary', 'outline']),
+  variant: PropTypes.string,
   disabled: PropTypes.bool,
-  /**
-   * If this prop is set, the button acts like a link,
-   * and cannot be disabled
-   */
+  as: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   to: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
-  size: PropTypes.oneOf(['auto', 'full', 'fixed', 'big']),
+  icon: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
+  size: PropTypes.oneOf(['full']),
+  fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  loader: PropTypes.oneOf([
+    'ball-pulse',
+    'ball-pulse-sync',
+    'ball-scale',
+    'ball-scale-random',
+    'ball-rotate',
+    'ball-clip-rotate',
+    'ball-clip-rotate-pulse',
+    'ball-clip-rotate-multiple',
+    'ball-scale-ripple',
+    'ball-scale-ripple-multiple',
+    'ball-beat',
+    'ball-scale-multiple',
+    'ball-triangle-path',
+    'ball-pulse-rise',
+    'ball-grid-beat',
+    'ball-grid-pulse',
+    'ball-spin-fade-loader',
+    'ball-spin-loader',
+    'ball-zig-zag',
+    'ball-zig-zag-deflect',
+    'line-scale',
+    'line-scale-random',
+    'line-scale-pulse-out',
+    'line-scale-pulse-out-rapid',
+    'line-spin-fade-loader',
+    'triangle-skew-spin',
+    'square-spin',
+    'pacman',
+    'cube-transition',
+    'semi-circle-spin',
+  ]),
 };
 
 export default Button;
