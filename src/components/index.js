@@ -8,8 +8,8 @@ export { default as MargaretProvider } from './MargaretProvider';
 export { default as Modal } from './Modal';
 export { default as SegmentedControls } from './SegmentedControls';
 export { default as Spinner } from './Spinner';
+export { default as Tabs } from './Tabs';
 
 export * from './MargaretProvider';
 export * from './Pills';
 // export { default as DataTable } from './DataTable';
-// export * from './Layout';

@@ -58,6 +58,40 @@ export const theme = {
 
   buttonsDefaultAlignX: 'flex-start',
 
+  tabs: {
+    margin: '',
+    padding: '',
+    alignY: 'center',
+    alignX: 'center',
+    tab: {
+      direction: 'column',
+      alignX: 'center',
+      padding: '14px',
+      fontWeight: 600,
+      fontSize: '1rem',
+      borderRadius: '3px',
+      minWidth: '100%',
+      maxWidth: '162px',
+      whiteSpace: 'wrap',
+
+      background: colors?.greenDark,
+      boxShadow: '',
+      color: '#fff',
+
+      backgroundHover: '#fff',
+      boxShadowHover: `0px 9px 18px rgba(0, 0, 0, 0.1), 0px 2px 5px rgba(0, 0, 0, 0.24)`,
+      colorHover: colors.green,
+
+      backgroundDisabled: '',
+      boxShadowDisabled: '',
+      colorDisabled: '',
+
+      backgroundActive: '#fff',
+      boxShadowActive: '',
+      colorActive: colors.greenDark,
+    },
+  },
+
   mainNav: {
     width: '320px',
     maxWidth: '100%',
