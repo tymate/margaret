@@ -30,6 +30,11 @@ const ButtonWrapper = styled(ButtonReset)`
     box-shadow: ${({ theme }) => theme.button.boxShadowFocus};
   }
 
+  &:disabled { {
+    color: ${({ theme }) => theme.button.colorDisabled};
+    box-shadow: ${({ theme }) => theme.button.boxShadowDisabled};
+  }
+
   > svg {
     margin-right: ${({ theme }) => theme.spacing(0.25)};
   }
