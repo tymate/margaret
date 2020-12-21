@@ -74,13 +74,13 @@ export const theme = {
       maxWidth: '162px',
       whiteSpace: 'wrap',
 
-      background: colors?.greenDark,
+      background: 'hsl(137, 54%, 61%)',
       boxShadow: '',
       color: '#fff',
 
       backgroundHover: '#fff',
       boxShadowHover: `0px 9px 18px rgba(0, 0, 0, 0.1), 0px 2px 5px rgba(0, 0, 0, 0.24)`,
-      colorHover: colors.green,
+      colorHover: 'hsl(137, 54%, 61%)',
 
       backgroundDisabled: '',
       boxShadowDisabled: '',
@@ -88,7 +88,7 @@ export const theme = {
 
       backgroundActive: '#fff',
       boxShadowActive: '',
-      colorActive: colors.greenDark,
+      colorActive: 'hsl(137, 54%, 61%)',
     },
   },
 
