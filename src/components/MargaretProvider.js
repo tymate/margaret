@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { theme as defaultTheme } from '../ui';
+import { theme as defaultTheme, viewportSizes } from '../ui';
+import { createBreakpoint } from 'react-use';
 import 'sanitize.css';
 
 const AppContext = createContext();
@@ -15,25 +16,19 @@ export const useMargaret = () => {
   return context;
 };
 
-const merge = (empirical = {}, payload = {}) => {
-  let output = empirical;
-
-  // eslint-disable-next-line
-  for (const key in payload) {
-    output = {
-      ...output,
-      [key]: {
-        ...(output[key] || {}),
-        ...(payload[key] || {}),
-      },
-    };
-  }
-
-  return output;
-};
+export const useBreakpoint = createBreakpoint({
+  loading: 0,
+  mobile: 1,
+  ...viewportSizes,
+});
 
 const MargaretProvider = ({ theme, children }) => {
   const [mainNavIsExpanded, setMainNavIsExpanded] = useState();
+  const breakpoint = useBreakpoint();
+
+  const isMobile = breakpoint === 'mobile';
+  const isDesktop = breakpoint === 'desktop';
+  const isMobileOrTablet = !isDesktop;
 
   const handleExpandMainNav = () => setMainNavIsExpanded(true);
   const handleCollapseMainNav = () => setMainNavIsExpanded(false);
@@ -46,6 +41,10 @@ const MargaretProvider = ({ theme, children }) => {
         expandMainNav: handleExpandMainNav,
         collapseMainNav: handleCollapseMainNav,
         toggleMainNav: handleToggleMainNav,
+        breakpoint,
+        isMobile,
+        isMobileOrTablet,
+        isDesktop,
       }}
     >
       <ThemeProvider theme={{ ...defaultTheme, ...theme }}>
