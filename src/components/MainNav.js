@@ -39,7 +39,7 @@ const MainNavBase = styled(Stack).attrs(({ as, theme }) => ({
     tablet: theme.mainNav.position === 'top' ? 'center' : 'flex-start',
   },
 }))`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: -${({ theme }) => theme.mainNav.width};
   bottom: 0;
@@ -53,7 +53,6 @@ const MainNavBase = styled(Stack).attrs(({ as, theme }) => ({
     left: 0;
     background: ${({ theme }) => theme.mainNav.background.tablet};
 
-
     ${({ theme }) =>
       theme.mainNav.position === 'top' &&
       `
@@ -61,6 +60,7 @@ const MainNavBase = styled(Stack).attrs(({ as, theme }) => ({
         width: auto;
         right: 0;
         height: ${theme.mainNav.height};
+        position: absolute;
       `}
   `}
 `;
