@@ -12,4 +12,3 @@ export { default as Tabs } from './Tabs';
 
 export * from './MargaretProvider';
 export * from './Pills';
-// export { default as DataTable } from './DataTable';
