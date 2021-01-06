@@ -3,6 +3,8 @@ import { ThemeProvider } from 'styled-components';
 import { theme as defaultTheme, viewportSizes } from '../ui';
 import { createBreakpoint } from 'react-use';
 import 'sanitize.css';
+import 'sanitize.css/typography.css';
+import 'sanitize.css/forms.css';
 
 const AppContext = createContext();
 
