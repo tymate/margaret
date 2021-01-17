@@ -2,7 +2,7 @@ import React, { createContext, useState, useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme as defaultTheme, viewportSizes } from '../ui';
 import { createBreakpoint } from 'react-use';
-import 'sanitize.css';
+import Sanitize from 'styled-sanitize.css';
 
 const AppContext = createContext();
 
@@ -48,7 +48,10 @@ const MargaretProvider = ({ theme, children }) => {
       }}
     >
       <ThemeProvider theme={{ ...defaultTheme, ...theme }}>
-        {children}
+        <>
+          <Sanitize />
+          {children}
+        </>
       </ThemeProvider>
     </AppContext.Provider>
   );

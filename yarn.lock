@@ -13387,6 +13387,11 @@ styled-components@^5.2.1:
     shallowequal "^1.1.0"
     supports-color "^5.5.0"
 
+styled-sanitize.css@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/styled-sanitize.css/-/styled-sanitize.css-1.0.1.tgz#1c174ac724665ca08bf63ccb242cb0c65a29861c"
+  integrity sha512-B87gCDy4PpePUAYMmmTyzoRbfa/AcikjXrbm5rhYBok0Z76lkLmULu4Zd0+ElM9e0lBbHkRrfUWVounUNBsdUA==
+
 stylehacks@^4.0.0:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/stylehacks/-/stylehacks-4.0.3.tgz#6718fcaf4d1e07d8a1318690881e8d96726a71d5"
