@@ -165,7 +165,6 @@ Button.propTypes = {
   variant: PropTypes.string,
   disabled: PropTypes.bool,
   as: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
-  to: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.node,
