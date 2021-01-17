@@ -43,9 +43,7 @@ const StyledModal = styled(ReactModal)`
     `}
 `;
 
-if (typeof document !== 'undefined') {
-  ReactModal.setAppElement('#root');
-}
+ReactModal.setAppElement(process.env.GATSBY_ROOT_ELEMENT || '#root');
 
 export const CloseModalTriggerButton = styled(ButtonReset)`
   font-size: 1.5em;
