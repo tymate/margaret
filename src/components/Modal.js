@@ -43,8 +43,6 @@ const StyledModal = styled(ReactModal)`
     `}
 `;
 
-// ReactModal.setAppElement('#root');
-
 export const CloseModalTriggerButton = styled(ButtonReset)`
   font-size: 1.5em;
   position: absolute;
@@ -134,6 +132,7 @@ const Modal = ({
         },
         content: { overflow },
       }}
+      ariaHideApp={false}
     >
       <Content variant={variant}>
         {title && <ModalTitle>{title}</ModalTitle>}
