@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { isValidElement, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
@@ -135,7 +135,8 @@ const Modal = ({
       ariaHideApp={false}
     >
       <Content variant={variant}>
-        {title && <ModalTitle>{title}</ModalTitle>}
+        {Boolean(title) &&
+          (isValidElement(title) ? title : <ModalTitle>{title}</ModalTitle>)}
 
         {onRequestClose && (
           <CloseModalTriggerButton onClick={onRequestClose} variant={variant}>
