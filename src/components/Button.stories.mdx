@@ -13,6 +13,12 @@ import { Buttons } from '../ui';
 
 export const Template = args => <Button {...args}>Hello Tymate</Button>;
 
+export const TemplateVariant = args => (
+  <Button {...args} variant="primary">
+    Hello Tymate
+  </Button>
+);
+
 # Button
 
 <Canvas>
@@ -63,6 +69,89 @@ export const Template = args => <Button {...args}>Hello Tymate</Button>;
     args={{ loader: 'ball-rotate' }}
   >
     {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Theming
+
+The Button component accept a variant prop, which allows you to define stylistic variations to override the default values.
+To add a variant to your button open the theme file (theme.js). It contains an object which holds values for common variables such as color, fonts, border, and more. In the button value you can add your variant with the style you want to apply.
+
+Example with the variant primary:
+
+```javascript
+button: {
+  primary: {
+    background: 'hsl(137, 54%, 61%)',
+    color: '#fff',
+    boxShadow: '',
+
+    backgroundHover: 'hsl(137, 54%, 70%)',
+    colorHover: '',
+    transformHover: '',
+    boxShadowHover: '',
+
+    backgroundDisabled: 'rgba(4%, 6%, 13%, 0.2)',
+    colorDisabled: 'rgba(0, 0, 0, 0.38)',
+    boxShadowDisabled: '',
+    transformDisabled: '',
+
+    paddingHorizontal: '24px',
+    paddingVertical: '14px',
+    borderRadius: '6px',
+    minWidth: '220px',
+  }
+}
+```
+
+<Canvas>
+  <Story
+    name="Button with variant"
+    argTypes={{
+      disabled: {
+        control: 'radio',
+      },
+      loader: {
+        control: {
+          type: 'select',
+          options: [
+            'ball-pulse',
+            'ball-pulse-sync',
+            'ball-scale',
+            'ball-scale-random',
+            'ball-rotate',
+            'ball-clip-rotate',
+            'ball-clip-rotate-pulse',
+            'ball-clip-rotate-multiple',
+            'ball-scale-ripple',
+            'ball-scale-ripple-multiple',
+            'ball-beat',
+            'ball-scale-multiple',
+            'ball-triangle-path',
+            'ball-pulse-rise',
+            'ball-grid-beat',
+            'ball-grid-pulse',
+            'ball-spin-fade-loader',
+            'ball-spin-loader',
+            'ball-zig-zag',
+            'ball-zig-zag-deflect',
+            'line-scale',
+            'line-scale-random',
+            'line-scale-pulse-out',
+            'line-scale-pulse-out-rapid',
+            'line-spin-fade-loader',
+            'triangle-skew-spin',
+            'square-spin',
+            'pacman',
+            'cube-transition',
+            'semi-circle-spin',
+          ],
+        },
+      },
+    }}
+    args={{ loader: 'ball-rotate' }}
+  >
+    {TemplateVariant.bind({})}
   </Story>
 </Canvas>
 
