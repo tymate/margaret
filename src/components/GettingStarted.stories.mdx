@@ -1,6 +1,5 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { action } from '@storybook/addon-actions';
-import { Card } from './';
 
 <Meta
   title="Intro/Getting Started"
@@ -8,3 +7,60 @@ import { Card } from './';
 />
 
 # Getting Started
+
+Margaret is a library of a set of React components. It lets you quickly use custom UI components and customize them with props according to your needs.
+
+### Installation
+
+To get started using it, install the package and its peer dependencies with a package manager:
+
+```bash
+# with npm
+npm install @tymate/margaret lodash react-icons react-modal react-use styled-components
+```
+
+```bash
+# with yarn
+yarn add @tymate/margaret lodash react-icons react-modal react-use styled-components
+```
+
+### MargaretProvider
+
+To use some components of Margaret, you have to add a MargaretProvider component at the root of the application. It contains some internal state, but it also allows to theme components by passing a theme prop to the provider. The theme object contains objects which hold values for common variables such as color, fonts, borders, variants, and more.
+
+#### Example
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import theme from './theme';
+import { MargaretProvider } from '@tymate/margaret';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <MargaretProvider theme={theme}>
+      <App />
+    </MargaretProvider>
+  </React.StrictMode>,
+  document.getElementById('root'),
+);
+```
+
+### Start
+
+To use the components import them from the main package module:
+
+```jsx
+import { Button, Avatar } from '@tymate/margaret';
+```
+
+#### Example
+
+```jsx
+import { Button } from '@tymate/margaret';
+
+export default const MyApp = () => (
+ <Button variant="primary" fontSize="1em">Login</Button>
+)
+```
