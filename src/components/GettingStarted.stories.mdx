@@ -14,19 +14,19 @@ Margaret is a library of a set of React components. It lets you quickly use cust
 
 To get started using it, install the package and its peer dependencies with a package manager:
 
-```
-// with npm
+```bash
+# with npm
 npm install @tymate/margaret lodash react-icons react-modal react-use styled-components
 ```
 
-```
-// with yarn
+```bash
+# with yarn
 yarn add @tymate/margaret lodash react-icons react-modal react-use styled-components
 ```
 
 ### MargaretProvider
 
-To use some components of Margaret you have to add a MargaretProvider component to the root of the application. It contains some state of the app, but it also allows to apply themes to the components with passing a theme object as a prop to the provider. The theme file contains objects which hold values for common variables such as color, fonts, border, variant and more.
+To use some components of Margaret, you have to add a MargaretProvider component at the root of the application. It contains some internal state, but it also allows to theme components by passing a theme prop to the provider. The theme object contains objects which hold values for common variables such as color, fonts, borders, variants, and more.
 
 #### Example
 
@@ -61,6 +61,6 @@ import { Button, Avatar } from '@tymate/margaret';
 import { Button } from '@tymate/margaret';
 
 export default const MyApp = () => (
- <Button variant="primery" fontSize="1em">Se connecter</Button>
+ <Button variant="primary" fontSize="1em">Login</Button>
 )
 ```
