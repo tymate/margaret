@@ -130,11 +130,13 @@ const ButtonWrapper = styled(ButtonReset)`
       width: 100%;
     `};
 
-  ${({ fontSize }) =>
+  ${
+    '' /* ${({ fontSize }) =>
     fontSize &&
     `
       font-size: ${fontSize};
-    `}
+    `} */
+  }
 
   &:disabled {
     cursor: not-allowed;
@@ -156,7 +158,7 @@ Button.defaultProps = {
   loader: 'ball-spin-fade-loader',
   isLoading: false,
   disabled: false,
-  fontSize: '1em',
+  // fontSize: '1em',
 };
 
 Button.propTypes = {
@@ -180,7 +182,7 @@ Button.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
   ]),
   size: PropTypes.oneOf(['full']),
-  fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  // fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   loader: PropTypes.oneOf([
     'ball-pulse',
     'ball-pulse-sync',
