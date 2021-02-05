@@ -1,13 +1,13 @@
 import React, {
   useState,
   useRef,
-  useEffect,
   forwardRef,
   useImperativeHandle,
 } from 'react';
 import styled from 'styled-components';
 import { ButtonReset } from '../ui';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useDeepCompareEffect, useEffectOnce } from 'react-use';
 
 const PopoverInner = styled(motion.div)`
   position: absolute;
@@ -29,7 +29,11 @@ const InputButton = styled(ButtonReset)`
 `;
 
 const useOnClickOutside = (ref, handler) => {
-  useEffect(() => {
+  useEffectOnce(() => {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
     const listener = event => {
       if (!ref.current || ref.current.contains(event.target)) {
         return;
@@ -44,8 +48,7 @@ const useOnClickOutside = (ref, handler) => {
       document.removeEventListener('mousedown', listener);
       document.removeEventListener('touchstart', listener);
     };
-    // eslint-disable-next-line
-  }, []);
+  });
 };
 
 const Dropdown = (
@@ -88,22 +91,12 @@ const Dropdown = (
 
   useOnClickOutside(containerRef, close);
 
-  useEffect(
-    () => {
-      if (!onToggle) {
-        return;
-      }
-      onToggle(isOpen);
-    },
-    // eslint-disable-next-line
-    [isOpen],
-  );
-
-  const handleAnimationComplete = () => {
-    if (!isOpen) {
-      setMenuIsVisible(false);
+  useDeepCompareEffect(() => {
+    if (!onToggle) {
+      return;
     }
-  };
+    onToggle(isOpen);
+  }, [{ isOpen }]);
 
   return (
     <Wrapper ref={containerRef} style={{ ...(wrapperStyle || {}) }}>

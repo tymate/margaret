@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { isValidElement, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
@@ -42,8 +42,6 @@ const StyledModal = styled(ReactModal)`
       width: 1100px;
     `}
 `;
-
-ReactModal.setAppElement(document.getElementById('root'));
 
 export const CloseModalTriggerButton = styled(ButtonReset)`
   font-size: 1.5em;
@@ -134,9 +132,11 @@ const Modal = ({
         },
         content: { overflow },
       }}
+      ariaHideApp={false}
     >
       <Content variant={variant}>
-        {title && <ModalTitle>{title}</ModalTitle>}
+        {Boolean(title) &&
+          (isValidElement(title) ? title : <ModalTitle>{title}</ModalTitle>)}
 
         {onRequestClose && (
           <CloseModalTriggerButton onClick={onRequestClose} variant={variant}>
