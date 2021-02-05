@@ -16,6 +16,7 @@ const ButtonWrapper = styled(ButtonReset)`
     ${({ theme }) => theme.button.paddingHorizontal};
   line-height: 1;
   font-weight: ${({ theme }) => theme.button.fontWeight};
+  font-size: ${({ theme }) => theme.button.fontSize};
   color: ${({ theme }) => theme.button.color};
   min-width: ${({ theme }) => theme.button.minWidth};
   box-shadow: ${({ theme }) => theme.button.boxShadow};
@@ -42,6 +43,10 @@ const ButtonWrapper = styled(ButtonReset)`
   ${({ variant }) =>
     Boolean(variant) &&
     css`
+      font-weight: ${({ theme }) =>
+        theme.button?.[variant]?.fontWeight || theme?.button?.fontWeight};
+      font-size: ${({ theme }) =>
+        theme.button?.[variant]?.fontSize || theme?.button?.fontSize};
       border-radius: ${({ theme }) =>
         theme.button?.[variant]?.borderRadius || theme?.button?.borderRadius};
       box-shadow: ${({ theme }) =>
