@@ -148,7 +148,7 @@ const Button = ({ isLoading, children, icon, disabled, loader, ...props }) => (
   <ButtonWrapper {...props} disabled={disabled || isLoading}>
     {isLoading && <Spinner variant="button" loader={loader} />}
     {!isLoading && icon}
-    {children}
+    <span>{children}</span>
   </ButtonWrapper>
 );
 
