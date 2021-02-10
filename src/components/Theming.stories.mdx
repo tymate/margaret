@@ -8,39 +8,37 @@ import { action } from '@storybook/addon-actions';
 
 # Theming
 
-The Margaret theming is based on styled-components. The theme object containes the main styles of your application. You can define the principales colors and find some utilities like spacing and font and also the default styles of the components.
+The Margaret theming is based on styled-components. The theme object contains the main styles of your application. You can define theme colors and shared variables, find helper functions like `spacing()` (a spacer function), `fontStyles`, as well as the default and variant styles of some components.
 
 ## Utilities
 
 ### Spacing
 
-The spacing allows you to customize the margin and padding scale for your application. The defined rule is that a space of 1 is equal to 16px.
+`spacing()` allows you to customize the margin and padding scale for your application. The defined rule is that a unit of spacing is equals 16px.
 
-##### Exemple :
+#### Example :
 
 ```javascript
 const Title = styled.h1`
   color: red;
-  /* maring : 32px */
-  margin: ${({ theme }) => theme.spacing(2)};
-  /* padding-top : 16px */
-  padding-top: ${({ theme }) => theme.spacing()};
+  margin: ${({ theme }) => theme.spacing(2)}; // 32px
+  padding-top: ${({ theme }) => theme.spacing()}; // 16px
 `;
 ```
 
 ### Font sizes (coming soon)
 
-The fontSizes allows you to customize the size and the lineHeight of your differents titles and paragraphes.
+`fontSizes` allows you to customize the size and the lineHeight of your titles and paragraphs.
 
 ### Font styles (coming soon)
 
-The fontStyles allows you to customize the style of your differents titles and paragraphes.
+`fontStyles` allows you to customize the style (font size, line height, font weight and font family) of your text elements.
 
 ### Viewport sizes (coming soon)
 
 ## Customizing
 
-In the theme object you can add the main colors of your project. It makes easier to change the colors of the application if necessary.
+In the theme object, you can add the main colors of your project. It makes it easier to reuse the colors across the app, update them once and see the changes everywhere.
 
 ##### Exemple :
 
@@ -57,7 +55,7 @@ export const theme = {
 };
 ```
 
-It's possible to customize the button, mainNav and tabs components. You have to add the name of the componenet in the theme object and add the style you want to apply. The component can also accept a variant prop, which allows you to define stylistic variations to override the default values.
+The `<Button />`, `<MainNav />` and `<Tabs />` components can be customized from within the theme object. You have to add the name of the component in the theme object and add the base styles you want to apply. The component can also accept a variant prop, which allows you to define stylistic variations to override the default values.
 
 ### Button
 
@@ -65,11 +63,11 @@ You have the exemple with the button componenet :
 
 ```javascript
 button: {
-    color: 'blue',
-    alignX: 'center',
-    fontWeight: 600,
-    paddingVertical: '8px'
-  },
+  color: 'blue',
+  alignX: 'center',
+  fontWeight: 600,
+  paddingVertical: '8px'
+},
 ```
 
 ### MainNav
@@ -78,13 +76,13 @@ You have the exemple with the mainNav componenet :
 
 ```javascript
 mainNav: {
-    width: '320px',
-    maxWidth: '100%',
-    boxShadow: '0 4px 4px rgba(0,0,0,0.05)',
-    position: 'left',
-    triggerColor: {
-      expanded: '#41D974',
-      collapsed: 'rgba(0, 0, 0, 0.87)',
-    },
+  width: '320px',
+  maxWidth: '100%',
+  boxShadow: '0 4px 4px rgba(0,0,0,0.05)',
+  position: 'left',
+  triggerColor: {
+    expanded: '#41D974',
+    collapsed: 'rgba(0, 0, 0, 0.87)',
+  },
 }
 ```
