@@ -1,13 +1,23 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import {
+  Meta,
+  Story,
+  Preview,
+  Props,
+  ArgsTable,
+  Canvas,
+} from '@storybook/addon-docs/blocks';
 import { action } from '@storybook/addon-actions';
 import { Card } from './';
 import { MyCardFooter } from '../sandbox';
 import { Stack, ButtonReset, List } from './Basics';
+import Button from './Button';
 
 <Meta
   title="Intro/Basics"
   component={Stack}
-  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+  parameters={{
+    previewTabs: { canvas: { hidden: true } },
+  }}
 />
 
 # Basics
@@ -19,6 +29,70 @@ No style button
 <Props of={ButtonReset} />
 
 ## Stack
+
+Stack is a component that allows you to stack elements together and apply a space between them by using differents props like _direction_ and _gutterSize_.
+
+### Example:
+
+export const Template = args => (
+  <Stack direction="column" alignX="center" gutterSize={1}>
+    <Button variant="primary" {...args}>
+      Hello Tymate
+    </Button>
+    <p>Tymate</p>
+  </Stack>
+);
+
+<Canvas>
+  <Story
+    name="Stack"
+    argTypes={{
+      disabled: {
+        control: 'radio',
+      },
+      loader: {
+        control: {
+          type: 'select',
+          options: [
+            'ball-pulse',
+            'ball-pulse-sync',
+            'ball-scale',
+            'ball-scale-random',
+            'ball-rotate',
+            'ball-clip-rotate',
+            'ball-clip-rotate-pulse',
+            'ball-clip-rotate-multiple',
+            'ball-scale-ripple',
+            'ball-scale-ripple-multiple',
+            'ball-beat',
+            'ball-scale-multiple',
+            'ball-triangle-path',
+            'ball-pulse-rise',
+            'ball-grid-beat',
+            'ball-grid-pulse',
+            'ball-spin-fade-loader',
+            'ball-spin-loader',
+            'ball-zig-zag',
+            'ball-zig-zag-deflect',
+            'line-scale',
+            'line-scale-random',
+            'line-scale-pulse-out',
+            'line-scale-pulse-out-rapid',
+            'line-spin-fade-loader',
+            'triangle-skew-spin',
+            'square-spin',
+            'pacman',
+            'cube-transition',
+            'semi-circle-spin',
+          ],
+        },
+      },
+    }}
+    args={{ loader: 'ball-rotate' }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
 
 <Props of={Stack} />
 
