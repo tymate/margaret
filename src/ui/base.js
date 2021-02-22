@@ -144,6 +144,12 @@ export const Box = styled.div`
     css`
       width: 100%;
     `}
+
+  ${({ size }) =>
+    size === 'fit-content' &&
+    css`
+      width: fit-content;
+    `}
 `;
 
 export const Stack = styled(Box)`
