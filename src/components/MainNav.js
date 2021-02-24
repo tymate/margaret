@@ -282,12 +282,16 @@ const MainNavTriggerBase = styled(ButtonReset)`
   padding: ${({ theme }) => theme.spacing()};
 `;
 
-const MainNavTrigger = () => {
+const MainNavTrigger = props => {
   const { mainNavIsExpanded, toggleMainNav } = useMargaret();
   const theme = useTheme();
 
   return (
-    <MainNavTriggerBase onClick={toggleMainNav}>
+    <MainNavTriggerBase
+      aria-label="Main menu"
+      onClick={toggleMainNav}
+      {...props}
+    >
       <motion.svg
         width="23"
         height="23"
