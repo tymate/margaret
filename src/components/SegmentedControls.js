@@ -49,6 +49,7 @@ const SegmentedControls = ({
   onSelect,
   label,
   variant,
+  disabled,
   ...props
 }) => (
   <SegmentedWrapper gutterSize={0} {...props}>
@@ -74,6 +75,7 @@ const SegmentedControls = ({
             onClick={() => onSelect(optionValue)}
             variant={variant}
             type="button"
+            disabled={disabled}
             {...optionProps}
           >
             {label}
