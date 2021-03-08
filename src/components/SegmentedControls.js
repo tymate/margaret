@@ -35,9 +35,9 @@ const SegmentedButton = styled(PillButton)`
     css`
       white-space: nowrap;
     `};
-  
+
   &.active[disabled] {
-    background-color: {({ theme }) => theme.primaryBackground}
+    background-color: ${({ theme }) => theme.primaryBackground};
   }
 
   &:disabled {
