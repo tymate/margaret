@@ -108,10 +108,10 @@ export const theme = {
     },
   },
 
-  boxShadowColor: 'rgba(0,0,0, 0.12)',
-  boxShadowColorHover: 'rgba(0,0,0, 0.24)',
+  boxShadowColor: 'rgba(0, 0, 0, 0.12)',
+  boxShadowColorHover: 'rgba(0, 0, 0, 0.24)',
 
-  fontStack: {
+  fonts: {
     title: '"Archivo Narrow", sans-serif',
     body: '"Chivo", sans-serif',
     ui: 'sans-serif',
