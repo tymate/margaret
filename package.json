@@ -1,6 +1,6 @@
 {
   "name": "@tymate/margaret",
-  "version": "2.0.0-alpha.46",
+  "version": "2.0.0-alpha.47",
   "private": false,
   "main": "./dist/index.js",
   "repository": "git@github.com:tymate/frontend-bricks.git",
@@ -83,6 +83,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-visualizer": "^4.2.1",
     "storybook": "^6.1.21",
     "styled-components": "^5.2.1"
   },
