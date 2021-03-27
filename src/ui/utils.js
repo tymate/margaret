@@ -35,7 +35,7 @@ const cssLock = ({
   }rem) / (${higherBreakpoint / 16} - ${lowerBreakpoint / 16})))`;
 
 export const injectMargaret = theme => {
-  theme.spacing = input => `${input * 1}rem`;
+  theme.spacing = (input = 1) => `${input * 1}rem`;
 
   theme.media = keys(theme.viewportSizes || viewportSizes).reduce(
     (media, breakpoint) => ({
