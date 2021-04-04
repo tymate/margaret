@@ -1,7 +1,7 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { addDecorator, addParameters } from '@storybook/react';
-import { MargaretProvider } from '../src';
+import { injectMargaret, MargaretProvider, theme } from '../src';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
@@ -12,13 +12,15 @@ const GlobalStyle = createGlobalStyle`
   h4,
   h5,
   h6 {
-    font-family: ${({ theme }) => theme.fontStack.title};
+    font-family: ${({ theme }) => theme.fonts?.title};
   }
+
   body {
-    font-family: ${({ theme }) => theme.fontStack.body};
+    font-family: ${({ theme }) => theme.fonts?.body};
   }
+
   button {
-    font-family: ${({ theme }) => theme.fontStack.ui};
+    font-family: ${({ theme }) => theme.fonts?.ui};
   }
 `;
 
@@ -29,28 +31,21 @@ addParameters({
     showRoots: true,
     showCanvas: false,
     storySort: {
-      order: ['Intro', ['Getting Started', 'Basics']],
+      order: ['Intro', ['Getting Started', 'Basics', 'Theming', 'Typography']],
     },
   },
   dependencies: {
-    // display only dependencies/dependents that have a story in storybook
-    // by default this is false
-    withStoriesOnly: false,
-
-    // completely hide a dependency/dependents block if it has no elements
-    // by default this is false
-    hideEmpty: false,
+    withStoriesOnly: true,
+    hideEmpty: true,
     previewTabs: { canvas: { hidden: true } },
   },
 });
 
 addDecorator(story => (
-  <>
-    <MargaretProvider>
-      <Router history={history}>
-        <GlobalStyle />
-        {story()}
-      </Router>
-    </MargaretProvider>
-  </>
+  <MargaretProvider theme={injectMargaret(theme)}>
+    <Router history={history}>
+      <GlobalStyle />
+      {story()}
+    </Router>
+  </MargaretProvider>
 ));
