@@ -4,7 +4,7 @@ import { Pills, PillItem, PillButton } from './Pills';
 
 const SegmentedWrapper = styled(Pills)`
   box-shadow: inset 0 0 0 1px ${({ theme }) => theme.separator};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius?.default};
   overflow: hidden;
 `;
 

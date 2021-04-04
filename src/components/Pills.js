@@ -38,7 +38,7 @@ export const PillButton = styled(ButtonReset)`
   padding: ${({ theme }) => theme.spacing(0.5)}
     ${({ theme }) => theme.spacing(0.75)};
   display: block;
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius?.default};
   color: ${({ theme }) => theme.textLight};
   text-decoration: none;
   transition: box-shadow 150ms ease, background 150ms ease, color 150ms ease;
