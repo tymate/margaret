@@ -348,15 +348,14 @@ export const Container = styled.div`
     padding-right: ${({ theme }) => theme.spacing(2)};
   `}
 
-  ${({ theme }) =>
-    keys(theme?.containerSizes).map(
-      size => `
-        width: ${theme?.containerSizes?.[size]};
-      `,
-    )}
+  ${({ size, theme }) =>
+    Boolean(theme?.containerSizes?.[size]) &&
+    `
+      width: ${theme?.containerSizes?.[size]}
+    `};
 
-  ${props =>
-    props.variant === 'bare' &&
+  ${({ variant }) =>
+    variant === 'bare' &&
     css`
       padding-left: 0;
       padding-right: 0;
@@ -379,8 +378,8 @@ export const Container = styled.div`
       `}
     `}
 
-    ${props =>
-    props.alignment === 'center' &&
+    ${({ alignment }) =>
+    alignment === 'center' &&
     css`
       display: flex;
       align-items: center;
@@ -450,7 +449,7 @@ export const Icon = styled.div`
   }
 `;
 
-export const TitleAndAction = styled.div`
+export const TitleAndAction = styled(Stack)`
   display: flex;
   justify-content: space-between;
   align-items: center;

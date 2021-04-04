@@ -48,8 +48,8 @@ export const CardWrapper = styled.div`
     `}
 
     ${({ variant, theme }) =>
-      variant === 'link' &&
-      `
+    variant === 'link' &&
+    `
         cursor: pointer;
         box-shadow: 0 2px 4px ${theme.boxShadowColor};
         &:hover {
