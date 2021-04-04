@@ -1,12 +1,6 @@
 import styled, { css } from 'styled-components';
 import { media } from './utils';
-import { Link } from 'react-router-dom';
 import { keys } from 'lodash';
-
-export const Legend = styled.span`
-  font-size: 14px;
-  color: ${({ theme }) => theme.textLight};
-`;
 
 export const Name = styled.span`
   font-weight: 500;
@@ -138,6 +132,13 @@ export const spacings = props => css`
 
 export const Box = styled.div`
   ${spacings()}
+
+  ${({ theme, color }) =>
+    Boolean(color) &&
+    (Boolean(theme?.colors?.[color]) || Boolean(theme?.[color])) &&
+    css`
+      color: ${({ theme }) => theme?.colors?.[color] || theme?.[color]};
+    `}
 
   ${({ size }) =>
     size === 'full' &&
@@ -316,16 +317,6 @@ InlineList.defaultProps = {
   marginBottom: 0,
 };
 
-export const Subtitle = styled(Stack)`
-  font-size: 1.189em;
-  font-weight: 600;
-`;
-
-Subtitle.defaultProps = {
-  marginTop: 2,
-  marginBottom: 0.5,
-};
-
 export const ButtonReset = styled.button`
   border: 0;
   background-color: transparent;
@@ -336,6 +327,7 @@ export const ButtonReset = styled.button`
   padding: 0;
   font-size: inherit;
   font-family: inherit;
+  text-align: inherit;
 
   ${({ size }) =>
     size === 'full' &&
@@ -344,16 +336,11 @@ export const ButtonReset = styled.button`
     `}
 `;
 
-export const RawLink = styled(Link)`
-  text-decoration: none;
-  color: inherit;
-`;
-
 export const Container = styled.div`
   padding-left: ${({ theme }) => theme.spacing()};
   padding-right: ${({ theme }) => theme.spacing()};
   max-width: 100%;
-  width: 75rem;
+  width: ${({ theme }) => theme.containerSizes?.default};
   margin-left: auto;
   margin-right: auto;
 
@@ -362,20 +349,15 @@ export const Container = styled.div`
     padding-right: ${({ theme }) => theme.spacing(2)};
   `}
 
-  ${props =>
-    props.size === 'narrow' &&
-    css`
-      width: 45rem;
-    `}
+  ${({ size, theme }) =>
+    Boolean(size) &&
+    Boolean(theme?.containerSizes?.[size]) &&
+    `
+      width: ${theme?.containerSizes?.[size]}
+    `};
 
-  ${props =>
-    props.size === 'full' &&
-    css`
-      width: 100%;
-    `}
-
-  ${props =>
-    props.variant === 'bare' &&
+  ${({ variant }) =>
+    variant === 'bare' &&
     css`
       padding-left: 0;
       padding-right: 0;
@@ -398,8 +380,8 @@ export const Container = styled.div`
       `}
     `}
 
-    ${props =>
-    props.alignment === 'center' &&
+    ${({ alignment }) =>
+    alignment === 'center' &&
     css`
       display: flex;
       align-items: center;
@@ -469,7 +451,7 @@ export const Icon = styled.div`
   }
 `;
 
-export const TitleAndAction = styled.div`
+export const TitleAndAction = styled(Stack)`
   display: flex;
   justify-content: space-between;
   align-items: center;

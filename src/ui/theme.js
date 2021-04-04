@@ -18,6 +18,10 @@ export const theme = {
 
   borderRadius: '6px',
 
+  buttonsDefaultAlignX: 'flex-start',
+  boxShadowColor: 'rgba(0, 0, 0, 0.12)',
+  boxShadowColorHover: 'rgba(0, 0, 0, 0.24)',
+
   button: {
     transition: 'background 150ms ease',
     borderRadius: '6px',
@@ -55,8 +59,6 @@ export const theme = {
       minWidth: '220px',
     },
   },
-
-  buttonsDefaultAlignX: 'flex-start',
 
   tabs: {
     margin: '',
@@ -108,12 +110,106 @@ export const theme = {
     },
   },
 
-  boxShadowColor: 'rgba(0, 0, 0, 0.12)',
-  boxShadowColorHover: 'rgba(0, 0, 0, 0.24)',
-
   fonts: {
     title: '"Archivo Narrow", sans-serif',
     body: '"Chivo", sans-serif',
     ui: 'sans-serif',
+  },
+
+  cssLockLowerBreakpoint: 'tablet',
+  cssLockHigherBreakpoint: 'desktop',
+
+  fontStacks: {
+    h1Mega: {
+      sizeMinRem: 1.75,
+      sizeMaxRem: 2.625,
+      lineHeightMin: 1.2,
+      lineHeightMax: 1.1,
+      fontWeight: 700,
+      defaultTag: 'h1',
+      fontFamily: 'title',
+    },
+    h1: {
+      sizeMinRem: 1.375,
+      sizeMaxRem: 2,
+      lineHeightMin: 1.25,
+      lineHeightMax: 1.2,
+      fontWeight: 700,
+      defaultTag: 'h1',
+      fontFamily: 'title',
+    },
+    h2: {
+      sizeMinRem: 1.25,
+      sizeMaxRem: 1.5,
+      lineHeightMin: 1.25,
+      lineHeightMax: 1.2,
+      fontWeight: 700,
+      defaultTag: 'h2',
+      fontFamily: 'title',
+    },
+    heading: {
+      sizeMinRem: 1.125,
+      sizeMaxRem: 1.25,
+      lineHeightMin: 1.4375,
+      lineHeightMax: 1.25,
+      fontWeight: 700,
+      defaultTag: 'h3',
+      fontFamily: 'title',
+    },
+    subHeading: {
+      sizeMinRem: 1.0625,
+      sizeMaxRem: 1.1875,
+      lineHeightMin: 1.2,
+      lineHeightMax: 1.3,
+      fontWeight: 700,
+      defaultTag: 'h4',
+      fontFamily: 'title',
+    },
+    bodyLarge: {
+      sizeMinRem: 1.0625,
+      sizeMaxRem: 1.1875,
+      lineHeightMin: 1.2,
+      lineHeightMax: 1.3,
+      fontWeight: 400,
+      defaultTag: 'span',
+      fontFamily: 'body',
+    },
+    body: {
+      sizeMinRem: 1,
+      sizeMaxRem: 1,
+      lineHeightMin: 1.3125,
+      lineHeightMax: 1.5,
+      fontWeight: 400,
+      fontFamily: 'body',
+    },
+    bodySmall: {
+      sizeMinRem: 0.8125,
+      sizeMaxRem: 0.875,
+      lineHeightMin: 1.4,
+      lineHeightMax: 1.35,
+      fontWeight: 400,
+      fontFamily: 'body',
+    },
+    legend: {
+      sizeMinRem: 0.8125,
+      sizeMaxRem: 0.875,
+      lineHeightMin: 1.4,
+      lineHeightMax: 1.35,
+      fontWeight: 400,
+      color: 'textLight',
+    },
+  },
+
+  viewportSizes: {
+    desktop: 1200,
+    medium: 1000,
+    tablet: 750,
+  },
+
+  containerSizes: {
+    tight: '30rem',
+    narrow: '45rem',
+    default: '75rem',
+    full: '100%',
   },
 };

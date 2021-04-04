@@ -104,9 +104,18 @@ export const injectMargaret = theme => {
       [style]: css`
         ${theme.fontSize[style]}
         ${theme.lineHeight[style]}
-        ${Boolean(theme.lineHeight[style]?.fontWeight) &&
+        ${Boolean(theme.fontStacks?.[style]?.fontWeight) &&
         css`
-          font-weight: ${theme.lineHeight[style]?.fontWeight};
+          font-weight: ${theme.fontStacks[style]?.fontWeight};
+        `}
+        ${Boolean(theme.fontStacks?.[style]?.color) &&
+        css`
+          color: ${theme.colors?.[theme.fontStacks[style].color] ||
+          theme?.[theme.fontStacks[style].color]};
+        `}
+        ${Boolean(theme.fontStacks?.[style]?.fontFamily) &&
+        css`
+          font-family: ${theme.fonts?.[theme.fontStacks[style].fontFamily]};
         `}
       `,
     }),
