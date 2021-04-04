@@ -349,6 +349,7 @@ export const Container = styled.div`
   `}
 
   ${({ size, theme }) =>
+    Boolean(size) &&
     Boolean(theme?.containerSizes?.[size]) &&
     `
       width: ${theme?.containerSizes?.[size]}
