@@ -327,6 +327,7 @@ export const ButtonReset = styled.button`
   padding: 0;
   font-size: inherit;
   font-family: inherit;
+  text-align: inherit;
 
   ${({ size }) =>
     size === 'full' &&
