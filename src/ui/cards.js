@@ -3,7 +3,7 @@ import { media } from './utils';
 
 export const CardWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.separator};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius?.default};
   overflow: hidden;
 
   ${({ fixedSize, theme }) =>

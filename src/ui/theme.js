@@ -16,7 +16,12 @@ export const theme = {
 
   spacing,
 
-  borderRadius: '6px',
+  borderRadius: {
+    none: '0',
+    small: '4px',
+    default: '6px',
+    large: '12px',
+  },
 
   buttonsDefaultAlignX: 'flex-start',
   boxShadowColor: 'rgba(0, 0, 0, 0.12)',
@@ -211,5 +216,14 @@ export const theme = {
     narrow: '45rem',
     default: '75rem',
     full: '100%',
+  },
+
+  avatarSizes: {
+    tiny: '1rem',
+    small: '2rem',
+    default: '3rem',
+    medium: '4rem',
+    large: '6rem',
+    huge: '8rem',
   },
 };

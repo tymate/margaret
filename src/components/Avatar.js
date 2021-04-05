@@ -8,88 +8,89 @@ const AvatarWrapper = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: ${({ theme }) => theme.spacing(3)};
-  height: ${({ theme }) => theme.spacing(3)};
-  font-size: calc(${({ theme }) => theme.spacing(3)} / 2.2);
-  background-color: ${({ theme }) => theme.primary};
+  width: ${({ theme }) => theme.avatarSizes?.default};
+  height: ${({ theme }) => theme.avatarSizes?.default};
+  font-size: calc(${({ theme }) => theme.avatarSizes?.default} / 2);
+  background: ${({ theme }) => theme.primary};
   color: #fff;
   border-radius: 100%;
   background-size: cover;
   background-position: center center;
   text-transform: uppercase;
 
-  ${props =>
-    props.size === 'tiny' &&
-    css`
-      height: ${({ theme }) => theme.spacing(1.5)};
-      width: ${({ theme }) => theme.spacing(1.5)};
-      font-size: calc(${({ theme }) => theme.spacing(1.5)} / 2.2);
+  ${({ size, theme }) =>
+    Boolean(size) &&
+    Boolean(theme?.avatarSizes?.[size]) &&
+    `
+      width: ${theme?.avatarSizes?.[size]};
+      height: ${theme?.avatarSizes?.[size]};
+      font-size: calc(${theme?.avatarSizes?.[size]} / 2);
     `};
 
-  ${props =>
-    props.size === 'small' &&
+  ${({ variant }) =>
+    variant === 'rounded' &&
     css`
-      height: ${({ theme }) => theme.spacing(2)};
-      width: ${({ theme }) => theme.spacing(2)};
-      font-size: calc(${({ theme }) => theme.spacing(2)} / 2.2);
-    `};
+      border-radius: ${({ theme }) => theme.borderRadius?.default};
+    `}
 
-  ${props =>
-    props.size === 'medium' &&
+  ${({ variant }) =>
+    variant === 'square' &&
     css`
-      height: ${({ theme }) => theme.spacing(4)};
-      width: ${({ theme }) => theme.spacing(4)};
-      font-size: calc(${({ theme }) => theme.spacing(4)} / 2.2);
-    `};
+      border-radius: 0;
+    `}
 
-  ${props =>
-    props.size === 'large' &&
+  ${({ background }) =>
+    Boolean(background) &&
     css`
-      height: ${({ theme }) => theme.spacing(6)};
-      width: ${({ theme }) => theme.spacing(6)};
-      font-size: calc(${({ theme }) => theme.spacing(6)} / 2.2);
-    `};
+      background: ${({ theme }) =>
+        theme.gradients?.[background] ||
+        theme.colors?.[background] ||
+        theme?.[background]};
+    `}
 
-  ${props =>
-    props.size === 'huge' &&
+  ${({ borderRadius }) =>
+    Boolean(borderRadius) &&
     css`
-      height: ${({ theme }) => theme.spacing(8)};
-      width: ${({ theme }) => theme.spacing(8)};
-      font-size: calc(${({ theme }) => theme.spacing(8)} / 2.2);
-    `};
-
-  ${props =>
-    props.variant === 'rounded' &&
-    css`
-      border-radius: ${({ theme }) => theme.borderRadius};
+      border-radius: ${({ theme }) => theme.borderRadius?.[borderRadius]};
     `}
 `;
 
-const Avatar = ({ firstName, lastName, size, imageUrl, ...props }) => (
+const getAvatarContent = ({ firstName, lastName, icon, imageUrl, name }) => {
+  if (Boolean(imageUrl)) {
+    return null;
+  }
+  if (Boolean(icon)) {
+    return icon;
+  }
+  if (Boolean(firstName) || Boolean(lastName)) {
+    return (
+      <span>
+        {trim(firstName || '').charAt(0)}
+        {trim(lastName || '').charAt(0)}
+      </span>
+    );
+  }
+  return <span>{(name || '').charAt(0)}</span>;
+};
+
+const Avatar = ({ size, imageUrl, ...props }) => (
   <AvatarWrapper
     size={size}
-    style={{ backgroundImage: `url(${imageUrl})` }}
+    style={{
+      backgroundImage: Boolean(imageUrl) ? `url(${imageUrl})` : undefined,
+    }}
     {...props}
   >
-    {!Boolean(imageUrl) && (
-      <>
-        {trim(firstName).charAt(0)}
-        {trim(lastName).charAt(0)}
-      </>
-    )}
+    {getAvatarContent({ imageUrl, ...props })}
   </AvatarWrapper>
 );
 
 Avatar.propTypes = {
   firstName: PropTypes.string,
   lastName: PropTypes.string,
+  name: PropTypes.string,
   imageUrl: PropTypes.string,
-  size: PropTypes.oneOf(['tiny', 'small', 'medium', 'large', 'huge']),
-};
-
-Avatar.defaultProps = {
-  firstName: '',
-  lastName: '',
+  size: PropTypes.string,
 };
 
 export default Avatar;
