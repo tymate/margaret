@@ -1,6 +1,6 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'Margaret, ',
+  title: 'Margaret',
   tagline:
     'Margaret is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications.',
   url: 'https://tymate.dev',

@@ -3,7 +3,7 @@ id: theming
 title: Theming
 ---
 
-The Margaret theming is based on styled-components. The theme object contains the main styles of your application. You can define theme colors and shared variables, find helper functions like spacing() (a spacer function), fontStyles, as well as the default and variant styles of some components.
+The Margaret theming is based on styled-components. The theme object contains the main styles of your application. You can define theme colors and shared variables, find helper functions like `spacing()` (a spacer function), `fontStyles`, as well as the default and variant styles of some components.
 
 ## Utilities
 
@@ -21,13 +21,9 @@ const Title = styled.h1`
 `;
 ```
 
-### Font sizes (coming soon)
+### Font styles
 
-fontSizes allows you to customize the size and the lineHeight of your titles and paragraphs.
-
-### Font styles (coming soon)
-
-fontStyles allows you to customize the style (font size, line height, font weight and font family) of your text elements.
+`fontStyles` allows you to customize the style (font size, line height, font weight and font family) of your text elements. See [Typography](typography)
 
 ### Viewport sizes (coming soon)
 
@@ -52,7 +48,7 @@ export const theme = {
 
 The ` <Button />`, ` <MainNav />` and `<Tabs />` components can be customized from within the theme object. You have to add the name of the component in the theme object and add the base styles you want to apply. The component can also accept a variant prop, which allows you to define stylistic variations to override the default values.
 
-## Button
+### Button
 
 You have the example with the button component :
 
@@ -65,7 +61,7 @@ button: {
 },
 ```
 
-## MainNav
+### MainNav
 
 You have the example with the mainNav component :
 
