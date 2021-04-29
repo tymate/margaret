@@ -3,4 +3,48 @@ id: stack
 title: Stack
 ---
 
-# Stack
+Stack is a component that allows you to stack elements together and apply a space between them by using differents props like direction and gutterSize.
+
+Example
+
+import { Buttons, Stack } from '@tymate/margaret';
+
+<div
+  style={{ border: '1px solid #dedede', padding: '10px', marginBottom: '20px' }}
+>
+  <Stack size="full" alignX="center" direction="column">
+    <p>Hello Tymate</p>
+    <p>Welcome</p>
+  </Stack>
+</div>
+
+```jsx
+<Stack size="full" alignX="center" direction="column">
+  <p>Hello Tymate</p>
+  <p>Welcome</p>
+</Stack>
+```
+
+## Props
+
+| Name              |                                                                  description                                                                   |      default |
+| ----------------- | :--------------------------------------------------------------------------------------------------------------------------------------------: | -----------: |
+| direction         |                                                                    'column'                                                                    |        'row' |
+| alignY            |     <code>You can add all justify-content and align-items properties <br/> <i>'flex-start' 'center' 'flex-end' 'space-between'</i></code>      | 'flex-start' |
+| alignX            |     <code>You can add all justify-content and align-items properties <br/> <i>'flex-start' 'center' 'flex-end' 'space-between'</i></code>      | 'flex-start' |
+| size              |                                                                     'full'                                                                     |            - |
+| gutterSize        | <code>This is the size between two elements 1 = 16px <br/> number { default: number, tablet: number, medium: number, desktop: number } </code> |            - |
+| marginTop         |                         <code>number { default: number, tablet: number, <br/>medium: number, desktop: number } </code>                         |            - |
+| marginBottom      |                         <code>number { default: number, tablet: number, <br/>medium: number, desktop: number } </code>                         |            - |
+| marginLeft        |                         <code>number { default: number, tablet: number, <br/>medium: number, desktop: number } </code>                         |            - |
+| marginRight       |                         <code>number { default: number, tablet: number, <br/>medium: number, desktop: number } </code>                         |            - |
+| marginVertical    |                         <code>number { default: number, tablet: number, <br/>medium: number, desktop: number } </code>                         |            - |
+| marginHorizontal  |                         <code>number { default: number, tablet: number, <br/>medium: number, desktop: number } </code>                         |            - |
+| margin            |                         <code>number { default: number, tablet: number, <br/>medium: number, desktop: number } </code>                         |            - |
+| paddingTop        |                         <code>number { default: number, tablet: number, <br/>medium: number, desktop: number } </code>                         |            - |
+| paddingBottom     |                         <code>number { default: number, tablet: number, <br/>medium: number, desktop: number } </code>                         |            - |
+| paddingLeft       |                         <code>number { default: number, tablet: number, <br/>medium: number, desktop: number } </code>                         |            - |
+| paddingRight      |                         <code>number { default: number, tablet: number, <br/>medium: number, desktop: number } </code>                         |            - |
+| paddingVertical   |                         <code>number { default: number, tablet: number, <br/>medium: number, desktop: number } </code>                         |            - |
+| paddingHorizontal |                         <code>number { default: number, tablet: number, <br/>medium: number, desktop: number } </code>                         |            - |
+| padding           |                         <code>number { default: number, tablet: number, <br/>medium: number, desktop: number } </code>                         |            - |

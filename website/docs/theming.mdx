@@ -33,7 +33,7 @@ In the theme object, you can add the main colors of your project. It makes it ea
 
 Example :
 
-```js
+```js title="theme.js"
 export const theme = {
   text: '#464646',
   textLight: 'rgba(0, 0, 0, 0.38)',
@@ -52,28 +52,35 @@ The ` <Button />`, ` <MainNav />` and `<Tabs />` components can be customized fr
 
 You have the example with the button component :
 
-```js
-button: {
-  color: 'blue',
-  alignX: 'center',
-  fontWeight: 600,
-  paddingVertical: '8px'
-},
+```js title="theme.js"
+const theme = {
+  ...
+  button: {
+    color: 'blue',
+    alignX: 'center',
+    fontWeight: 600,
+    paddingVertical: '8px'
+  },
+}
+
 ```
 
 ### MainNav
 
 You have the example with the mainNav component :
 
-```js
-mainNav: {
-  width: '320px',
-  maxWidth: '100%',
-  boxShadow: '0 4px 4px rgba(0,0,0,0.05)',
-  position: 'left',
-  triggerColor: {
-    expanded: '#41D974',
-    collapsed: 'rgba(0, 0, 0, 0.87)',
-  },
+```js title="theme.js"
+const theme = {
+  ...
+  mainNav: {
+    width: '320px',
+    maxWidth: '100%',
+    boxShadow: '0 4px 4px rgba(0,0,0,0.05)',
+    position: 'left',
+    triggerColor: {
+      expanded: '#41D974',
+      collapsed: 'rgba(0, 0, 0, 0.87)',
+    },
+  }
 }
 ```

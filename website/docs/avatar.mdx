@@ -1,0 +1,141 @@
+---
+id: avatar
+title: Avatar
+---
+
+The Avatar component is used to represent a user by displaying the profile picture, initials or an icon.
+
+## Props
+
+| Name      |                           description                           | default |
+| --------- | :-------------------------------------------------------------: | ------: |
+| firstName |                            `string`                             |       - |
+| lastName  |                            `string`                             |       - |
+| name      |                            `string`                             |       - |
+| imageUrl  |                            `string`                             |       - |
+| size      |                            `string`                             |       - |
+| variant   | <code>Changes the appearance of the button <br/>`string`</code> |       - |
+
+## Sizes
+
+Margaret provides defaults sizes: `default`, `tiny`, `small`, `medium`, `large` and `huge`.
+
+import { Avatar } from '@tymate/margaret';
+
+<div
+  style={{
+    border: '1px solid #dedede',
+    padding: '10px',
+    marginBottom: '20px',
+  }}
+>
+  Margaret à configurer
+</div>
+
+Those size can be overriden using by setting a custom `theme.avatarSizes`. The default
+values are as is:
+
+```js title="theme.js"
+const theme = {
+  ...
+  avatarSizes: {
+    tiny: '1rem',
+    small: '2rem',
+    default: '3rem',
+    medium: '4rem',
+    large: '6rem',
+    huge: '8rem',
+  },
+};
+```
+
+For instance, setting `theme.avatarSizes` as follow…
+
+```js title="theme.js"
+const theme = {
+  ...
+  avatarSizes: {
+    micro: '32px',
+    default: '96px',
+    mega: '256px',
+  },
+};
+```
+
+…would give this results in-app.
+
+<div
+  style={{
+    border: '1px solid #dedede',
+    padding: '10px',
+    marginBottom: '20px',
+  }}
+>
+  Margaret à configurer
+</div>
+
+## Modes
+
+Avatar content can be provided via five props: `imageUrl`, `icon`, `firstName` + `lastName`, and `name`, in importance decreasing order.
+
+<div
+  style={{
+    border: '1px solid #dedede',
+    padding: '10px',
+    marginBottom: '20px',
+  }}
+>
+  Margaret à configurer
+</div>
+
+## Variants
+
+Three variants are provided. They set the avatar as round (`default`), `rounded` or `square`.
+
+<div
+  style={{
+    border: '1px solid #dedede',
+    padding: '10px',
+    marginBottom: '20px',
+  }}
+>
+  Margaret à configurer
+</div>
+
+## Overrides
+
+The background and border radius can be overriden at the component level.
+If set, they take the value of the corresponding theme prop.
+
+For instance, using this theme…
+
+```js title="theme.js"
+const theme = {
+  ...
+  borderRadius: {
+    huge: '32px',
+    ...
+  },
+  gradients: {
+    primaryGradient: 'linear-gradient(to bottom, #bada55, #c55)'
+    ...
+  },
+  colors: {
+    primary: '#bada55'
+    ...
+  },
+  secondary: '#c55'
+};
+```
+
+…would enable the following component-level customization:
+
+<div
+  style={{
+    border: '1px solid #dedede',
+    padding: '10px',
+    marginBottom: '20px',
+  }}
+>
+  Margaret à configurer
+</div>

@@ -1,7 +1,7 @@
 module.exports = {
   someSidebar: {
-    'Getting started': [
-      'installation',
+    About: [
+      'getting-started',
       'theming',
       'typography',
       // {
@@ -15,8 +15,9 @@ module.exports = {
       // },
     ],
     Layout: ['stack', 'box', 'container'],
-    Components: [],
-    Form: [],
+    'Data Display': ['card'],
+    Button: ['buttonReset', 'button'],
+    Media: ['avatar'],
     Hooks: [],
   },
 };

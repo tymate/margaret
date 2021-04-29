@@ -8,6 +8,7 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
+  themes: ['@docusaurus/theme-live-codeblock'],
   organizationName: '@tymate', // Usually your GitHub org/user name.
   projectName: 'margaret', // Usually your repo name.
   themeConfig: {
