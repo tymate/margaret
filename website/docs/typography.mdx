@@ -92,15 +92,57 @@ The Text component inherits from the Box element. The main prop it needs is the 
 Those values can be overriden by passing `color`, `fontWeight` and `fontFamily` props, based on the same mechanics.
 
 ```jsx live
-<p>En attente</p>
+<>
+  <Text type="h1Mega">The quick brown fox jumps over the lazy dog</Text>
+  <Text type="h1">The quick brown fox jumps over the lazy dog</Text>
+  <Text type="h2">The quick brown fox jumps over the lazy dog</Text>
+  <Text type="heading">The quick brown fox jumps over the lazy dog</Text>
+  <Text type="subHeading">The quick brown fox jumps over the lazy dog</Text>
+  <Text type="body">The quick brown fox jumps over the lazy dog</Text>
+  <Text type="legend">The quick brown fox jumps over the lazy dog</Text>
+  <Text
+    type="legend"
+    paddingVertical={2}
+    color="primary"
+    fontFamily="title"
+    fontWeight="700"
+  >
+    This legend node shows how to use color, font-weight, font-family and
+    box-inherited props
+  </Text>
+</>
 ```
 
 ## The Shortcuts {#shortcuts}
 
-For the sake of code readability, Margaret provides shortcuts for our in-house frequently-used font stacks. Below is the same output as above, but using those shorcuts components.
+For the sake of code readability, you can create shortcuts for your frequently used internal font stacks as follows
 
-```jsx live
-<p>En attente</p>
+```jsx title="typography.js"
+import { Text } from '@tymate/margaret';
+
+export const MainTitle = styled(Text).attrs(({ type }) => ({
+  type: type || 'h1Mega',
+}))``;
+
+export const Title = styled(Text).attrs(({ type }) => ({
+  type: type || 'h1',
+}))``;
+
+export const Subtitle = styled(Text).attrs(({ type }) => ({
+  type: type || 'h2',
+}))``;
+
+export const Heading = styled(Text).attrs(({ type }) => ({
+  type: type || 'heading',
+}))``;
+
+export const SubHeading = styled(Text).attrs(({ type }) => ({
+  type: type || 'subHeading',
+}))``;
+
+export const Legend = styled(Text).attrs(({ type }) => ({
+  type: type || 'legend',
+}))``;
 ```
 
 ## The `theme.fontStyles` {#theme-fontStyles}

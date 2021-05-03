@@ -20,9 +20,7 @@ yarn add @tymate/margaret lodash react-icons react-modal react-use styled-compon
 
 To use some components of Margaret, you have to add a MargaretProvider component at the root of the application. It contains some internal state, but it also allows to theme components by passing a theme prop to the provider. The theme object contains objects which hold values for common variables such as color, fonts, borders, variants, and more.
 
-Example
-
-```js
+```js title="index.js"
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -41,10 +39,10 @@ ReactDOM.render(
 
 Import them from the main package module:
 
-```js
+```jsx
 import { Button } from '@tymate/margaret';
 
 export default const MyApp = () => (
- <Button variant="primary" fontSize="1em">Login</Button>
+ <Button fontSize="1em">Login</Button>
 )
 ```

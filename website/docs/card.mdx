@@ -20,64 +20,69 @@ The `Card` component allows to display data in a structured way.
 
 ### Variant
 
-#### `default`
+#### _`default`_
 
-import { Card } from '@tymate/margaret';
+```jsx live
+<Card fixedSize={550} hasLink title="Card title" subtitle="Card subtitle">
+  Card content
+</Card>
+```
 
-<div
-  style={{
-    border: '1px solid #dedede',
-    padding: '10px',
-    marginBottom: '20px',
-  }}
+#### _`raised`_
+
+```jsx live
+<Card
+  fixedSize={550}
+  hasLink
+  title="Card title"
+  subtitle="Card subtitle"
+  variant="raised"
 >
-  Margaret à configurer
-</div>
+  Card content
+</Card>
+```
 
-#### `raised`
+#### _`subtle`_
 
-<div
-  style={{
-    border: '1px solid #dedede',
-    padding: '10px',
-    marginBottom: '20px',
-  }}
+```jsx live
+<Card
+  fixedSize={550}
+  hasLink
+  title="Card title"
+  subtitle="Card subtitle"
+  variant="subtle"
 >
-  Margaret à configurer
-</div>
+  Card content
+</Card>
+```
 
-#### `subtle`
+#### _`link`_
 
-<div
-  style={{
-    border: '1px solid #dedede',
-    padding: '10px',
-    marginBottom: '20px',
-  }}
+```jsx live
+<Card
+  fixedSize={550}
+  hasLink
+  title="Card title"
+  subtitle="Card subtitle"
+  variant="link"
 >
-  Margaret à configurer
-</div>
-
-#### `link`
-
-<div
-  style={{
-    border: '1px solid #dedede',
-    padding: '10px',
-    marginBottom: '20px',
-  }}
->
-  Margaret à configurer
-</div>
+  Card content
+</Card>
+```
 
 ### ThumbnailCard
 
-<div
-  style={{
-    border: '1px solid #dedede',
-    padding: '10px',
-    marginBottom: '20px',
-  }}
->
-  Margaret à configurer
-</div>
+```jsx live
+<Card
+  fixedSize={300}
+  thumbnailUrl={`https://d3v4jsc54141g1.cloudfront.net/uploads/reward_image/image/129779/Cachou_2-1454402733.JPG`}
+  title="Black Cat"
+  subtitle="European shorthair"
+  description="The term has also been used as an elaborate way of referring to common domestic cats of Europe."
+  footer={
+    <Stack alignX="center">
+      <Button variant="primary">More information</Button>
+    </Stack>
+  }
+/>
+```

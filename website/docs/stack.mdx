@@ -5,23 +5,10 @@ title: Stack
 
 Stack is a component that allows you to stack elements together and apply a space between them by using differents props like direction and gutterSize.
 
-Example
-
-import { Buttons, Stack } from '@tymate/margaret';
-
-<div
-  style={{ border: '1px solid #dedede', padding: '10px', marginBottom: '20px' }}
->
-  <Stack size="full" alignX="center" direction="column">
-    <p>Hello Tymate</p>
-    <p>Welcome</p>
-  </Stack>
-</div>
-
-```jsx
-<Stack size="full" alignX="center" direction="column">
+```jsx live
+<Stack size="full" alignX="center" direction="column" gutterSize={1}>
   <p>Hello Tymate</p>
-  <p>Welcome</p>
+  <Button variant="primary">Welcome</Button>
 </Stack>
 ```
 

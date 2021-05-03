@@ -5,17 +5,11 @@ title: Button
 
 The `Button` component has a default style that can be costumized and some properties that allow to integrate a spinner
 
-import { Button } from '@tymate/margaret';
-
-<div
-  style={{
-    border: '1px solid #dedede',
-    padding: '10px',
-    marginBottom: '20px',
-  }}
->
-  Margaret à configurer
-</div>
+```jsx live
+<Button fontSize="1em" loader="ball-rotate">
+  Hello Tymate
+</Button>
+```
 
 ## Theming
 
@@ -52,15 +46,11 @@ const theme = {
 }
 ```
 
-<div
-  style={{
-    border: '1px solid #dedede',
-    padding: '10px',
-    marginBottom: '20px',
-  }}
->
-  Margaret à configurer
-</div>
+```jsx live
+<Button fontSize="1em" loader="ball-rotate" variant="primary">
+  Hello Tymate
+</Button>
+```
 
 ## Props
 
@@ -79,7 +69,7 @@ const theme = {
 
 ### Loader
 
-The `loeader` props determines the style of the spinner.
+The `loader` props determines the style of the spinner.
 
 Other values :
 
