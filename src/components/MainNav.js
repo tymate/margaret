@@ -71,7 +71,7 @@ const Backdrop = styled(ButtonReset)`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: ${({ theme }) => theme.mainNav.backdropZIndex || 1};
   background-color: rgba(0, 0, 0, 0.48);
 `;
 

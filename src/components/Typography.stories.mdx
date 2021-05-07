@@ -9,7 +9,7 @@ import {
   SubHeading,
   Legend,
 } from '../ui';
-import { MargaretProvider, injectMargaret, theme } from '..';
+import { MargaretProvider, theme } from '..';
 
 <Meta
   title="Intro/Typography"
@@ -20,8 +20,8 @@ import { MargaretProvider, injectMargaret, theme } from '..';
 
 Typography in Margaret is based on
 [CSS Locks](https://blog.typekit.com/2016/08/17/flexible-typography-with-css-locks/),
-made available throught the theme. Once you `injectMargaret()`, you gain access
-to [theme.fontStyles](#themefontstyles) as well as the
+made available throught the theme. The theme contains the
+[theme.fontStyles](#themefontstyles) helper function as well as the
 [Text](#the-text-component) and [shortcuts](#shortcuts) components.
 
 ## The `theme` fonts parts

@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { theme as defaultTheme, viewportSizes } from '../ui';
+import { injectMargaret, theme as defaultTheme, viewportSizes } from '../ui';
 import { createBreakpoint } from 'react-use';
 import 'sanitize.css';
 import 'sanitize.css/typography.css';
@@ -49,7 +49,7 @@ const MargaretProvider = ({ theme, children }) => {
         isDesktop,
       }}
     >
-      <ThemeProvider theme={{ ...defaultTheme, ...theme }}>
+      <ThemeProvider theme={injectMargaret({ ...defaultTheme, ...theme })}>
         {children}
       </ThemeProvider>
     </AppContext.Provider>
