@@ -82,6 +82,7 @@ export const PillButton = styled(ButtonReset)`
 
   &:disabled,
   &:disabled:hover {
+    cursor: default;
     background-color: ${({ theme }) =>
       theme.pills?.disabledBackground || theme.disabledBackground};
     color: ${({ theme }) => theme.pills?.disabledColor || theme.disabled};

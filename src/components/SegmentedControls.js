@@ -37,12 +37,6 @@ const SegmentedButton = styled(PillButton)`
     css`
       white-space: nowrap;
     `};
-
-  &:disabled {
-    cursor: default;
-    background-color: ${({ theme }) => theme.disabledBackground};
-    color: ${({ theme }) => theme.disabled};
-  }
 `;
 
 const SegmentedControls = ({
