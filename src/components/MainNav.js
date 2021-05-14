@@ -109,10 +109,10 @@ const MainNav = ({ header, children, hasBackdrop, ...props }) => {
       )}
 
       <MainNavBase
+        as={isMobile ? motion.aside : motion.nav}
+        animate={isMobile ? (mainNavIsExpanded ? 'open' : 'closed') : undefined}
+        variants={isMobile ? mainNavVariants : undefined}
         {...props}
-        as={isMobile ? motion.aside : null}
-        animate={mainNavIsExpanded ? 'open' : 'closed'}
-        variants={mainNavVariants}
       >
         {header}
         {theme.mainNav.position === 'top' ? (
