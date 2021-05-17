@@ -71,7 +71,7 @@ const Backdrop = styled(ButtonReset)`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: ${({ theme }) => theme.mainNav.backdropZIndex || 1};
   background-color: rgba(0, 0, 0, 0.48);
 `;
 
@@ -109,10 +109,10 @@ const MainNav = ({ header, children, hasBackdrop, ...props }) => {
       )}
 
       <MainNavBase
+        as={isMobile ? motion.aside : motion.nav}
+        animate={isMobile ? (mainNavIsExpanded ? 'open' : 'closed') : undefined}
+        variants={isMobile ? mainNavVariants : undefined}
         {...props}
-        as={isMobile ? motion.aside : null}
-        animate={mainNavIsExpanded ? 'open' : 'closed'}
-        variants={mainNavVariants}
       >
         {header}
         {theme.mainNav.position === 'top' ? (

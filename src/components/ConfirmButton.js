@@ -16,7 +16,7 @@ const ConfirmButton = ({
 
   return (
     <>
-      <ButtonReset onClick={() => setModalIsShown(true)}>
+      <ButtonReset onClick={() => setModalIsShown(true)} type="button">
         {confirmElement}
       </ButtonReset>
       <Modal
