@@ -1,0 +1,170 @@
+---
+id: avatar
+title: Avatar
+---
+
+The Avatar component is used to represent a user by displaying the profile picture, initials or an icon.
+
+## Props
+
+| Name      |                           description                           | default |
+| --------- | :-------------------------------------------------------------: | ------: |
+| firstName |                            `string`                             |       - |
+| lastName  |                            `string`                             |       - |
+| name      |                            `string`                             |       - |
+| imageUrl  |                            `string`                             |       - |
+| size      |                            `string`                             |       - |
+| variant   | <code>Changes the appearance of the button <br/>`string`</code> |       - |
+
+## Sizes
+
+Margaret provides defaults sizes: `default`, `tiny`, `small`, `medium`, `large` and `huge`.
+
+```jsx live
+<Stack alignY="center" gutterSize={1}>
+  <Avatar firstName="Nino" lastName="Quincampoix" size="small" />
+  <Avatar firstName="Nino" lastName="Quincampoix" />
+  <Avatar firstName="Nino" lastName="Quincampoix" size="medium" />
+  <Avatar firstName="Nino" lastName="Quincampoix" size="large" />
+</Stack>
+```
+
+Those size can be overriden using by setting a custom `theme.avatarSizes`. The default
+values are as is:
+
+```js title="theme.js"
+const theme = {
+  ...
+  avatarSizes: {
+    tiny: '1rem',
+    small: '2rem',
+    default: '3rem',
+    medium: '4rem',
+    large: '6rem',
+    huge: '8rem',
+  },
+};
+```
+
+For instance, setting `theme.avatarSizes` as follow…
+
+```js title="theme.js"
+const theme = {
+  ...
+  avatarSizes: {
+    micro: '32px',
+    default: '96px',
+    mega: '256px',
+  },
+};
+```
+
+…would give this results in-app.
+
+```jsx live
+<ThemeProvider
+  theme={injectMargaret({
+    ...theme,
+    avatarSizes: {
+      micro: '32px',
+      default: '96px',
+      mega: '256px',
+    },
+  })}
+>
+  <Stack alignY="center" gutterSize={1}>
+    <Avatar firstName="Nino" lastName="Quincampoix" size="micro" />
+    <Avatar firstName="Nino" lastName="Quincampoix" />
+    <Avatar firstName="Nino" lastName="Quincampoix" size="mega" />
+  </Stack>
+</ThemeProvider>
+```
+
+## Modes
+
+Avatar content can be provided via five props: `imageUrl`, `icon`, `firstName` + `lastName`, and `name`, in importance decreasing order.
+
+```jsx live
+<Stack alignY="center" gutterSize={1}>
+  <Avatar
+    imageUrl="https://picsum.photos/256/256"
+    firstName="Nino"
+    lastName="Quincampoix"
+    name="Nino19"
+    icon={<FaUserCircle size={32} />}
+  />
+  <Avatar
+    firstName="Nino"
+    lastName="Quincampoix"
+    name="Nino19"
+    icon={<FaUserCircle size={32} />}
+  />
+  <Avatar firstName="Nino" lastName="Quincampoix" name="Nino19" />
+  <Avatar lastName="Quincampoix" name="Nino19" />
+  <Avatar name="Nino19" />
+  <Avatar />
+</Stack>
+```
+
+## Variants
+
+Three variants are provided. They set the avatar as round (`default`), `rounded` or `square`.
+
+```jsx live
+<Stack alignY="center" gutterSize={1}>
+  <Avatar imageUrl="https://picsum.photos/256/256" />
+  <Avatar imageUrl="https://picsum.photos/256/256" variant="rounded" />
+  <Avatar imageUrl="https://picsum.photos/256/256" variant="square" />
+</Stack>
+```
+
+## Overrides
+
+The background and border radius can be overriden at the component level.
+If set, they take the value of the corresponding theme prop.
+
+For instance, using this theme…
+
+```js title="theme.js"
+const theme = {
+  ...
+  borderRadius: {
+    huge: '32px',
+    ...
+  },
+  gradients: {
+    primaryGradient: 'linear-gradient(to bottom, #bada55, #c55)'
+    ...
+  },
+  colors: {
+    primary: '#bada55'
+    ...
+  },
+  secondary: '#c55'
+};
+```
+
+…would enable the following component-level customization:
+
+```jsx live
+<Stack alignY="center" gutterSize={1}>
+  <ThemeProvider
+    theme={injectMargaret({
+      ...theme,
+      borderRadius: { ...theme.borderRadius, huge: '32px' },
+      gradients: {
+        primaryGradient: 'linear-gradient(to bottom, #f5aba5, #406fb3)',
+      },
+      colors: {
+        primary: '#406fb3',
+      },
+      secondary: '#f5aba5',
+    })}
+  >
+    <Avatar size="huge" icon={<FaUserCircle />} background="primaryGradient" />
+    <Avatar size="huge" icon={<FaUserCircle />} background="primary" />
+    <Avatar size="huge" icon={<FaUserCircle />} background="secondary" />
+    <Avatar size="huge" icon={<FaUserCircle />} borderRadius="huge" />
+  </ThemeProvider>
+</Stack>
+```
