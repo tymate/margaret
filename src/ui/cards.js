@@ -3,7 +3,7 @@ import { media } from './utils';
 
 export const CardWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.separator};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius?.default};
   overflow: hidden;
 
   ${({ fixedSize, theme }) =>
@@ -48,8 +48,8 @@ export const CardWrapper = styled.div`
     `}
 
     ${({ variant, theme }) =>
-      variant === 'link' &&
-      `
+    variant === 'link' &&
+    `
         cursor: pointer;
         box-shadow: 0 2px 4px ${theme.boxShadowColor};
         &:hover {

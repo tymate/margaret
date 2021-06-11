@@ -1,0 +1,82 @@
+---
+id: theming
+title: Theming
+---
+
+The Margaret theming is based on styled-components. The theme object contains the main styles of your application. You can define theme colors and shared variables, find helper functions like `spacing()` (a spacer function), `fontStyles`, as well as the default and variant styles of some components.
+
+## Utilities
+
+### Spacing
+
+`spacing()` allows you to customize the margin and padding scale for your application. The defined rule is that a unit of spacing is equals 16px.
+
+```js
+const Title = styled.h1`
+  color: red;
+  margin: ${({ theme }) => theme.spacing(2)}; // 32px
+  padding-top: ${({ theme }) => theme.spacing()}; // 16px
+`;
+```
+
+### Font styles
+
+`fontStyles` allows you to customize the style (font size, line height, font weight and font family) of your text elements. See [Typography](typography)
+
+### Viewport sizes (coming soon)
+
+## Customizing
+
+In the theme object, you can add the main colors of your project. It makes it easier to reuse the colors across the app, update them once and see the changes everywhere.
+
+```js title="theme.js"
+export const theme = {
+  text: '#464646',
+  textLight: 'rgba(0, 0, 0, 0.38)',
+  background: '#f1edf2',
+  primary: '#F39600',
+  primaryLight: '#FFA71A',
+  secondary: '#D2D213',
+  error: '#F14C66',
+  success: '#bada55',
+};
+```
+
+The ` <Button />`, ` <MainNav />` and `<Tabs />` components can be customized from within the theme object. You have to add the name of the component in the theme object and add the base styles you want to apply. The component can also accept a variant prop, which allows you to define stylistic variations to override the default values.
+
+### Button
+
+You have the example with the button component :
+
+```js title="theme.js"
+const theme = {
+  ...
+  button: {
+    color: 'blue',
+    alignX: 'center',
+    fontWeight: 600,
+    paddingVertical: '8px'
+  },
+}
+
+```
+
+### MainNav
+
+You have the example with the mainNav component :
+
+```js title="theme.js"
+const theme = {
+  ...
+  mainNav: {
+    width: '320px',
+    maxWidth: '100%',
+    boxShadow: '0 4px 4px rgba(0,0,0,0.05)',
+    position: 'left',
+    triggerColor: {
+      expanded: '#41D974',
+      collapsed: 'rgba(0, 0, 0, 0.87)',
+    },
+  }
+}
+```

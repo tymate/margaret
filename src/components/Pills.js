@@ -7,7 +7,8 @@ export const PillsNavBar = styled.nav`
   padding: ${({ theme }) => theme.spacing(0.875)}
     ${({ theme }) => theme.spacing()};
   justify-content: flex-start;
-  background-color: #fff;
+  background-color: ${({ theme }) =>
+    theme.pills?.navBarBackgroundColor || 'transparent'};
   max-width: 100vw;
   -webkit-overflow-scrolling: touch;
   overflow-x: auto;
@@ -34,26 +35,33 @@ export const PillItem = styled.li`
 `;
 
 export const PillButton = styled(ButtonReset)`
-  box-shadow: inset 0 0 0 1px ${({ theme }) => theme.separator};
+  box-shadow: inset 0 0 0 1px
+    ${({ theme }) => theme.pills?.boxShadowColor || theme.separator};
   padding: ${({ theme }) => theme.spacing(0.5)}
     ${({ theme }) => theme.spacing(0.75)};
   display: block;
-  border-radius: ${({ theme }) => theme.borderRadius};
-  color: ${({ theme }) => theme.textLight};
+  border-radius: ${({ theme }) =>
+    theme.borderRadius?.[theme.pills?.borderRadius] ||
+    theme.borderRadius?.default};
+  background-color: ${({ theme }) =>
+    theme.pills?.backgroundColor || 'transparent'};
+  color: ${({ theme }) => theme.pills?.color || theme.textLight};
   text-decoration: none;
   transition: box-shadow 150ms ease, background 150ms ease, color 150ms ease;
   font-weight: 400;
   line-height: 1.5;
 
   &:not([disabled]):hover {
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.pills?.colorHover || theme.text};
+    background-color: ${({ theme }) => theme.pills?.backgroundColorHover};
   }
 
-  &.active,
-  &.active:hover {
-    background-color: ${({ theme }) => theme.primaryBackground};
+  &:not([disabled]).active,
+  &:not([disabled]).active:hover {
+    background-color: ${({ theme }) =>
+      theme.pills?.activeBackground || theme.primaryBackground};
     box-shadow: inset 0 0 0 1px ${({ theme }) => theme.primaryBackground};
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.pills?.activeColor || theme.primary};
 
     ${({ variant }) =>
       variant === 'success' &&
@@ -70,6 +78,21 @@ export const PillButton = styled(ButtonReset)`
         box-shadow: inset 0 0 0 1px ${({ theme }) => theme.errorBackground};
         color: ${({ theme }) => theme.error};
       `};
+  }
+
+  &:disabled,
+  &:disabled:hover {
+    cursor: default;
+    background-color: ${({ theme }) =>
+      theme.pills?.disabledBackground || theme.disabledBackground};
+    color: ${({ theme }) => theme.pills?.disabledColor || theme.disabled};
+
+    &.active {
+      background-color: ${({ theme }) =>
+        theme.pills?.activeDisabledBackground || theme.disabled};
+      color: ${({ theme }) =>
+        theme.pills?.activeDisabledColor || theme.textLight};
+    }
   }
 `;
 

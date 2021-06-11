@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { ButtonReset } from '../ui/base';
 import PropTypes from 'prop-types';
 import Spinner from './Spinner';
+import { Stack } from '../ui';
 
 const ButtonWrapper = styled(ButtonReset)`
   position: relative;
@@ -80,8 +81,7 @@ const ButtonWrapper = styled(ButtonReset)`
           theme.button?.[variant]?.paddingHorizontal ||
           theme.button?.paddingHorizontal};
       min-width: ${({ theme }) =>
-        theme.button?.[variant]?.minWidth || theme.button?.minWidth}
-        || ${({ theme }) => theme.button?.minWidth};
+        theme.button?.[variant]?.minWidth || theme.button?.minWidth};
 
       &:hover {
         background: ${({ theme }) =>
@@ -189,16 +189,33 @@ const ButtonWrapper = styled(ButtonReset)`
     `}
 `;
 
-const Button = ({ isLoading, children, icon, disabled, loader, ...props }) => (
+const Button = ({
+  isLoading,
+  children,
+  icon,
+  disabled,
+  loadingAnimation,
+  spinnerProps,
+  shouldHideContentWhenLoading,
+  ...props
+}) => (
   <ButtonWrapper {...props} disabled={disabled || isLoading}>
-    {isLoading && <Spinner variant="button" loader={loader} />}
+    {isLoading && (
+      <Stack>
+        <Spinner
+          variant="inline"
+          animation={loadingAnimation}
+          {...spinnerProps}
+        />
+      </Stack>
+    )}
     {!isLoading && icon}
-    <span>{children}</span>
+    {(!shouldHideContentWhenLoading || !isLoading) && <span>{children}</span>}
   </ButtonWrapper>
 );
 
 Button.defaultProps = {
-  loader: 'ball-spin-fade-loader',
+  loadingAnimation: 'ball-spin-fade-loader',
   isLoading: false,
   disabled: false,
   fontSize: '1em',

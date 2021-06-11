@@ -1,125 +1,85 @@
 import styled, { css } from 'styled-components';
-import { media } from './utils';
+import { spacings } from './base';
 
-export const fontSize = {
-  h1: css`
-    font-size: 1.875rem;
-    line-height: 2.3125rem;
-    letter-spacing: 0.012rem;
+export const Text = styled.div.attrs(({ theme, type, as }) => ({
+  as: as || theme?.fontStacks?.[type]?.defaultTag,
+}))`
+  ${spacings()}
 
-    ${media.tablet`
-      font-size: 2.375rem;
-      line-height: 2.875rem;
-      letter-spacing: 0.011em;
+  ${({ theme, color }) =>
+    Boolean(color) &&
+    (Boolean(theme?.colors?.[color]) || Boolean(theme?.[color])) &&
+    css`
+      color: ${({ theme }) => theme?.colors?.[color] || theme?.[color]};
     `}
 
-    ${media.desktop`
-      font-size: 3rem;
-      line-height: 3.5rem;
-      letter-spacing: .008em;
-    `}
-  `,
-
-  h1Mega: css`
-    font-size: 2.5rem;
-    line-height: 3rem;
-    letter-spacing: 0.011em;
-
-    ${media.tablet`
-      font-size: 3rem;
-      line-height: 3.5625rem;
-      letter-spacing: 0.008em;
+  ${({ size }) =>
+    size === 'full' &&
+    css`
+      width: 100%;
     `}
 
-    ${media.desktop`
-      font-size: 3.75rem;
-      line-height: 4.375rem;
-      letter-spacing: .004em;
-    `}
-  `,
-
-  h2: css`
-    font-size: 1.5rem;
-    line-height: 1.875rem;
-    letter-spacing: 0.015em;
-
-    ${media.tablet`
-      font-size: 1.75rem;
-      line-height: 2.125rem;
-      letter-spacing: 0.013em;
+  ${({ type = 'body', theme }) =>
+    Boolean(theme?.fontStyles?.[type]) &&
+    css`
+      ${theme?.fontStyles?.[type]}
     `}
 
-    ${media.desktop`
-      font-size: 2.125rem;
-      line-height: 2.5625rem;
-      letter-spacing: .011em;
+  ${({ marginTop, marginVertical, margin }) =>
+    !Boolean(marginTop) &&
+    !Boolean(marginVertical) &&
+    !Boolean(margin) &&
+    `
+      margin-top: 0;
     `}
-  `,
-
-  h3: css`
-    font-size: 1.375rem;
-    line-height: 1.75rem;
-    letter-spacing: 0.016em;
-
-    ${media.tablet`
-      font-size: 1.5rem;
-      line-height: 1.875rem;
-      letter-spacing: 0.015em;
+  
+  ${({ marginBottom, marginVertical, margin }) =>
+    !Boolean(marginBottom) &&
+    !Boolean(marginVertical) &&
+    !Boolean(margin) &&
+    `
+      margin-bottom: 0;
     `}
 
-    ${media.desktop`
-      font-size: 1.625rem;
-      line-height: 2rem;
-      letter-spacing: .014em;
+  ${({ color, theme }) =>
+    Boolean(color) &&
+    `
+      color: ${theme?.colors?.[color] || theme?.[color]};
     `}
-  `,
 
-  body: css`
-    font-size: 1.0625rem;
-    line-height: 1.375rem;
-    letter-spacing: -0.024em;
-
-    ${media.tablet`
-        font-size: 1.125rem;
-        line-height: 1.5rem;
-        letter-spacing: -.02em;
-      `}
-
-    ${media.desktop`
-        font-size: 1.125rem;
-        line-height: 1.5rem;
-        letter-spacing: -.02em;
-      `}
-  `,
-
-  bodySmall: css`
-    font-size: 0.9375rem;
-    line-height: 1.25rem;
-    letter-spacing: -0.15em;
-
-    ${media.desktop`
-        font-size: 1rem;
-        line-height: 1.3125rem;
-        letter-spacing: -.02em;
-      `}
-  `,
-};
-
-export const Title = styled.h1`
-  ${fontSize.h1};
-  margin-top: ${({ theme }) => theme.spacing()};
-  margin-bottom: ${({ theme }) => theme.spacing(0.25)};
+  ${({ fontWeight }) =>
+    Boolean(fontWeight) &&
+    `
+      font-weight: ${fontWeight};
+    `}
+  
+  ${({ fontFamily, theme }) =>
+    Boolean(fontFamily) &&
+    `
+      font-family: ${theme.fonts?.[fontFamily]};
+    `}
 `;
 
-export const Subtitle = styled.h2`
-  margin: 0;
-  color: rgba(255, 255, 255, 0.6);
-  ${fontSize.h2};
-  font-weight: 400;
-`;
+export const MainTitle = styled(Text).attrs(({ type }) => ({
+  type: type || 'h1Mega',
+}))``;
 
-export const Heading = styled.h3`
-  ${fontSize.h3};
-  margin-top: 0;
-  margin-bottom: ${({ theme }) => theme.spacing()};
-`;
+export const Title = styled(Text).attrs(({ type }) => ({
+  type: type || 'h1',
+}))``;
+
+export const Subtitle = styled(Text).attrs(({ type }) => ({
+  type: type || 'h2',
+}))``;
+
+export const Heading = styled(Text).attrs(({ type }) => ({
+  type: type || 'heading',
+}))``;
+
+export const SubHeading = styled(Text).attrs(({ type }) => ({
+  type: type || 'subHeading',
+}))``;
+
+export const Legend = styled(Text).attrs(({ type }) => ({
+  type: type || 'legend',
+}))``;
