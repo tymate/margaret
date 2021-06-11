@@ -1,0 +1,16 @@
+{
+  "unversionedId": "container",
+  "id": "container",
+  "isDocsHomePage": false,
+  "title": "Container",
+  "source": "@site/docs/container.mdx",
+  "slug": "/container",
+  "permalink": "/docs/container",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/container.mdx",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "Box",
+    "permalink": "/docs/box"
+  }
+}

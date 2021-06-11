@@ -1,0 +1,21 @@
+{
+  "unversionedId": "create-a-doc",
+  "id": "create-a-doc",
+  "isDocsHomePage": false,
+  "title": "Create a Document",
+  "description": "This page will help you to create your first document with Docusaurus.",
+  "source": "@site/docs/create-a-doc.md",
+  "slug": "/create-a-doc",
+  "permalink": "/docs/create-a-doc",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/create-a-doc.md",
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Markdown Features",
+    "permalink": "/docs/markdown-features"
+  },
+  "next": {
+    "title": "Create a Page",
+    "permalink": "/docs/create-a-page"
+  }
+}

@@ -1,0 +1,272 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "loadedVersions": [
+        {
+          "versionName": "current",
+          "versionLabel": "Next",
+          "versionPath": "/docs",
+          "versionEditUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs",
+          "versionEditUrlLocalized": "https://github.com/facebook/docusaurus/edit/master/website/i18n/en/docusaurus-plugin-content-docs/current",
+          "isLast": true,
+          "routePriority": -1,
+          "sidebarFilePath": "/Users/cynthia/Tymate/margaret/website/sidebars.js",
+          "docsDirPath": "/Users/cynthia/Tymate/margaret/website/docs",
+          "docsDirPathLocalized": "/Users/cynthia/Tymate/margaret/website/i18n/en/docusaurus-plugin-content-docs/current",
+          "mainDocId": "doc1",
+          "sidebars": {
+            "someSidebar": [
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Getting started",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "doc1"
+                  },
+                  {
+                    "collapsed": true,
+                    "type": "category",
+                    "label": "Theming",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "theming"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "defaultTheme"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "customizeTheme"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Layout",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "stack"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "box"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "container"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Components",
+                "items": []
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Form",
+                "items": []
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Hooks",
+                "items": []
+              }
+            ]
+          },
+          "permalinkToSidebar": {
+            "/docs/box": "someSidebar",
+            "/docs/container": "someSidebar",
+            "/docs/customizeTheme": "someSidebar",
+            "/docs/defaultTheme": "someSidebar",
+            "/docs/": "someSidebar",
+            "/docs/stack": "someSidebar",
+            "/docs/theming": "someSidebar"
+          },
+          "docs": [
+            {
+              "unversionedId": "box",
+              "id": "box",
+              "isDocsHomePage": false,
+              "title": "Box",
+              "source": "@site/docs/box.mdx",
+              "slug": "/box",
+              "permalink": "/docs/box",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/box.mdx",
+              "version": "current",
+              "sidebar": "someSidebar",
+              "previous": {
+                "title": "Stack",
+                "permalink": "/docs/stack"
+              },
+              "next": {
+                "title": "Container",
+                "permalink": "/docs/container"
+              }
+            },
+            {
+              "unversionedId": "container",
+              "id": "container",
+              "isDocsHomePage": false,
+              "title": "Container",
+              "source": "@site/docs/container.mdx",
+              "slug": "/container",
+              "permalink": "/docs/container",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/container.mdx",
+              "version": "current",
+              "sidebar": "someSidebar",
+              "previous": {
+                "title": "Box",
+                "permalink": "/docs/box"
+              }
+            },
+            {
+              "unversionedId": "customizeTheme",
+              "id": "customizeTheme",
+              "isDocsHomePage": false,
+              "title": "Customize theme",
+              "source": "@site/docs/customizeTheme.mdx",
+              "slug": "/customizeTheme",
+              "permalink": "/docs/customizeTheme",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/customizeTheme.mdx",
+              "version": "current",
+              "sidebar": "someSidebar",
+              "previous": {
+                "title": "Default theme",
+                "permalink": "/docs/defaultTheme"
+              },
+              "next": {
+                "title": "Stack",
+                "permalink": "/docs/stack"
+              }
+            },
+            {
+              "unversionedId": "defaultTheme",
+              "id": "defaultTheme",
+              "isDocsHomePage": false,
+              "title": "Default theme",
+              "source": "@site/docs/defaultTheme.mdx",
+              "slug": "/defaultTheme",
+              "permalink": "/docs/defaultTheme",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/defaultTheme.mdx",
+              "version": "current",
+              "sidebar": "someSidebar",
+              "previous": {
+                "title": "Theming",
+                "permalink": "/docs/theming"
+              },
+              "next": {
+                "title": "Customize theme",
+                "permalink": "/docs/customizeTheme"
+              }
+            },
+            {
+              "unversionedId": "doc1",
+              "id": "doc1",
+              "isDocsHomePage": false,
+              "title": "Style Guide",
+              "description": "You can write content using GitHub-flavored Markdown syntax.",
+              "source": "@site/docs/doc1.md",
+              "slug": "/",
+              "permalink": "/docs/",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/doc1.md",
+              "version": "current",
+              "sidebar_label": "Style Guide",
+              "sidebar": "someSidebar",
+              "next": {
+                "title": "Theming",
+                "permalink": "/docs/theming"
+              }
+            },
+            {
+              "unversionedId": "mdx",
+              "id": "mdx",
+              "isDocsHomePage": false,
+              "title": "Powered by MDX",
+              "description": "You can write JSX and use React components within your Markdown thanks to MDX.",
+              "source": "@site/docs/interactiveDoc.mdx",
+              "slug": "/mdx",
+              "permalink": "/docs/mdx",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/interactiveDoc.mdx",
+              "version": "current"
+            },
+            {
+              "unversionedId": "stack",
+              "id": "stack",
+              "isDocsHomePage": false,
+              "title": "Stack",
+              "source": "@site/docs/stack.mdx",
+              "slug": "/stack",
+              "permalink": "/docs/stack",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/stack.mdx",
+              "version": "current",
+              "sidebar": "someSidebar",
+              "previous": {
+                "title": "Customize theme",
+                "permalink": "/docs/customizeTheme"
+              },
+              "next": {
+                "title": "Box",
+                "permalink": "/docs/box"
+              }
+            },
+            {
+              "unversionedId": "theming",
+              "id": "theming",
+              "isDocsHomePage": false,
+              "title": "Theming",
+              "source": "@site/docs/theming.mdx",
+              "slug": "/theming",
+              "permalink": "/docs/theming",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/theming.mdx",
+              "version": "current",
+              "sidebar": "someSidebar",
+              "previous": {
+                "title": "Style Guide",
+                "permalink": "/docs/"
+              },
+              "next": {
+                "title": "Default theme",
+                "permalink": "/docs/defaultTheme"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "docusaurus-plugin-content-blog": {
+    "default": null
+  },
+  "docusaurus-plugin-content-pages": {
+    "default": [
+      {
+        "type": "jsx",
+        "permalink": "/",
+        "source": "@site/src/pages/index.js"
+      },
+      {
+        "type": "mdx",
+        "permalink": "/markdown-page",
+        "source": "@site/src/pages/markdown-page.md"
+      }
+    ]
+  },
+  "docusaurus-plugin-debug": {
+    "default": null
+  },
+  "docusaurus-theme-classic": {
+    "default": null
+  }
+}

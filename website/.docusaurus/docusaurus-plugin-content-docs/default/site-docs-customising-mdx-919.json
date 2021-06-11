@@ -1,0 +1,12 @@
+{
+  "unversionedId": "customising",
+  "id": "customising",
+  "isDocsHomePage": false,
+  "title": "customising",
+  "description": "",
+  "source": "@site/docs/customising.mdx",
+  "slug": "/customising",
+  "permalink": "/docs/customising",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/customising.mdx",
+  "version": "current"
+}
