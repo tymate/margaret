@@ -1,5 +1,3 @@
-import { spacing } from './utils';
-
 export const theme = {
   primary: 'hsl(137, 54%, 61%)',
   primaryLight: 'hsl(137, 54%, 70%)',
@@ -13,8 +11,6 @@ export const theme = {
 
   text: '#0B0F21',
   textLight: 'rgba(4%, 6%, 13%, 0.5)',
-
-  spacing,
 
   borderRadius: {
     none: '0',

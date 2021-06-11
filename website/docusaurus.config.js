@@ -1,6 +1,6 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'Margaret, ',
+  title: 'Margaret',
   tagline:
     'Margaret is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications.',
   url: 'https://tymate.dev',
@@ -8,6 +8,7 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
+  themes: ['@docusaurus/theme-live-codeblock'],
   organizationName: '@tymate', // Usually your GitHub org/user name.
   projectName: 'margaret', // Usually your repo name.
   themeConfig: {

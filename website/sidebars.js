@@ -1,12 +1,23 @@
 module.exports = {
   someSidebar: {
-    'Getting started': [
-      'doc1',
-      { Theming: ['theming', 'defaultTheme', 'customizeTheme'] },
+    About: [
+      'getting-started',
+      'theming',
+      'typography',
+      // {
+      //   Theming: [
+      //     'installation',
+      //     'basics',
+      //     'theming',
+      //     'defaultTheme',
+      //     'customizeTheme',
+      //   ],
+      // },
     ],
     Layout: ['stack', 'box', 'container'],
-    Components: [],
-    Form: [],
+    'Data Display': ['card'],
+    Button: ['buttonReset', 'button'],
+    Media: ['avatar'],
     Hooks: [],
   },
 };
