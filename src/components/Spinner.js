@@ -94,8 +94,8 @@ const getDotsCount = animation => {
   }
 };
 
-const Spinner = ({ animation, variant }) => (
-  <Wrapper variant={variant}>
+const Spinner = ({ animation, variant, size }) => (
+  <Wrapper variant={variant} size={size}>
     <Spin className={animation} variant={variant}>
       {[...Array(getDotsCount(animation))].map((_, index) => (
         <div key={index} />
