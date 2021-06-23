@@ -30,6 +30,15 @@
         "doc",
         "review"
       ]
+    },
+    {
+      "login": "SoniaSim",
+      "name": "Sonia Si Moussi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67098778?v=4",
+      "profile": "https://github.com/SoniaSim",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
