@@ -20,21 +20,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: fregante/setup-git-user@v1
+      - uses: actions/setup-node@v2
         with:
-          persist-credentials: false
-          fetch-depth: 0
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://registry.npmjs.org/
+          node-version: '14'
       - name: Install dependencies
         run: yarn
       - name: Generate prerelease version
         run: yarn version --prerelease
       - name: Commit new version
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
           git add .
           git commit -m "chore: bump version [skip ci]"
       - name: Build version
