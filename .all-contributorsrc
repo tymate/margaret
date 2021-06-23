@@ -1,0 +1,28 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "cynthiahenaff",
+      "name": "Cynthia Henaff ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/26904024?v=4",
+      "profile": "http://cynthiahenaff.com",
+      "contributions": [
+        "code",
+        "ideas",
+        "bug",
+        "doc",
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "margaret",
+  "projectOwner": "tymate",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
