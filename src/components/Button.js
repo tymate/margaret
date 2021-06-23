@@ -32,6 +32,29 @@ const ButtonWrapper = styled(ButtonReset)`
     box-shadow: ${({ theme }) => theme.button?.boxShadowFocus};
   }
 
+  &:disabled {
+    cursor: not-allowed;
+    background: ${({ theme }) => theme.button?.backgroundDisabled};
+    color: ${({ theme }) => theme.button?.colorDisabled};
+    box-shadow: ${({ theme }) => theme.button?.boxShadowDisabled};
+  }
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      cursor: not-allowed;
+      background: ${({ theme }) => theme.button?.backgroundDisabled};
+      color: ${({ theme }) => theme.button?.colorDisabled};
+      box-shadow: ${({ theme }) => theme.button?.boxShadowDisabled};
+
+      &:hover,
+      &:focus {
+        background: ${({ theme }) => theme.button?.backgroundDisabled};
+        color: ${({ theme }) => theme.button?.colorDisabled};
+        box-shadow: ${({ theme }) => theme.button?.boxShadowDisabled};
+      }
+    `}
+
   > svg {
     margin-right: ${({ theme }) => theme.spacing(0.25)};
   }
@@ -110,6 +133,41 @@ const ButtonWrapper = styled(ButtonReset)`
           theme.button?.boxShadowDisabled};
         transform: ${({ theme }) => theme.button?.[variant]?.transformDisabled};
       }
+
+      ${({ disabled }) =>
+        disabled &&
+        css`
+          background: ${({ theme }) =>
+            theme.button?.[variant]?.backgroundDisabled ||
+            theme.button?.backgroundDisabled ||
+            theme.backgroundDisabled};
+          color: ${({ theme }) =>
+            theme.button?.[variant]?.colorDisabled ||
+            theme.button?.colorDisabled ||
+            theme.textDisabled};
+          box-shadow: ${({ theme }) =>
+            theme.button?.[variant]?.boxShadowDisabled ||
+            theme.button?.boxShadowDisabled};
+          transform: ${({ theme }) =>
+            theme.button?.[variant]?.transformDisabled};
+
+          &:hover,
+          &:focus {
+            background: ${({ theme }) =>
+              theme.button?.[variant]?.backgroundDisabled ||
+              theme.button?.backgroundDisabled ||
+              theme.backgroundDisabled};
+            color: ${({ theme }) =>
+              theme.button?.[variant]?.colorDisabled ||
+              theme.button?.colorDisabled ||
+              theme.textDisabled};
+            box-shadow: ${({ theme }) =>
+              theme.button?.[variant]?.boxShadowDisabled ||
+              theme.button?.boxShadowDisabled};
+            transform: ${({ theme }) =>
+              theme.button?.[variant]?.transformDisabled};
+          }
+        `}
     `}
 
   ${({ isLoading, theme }) =>
@@ -129,13 +187,6 @@ const ButtonWrapper = styled(ButtonReset)`
     `
       font-size: ${fontSize};
     `}
-
-  &:disabled {
-    cursor: not-allowed;
-    background: ${({ theme }) => theme.button?.backgroundDisabled};
-    color: ${({ theme }) => theme.button?.colorDisabled};
-    box-shadow: ${({ theme }) => theme.button?.boxShadowDisabled};
-  }
 `;
 
 const Button = ({
