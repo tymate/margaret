@@ -18,10 +18,6 @@ jobs:
         run: yarn
       - name: Generate prerelease version
         run: yarn version --prerelease
-      - name: Commit new version
-        run: |
-          git add .
-          git commit -m "chore: bump version [skip ci]"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
