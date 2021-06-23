@@ -1,6 +1,6 @@
 # Margaret
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -18,6 +18,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="http://cynthiahenaff.com"><img src="https://avatars.githubusercontent.com/u/26904024?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Cynthia Henaff </b></sub></a><br /><a href="https://github.com/tymate/margaret/commits?author=cynthiahenaff" title="Code">💻</a> <a href="#ideas-cynthiahenaff" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/tymate/margaret/issues?q=author%3Acynthiahenaff" title="Bug reports">🐛</a> <a href="https://github.com/tymate/margaret/commits?author=cynthiahenaff" title="Documentation">📖</a> <a href="https://github.com/tymate/margaret/pulls?q=is%3Apr+reviewed-by%3Acynthiahenaff" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/Uptip"><img src="https://avatars.githubusercontent.com/u/1025157?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Henri Michel</b></sub></a><br /><a href="https://github.com/tymate/margaret/commits?author=Uptip" title="Code">💻</a> <a href="#ideas-Uptip" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/tymate/margaret/issues?q=author%3AUptip" title="Bug reports">🐛</a> <a href="https://github.com/tymate/margaret/commits?author=Uptip" title="Documentation">📖</a> <a href="https://github.com/tymate/margaret/pulls?q=is%3Apr+reviewed-by%3AUptip" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/SoniaSim"><img src="https://avatars.githubusercontent.com/u/67098778?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sonia Si Moussi</b></sub></a><br /><a href="https://github.com/tymate/margaret/commits?author=SoniaSim" title="Documentation">📖</a></td>
   </tr>
 </table>
 
