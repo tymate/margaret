@@ -1,8 +1,9 @@
 name: Publish on npm
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -19,12 +20,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-node@v1
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: yarn
-      - run: yarn build
-      - run: npm publish --access public
+      - name: Install dependencies
+        run: yarn
+      - name: Generate prerelease version
+        run: yarn version --prerelease
+      - name: Commit new version
+        run: |
+          git add .
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "chore: bump version [skip ci]"
+      - name: Build version
+        run: yarn build
+      - name: Publish package
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
