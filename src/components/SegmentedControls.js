@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Pills, PillItem, PillButton } from './Pills';
-import { Stack } from '../ui';
+import Stack from './Stack';
 
 const SegmentedWrapper = styled(Pills)`
   box-shadow: inset 0 0 0 1px ${({ theme }) => theme.separator};

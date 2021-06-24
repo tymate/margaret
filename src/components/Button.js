@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { ButtonReset } from '../ui/base';
 import PropTypes from 'prop-types';
 import Spinner from './Spinner';
-import { Stack } from '../ui';
+import Stack from './Stack';
 
 const ButtonWrapper = styled(ButtonReset)`
   position: relative;

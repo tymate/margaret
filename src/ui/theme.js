@@ -12,6 +12,21 @@ export const theme = {
   text: '#0B0F21',
   textLight: 'rgba(4%, 6%, 13%, 0.5)',
 
+  colors: {
+    primary: 'hsl(137, 54%, 61%)',
+    primaryLight: 'hsl(137, 54%, 70%)',
+    primaryBackground: 'hsla(137, 54%, 61%, 0.15)',
+    secondary: 'hsl(196, 53%, 41%)',
+    secondaryLight: 'hsl(196, 53%, 50%)',
+
+    disabled: 'rgba(4%, 6%, 13%, 0.2)',
+    disabledBackground: 'rgba(4%, 6%, 13%, 0.06)',
+    separator: 'rgba(4%, 6%, 13%, 0.2)',
+
+    text: '#0B0F21',
+    textLight: 'rgba(4%, 6%, 13%, 0.5)',
+  },
+
   borderRadius: {
     none: '0',
     small: '4px',
@@ -201,10 +216,11 @@ export const theme = {
     },
   },
 
-  viewportSizes: {
+  breakpoints: {
     desktop: 1200,
     medium: 1000,
     tablet: 750,
+    foobar: 800,
   },
 
   containerSizes: {

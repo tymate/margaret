@@ -35,13 +35,16 @@ const cssLock = ({
   }rem) / (${higherBreakpoint / 16} - ${lowerBreakpoint / 16})))`;
 
 export const injectMargaret = theme => {
+  theme.breakpoints =
+    theme.breakpoints || theme.viewportSizes || viewportSizes || {};
+
   theme.spacing = (input = 1) => `${input * 1}rem`;
 
-  theme.media = keys(theme.viewportSizes || viewportSizes).reduce(
+  theme.media = keys(theme.breakpoints).reduce(
     (media, breakpoint) => ({
       ...media,
       [breakpoint]: mediaQuery`(min-width: ${
-        theme.viewportSizes?.[breakpoint] / 16
+        theme.breakpoints?.[breakpoint] / 16
       }em)`,
     }),
     {},
@@ -59,9 +62,9 @@ export const injectMargaret = theme => {
             minValue: theme.fontStacks?.[breakpoint]?.sizeMinRem,
             maxValue: theme.fontStacks?.[breakpoint]?.sizeMaxRem,
             lowerBreakpoint:
-              theme.viewportSizes[theme.cssLockLowerBreakpoint || 'tablet'],
+              theme.breakpoints?.[theme.cssLockLowerBreakpoint || 'tablet'],
             higherBreakpoint:
-              theme.viewportSizes[theme.cssLockHigherBreakpoint || 'desktop'],
+              theme.breakpoints?.[theme.cssLockHigherBreakpoint || 'desktop'],
           })};
         `}
 
@@ -84,9 +87,9 @@ export const injectMargaret = theme => {
             minValue: theme.fontStacks?.[breakpoint]?.lineHeightMin,
             maxValue: theme.fontStacks?.[breakpoint]?.lineHeightMax,
             lowerBreakpoint:
-              theme.viewportSizes[theme.cssLockLowerBreakpoint || 'tablet'],
+              theme.breakpoints?.[theme.cssLockLowerBreakpoint || 'tablet'],
             higherBreakpoint:
-              theme.viewportSizes[theme.cssLockHigherBreakpoint || 'desktop'],
+              theme.breakpoints?.[theme.cssLockHigherBreakpoint || 'desktop'],
           })};
         `}
 
