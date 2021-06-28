@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { action } from '@storybook/addon-actions';
 import DataTable from './DataTable';
 import { Icon } from '../ui/base';
@@ -15,9 +15,9 @@ import { getCatsBreeds } from './__mocks__';
 
 # DataTable
 
-<Props of={DataTable} />
+<ArgsTable of={DataTable} />
 
-<Preview>
+<Canvas>
   <Story name="DataTable">
     {() => {
       const [catsBreeds, setCatsBreeds] = useState([]);
@@ -90,4 +90,4 @@ import { getCatsBreeds } from './__mocks__';
       return <DataTable headings={headings} data={data} isSearchable={false} />;
     }}
   </Story>
-</Preview>
+</Canvas>

@@ -1,32 +1,41 @@
-export const theme = {
-  primary: 'hsl(137, 54%, 61%)',
-  primaryLight: 'hsl(137, 54%, 70%)',
-  primaryBackground: 'hsla(137, 54%, 61%, 0.15)',
-  secondary: 'hsl(196, 53%, 41%)',
-  secondaryLight: 'hsl(196, 53%, 50%)',
-
-  disabled: 'rgba(4%, 6%, 13%, 0.2)',
-  disabledBackground: 'rgba(4%, 6%, 13%, 0.06)',
-  separator: 'rgba(4%, 6%, 13%, 0.2)',
-
-  text: '#0B0F21',
-  textLight: 'rgba(4%, 6%, 13%, 0.5)',
-
-  colors: {
-    primary: 'hsl(137, 54%, 61%)',
-    primaryLight: 'hsl(137, 54%, 70%)',
-    primaryBackground: 'hsla(137, 54%, 61%, 0.15)',
-    secondary: 'hsl(196, 53%, 41%)',
-    secondaryLight: 'hsl(196, 53%, 50%)',
-
-    disabled: 'rgba(4%, 6%, 13%, 0.2)',
-    disabledBackground: 'rgba(4%, 6%, 13%, 0.06)',
-    separator: 'rgba(4%, 6%, 13%, 0.2)',
-
-    text: '#0B0F21',
-    textLight: 'rgba(4%, 6%, 13%, 0.5)',
+export const colors = {
+  palette: {
+    green: {
+      100: 'hsla(137, 54%, 61%, 0.15)',
+      300: 'hsl(137, 54%, 70%)',
+      400: 'hsl(137, 54%, 61%)',
+    },
+    teal: {
+      300: 'hsl(196, 53%, 50%)',
+      400: 'hsl(196, 53%, 41%)',
+    },
+    gray: {
+      0: '#ffffff',
+      100: 'hsla(227, 53%, 8%, 0.06)',
+      200: 'hsla(227, 53%, 8%, 0.12)',
+      300: 'hsla(227, 53%, 8%, 0.24)',
+      400: 'hsla(227, 53%, 8%, 0.38)',
+      500: 'hsla(227, 53%, 8%, 0.5)',
+      800: 'hsl(227, 53%, 8%)',
+    },
   },
+  ui: {
+    primary: 'var(--colors-green-400)',
+    primaryLight: 'var(--colors-green-300)',
+    primaryBackground: 'var(--colors-green-100)',
+    secondary: 'var(--colors-teal-400)',
+    secondaryLight: 'var(--colors-teal-300)',
+    disabled: 'var(--colors-gray-200)',
+    disabledBackground: 'var(--colors-gray-100)',
+    separator: 'var(--colors-gray-200)',
+    separatorLight: 'var(--colors-gray-100)',
+    separatorDark: 'var(--colors-gray-300)',
+    text: 'var(--colors-gray-800)',
+    textLight: 'var(--colors-gray-500)',
+  },
+};
 
+export const theme = {
   borderRadius: {
     none: '0',
     small: '4px',
@@ -35,8 +44,8 @@ export const theme = {
   },
 
   buttonsDefaultAlignX: 'flex-start',
-  boxShadowColor: 'rgba(0, 0, 0, 0.12)',
-  boxShadowColorHover: 'rgba(0, 0, 0, 0.24)',
+  boxShadowColor: 'var(--ui-separator)',
+  boxShadowColorHover: 'var(--ui-separatorDark)',
 
   button: {
     transition: 'background 150ms ease',
@@ -47,25 +56,25 @@ export const theme = {
     paddingHorizontal: 0,
     paddingVertical: 0,
     minWidth: 0,
-    color: 'hsl(137, 54%, 61%)',
+    color: 'var(--ui-primary)',
     boxShadow: '',
-    colorHover: 'hsl(137, 54%, 70%)',
+    colorHover: 'var(--ui-primary-light)',
     boxShadowHover: '',
     colorFocus: '',
     boxShadowFocus: '',
 
     primary: {
-      background: 'hsl(137, 54%, 61%)',
-      color: '#fff',
+      background: 'var(--ui-primary)',
+      color: 'var(--colors-gray-0)',
       boxShadow: '',
 
-      backgroundHover: 'hsl(137, 54%, 70%)',
+      backgroundHover: 'var(--ui-primary-light)',
       colorHover: '',
       transformHover: '',
       boxShadowHover: '',
 
-      backgroundDisabled: 'rgba(4%, 6%, 13%, 0.2)',
-      colorDisabled: 'rgba(0, 0, 0, 0.38)',
+      backgroundDisabled: 'var(--ui-disabled)',
+      colorDisabled: 'var(--colors-gray-400)',
       boxShadowDisabled: '',
       transformDisabled: '',
 
@@ -84,7 +93,7 @@ export const theme = {
     tab: {
       direction: 'column',
       alignX: 'center',
-      padding: '14px',
+      padding: '0.5rem 1rem',
       fontWeight: 600,
       fontSize: '1rem',
       borderRadius: '3px',
@@ -92,21 +101,21 @@ export const theme = {
       maxWidth: '162px',
       whiteSpace: 'wrap',
 
-      background: 'hsl(137, 54%, 61%)',
+      background: 'var(--ui-primary)',
       boxShadow: '',
-      color: '#fff',
+      color: 'var(--colors-gray-0)',
 
-      backgroundHover: '#fff',
-      boxShadowHover: `0px 9px 18px rgba(0, 0, 0, 0.1), 0px 2px 5px rgba(0, 0, 0, 0.24)`,
-      colorHover: 'hsl(137, 54%, 61%)',
+      backgroundHover: 'var(--ui-primary-light)',
+      boxShadowHover: '0 2px 4px var(--ui-separator)',
+      colorHover: 'var(--colors-gray-0)',
 
       backgroundDisabled: '',
       boxShadowDisabled: '',
       colorDisabled: '',
 
-      backgroundActive: '#fff',
-      boxShadowActive: '',
-      colorActive: 'hsl(137, 54%, 61%)',
+      backgroundActive: 'var(--ui-primary-light)',
+      boxShadowActive: '0 2px 4px var(--ui-separator)',
+      colorActive: 'var(--colors-gray-0)',
     },
   },
 
@@ -114,15 +123,15 @@ export const theme = {
     width: '320px',
     maxWidth: '100%',
     background: {
-      mobile: '#ffffff',
-      tablet: '#ffffff',
+      mobile: 'var(--colors-gray-0)',
+      tablet: 'var(--colors-gray-0)',
     },
-    boxShadow: `0 4px 4px rgba(0,0,0,0.05)`,
+    boxShadow: `0 4px 4px var(--colors-gray-100)`,
     position: 'top',
     height: '80px',
     triggerColor: {
-      expanded: '#41D974',
-      collapsed: 'rgba(0, 0, 0, 0.87)',
+      expanded: 'var(--ui-primary)',
+      collapsed: 'var(--ui-text)',
     },
   },
 

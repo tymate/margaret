@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
 import { action } from '@storybook/addon-actions';
 import Tooltip from './Tooltip';
 import Stack from './Stack';
@@ -12,7 +12,7 @@ import Stack from './Stack';
 
 # Tooltip
 
-<Preview>
+<Canvas>
   <Story name="Tooltip">
     <Stack style={{ height: 300 }} alignY="center" alignX="flex-end">
       <Tooltip
@@ -27,4 +27,4 @@ import Stack from './Stack';
       </Tooltip>
     </Stack>
   </Story>
-</Preview>
+</Canvas>
