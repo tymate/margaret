@@ -1,4 +1,4 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { action } from '@storybook/addon-actions';
 import ConfirmButton from './ConfirmButton';
 import { Buttons } from '../ui';
@@ -11,9 +11,9 @@ import { Buttons } from '../ui';
 
 # ConfirmButton
 
-<Props of={ConfirmButton} />
+<ArgsTable of={ConfirmButton} />
 
-<Preview>
+<Canvas>
   <Story name="ConfirmButton">
     <Buttons>
       <ConfirmButton
@@ -26,4 +26,4 @@ import { Buttons } from '../ui';
       </ConfirmButton>
     </Buttons>
   </Story>
-</Preview>
+</Canvas>

@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { List, ButtonReset } from '../ui/base';
-import { media } from '../ui/utils';
 
-export const Tabs = styled(List)`
+export const TabsBase = styled(List)`
   display: flex;
   max-width: 100vw;
   overflow-x: auto;
@@ -11,7 +10,7 @@ export const Tabs = styled(List)`
   padding: ${({ theme }) => theme?.tabs?.padding};
   margin: ${({ theme }) => theme?.tabs?.margin};
 
-  ${media.tablet`
+  ${({ theme }) => theme.media.tablet`
     flex-wrap: wrap;
   `}
 `;
@@ -28,7 +27,6 @@ export const TabNavButton = styled(ButtonReset)`
   outline: none;
   border: 0;
   text-align: center;
-
   white-space: ${({ theme }) => theme?.tabs?.tab?.whiteSpace};
   flex-direction: ${({ theme }) => theme?.tabs?.tab?.direction};
   padding: ${({ theme }) => theme?.tabs?.tab?.padding};
@@ -37,7 +35,6 @@ export const TabNavButton = styled(ButtonReset)`
   font-weight: ${({ theme }) => theme?.tabs?.tab?.fontWeight};
   font-size: ${({ theme }) => theme?.tabs?.tab?.fontSize};
   border-radius: ${({ theme }) => theme?.tabs?.tab?.borderRadius};
-
   background: ${({ theme }) => theme?.tabs?.tab?.background};
   box-shadow: ${({ theme }) => theme?.tabs?.tab?.boxShadow};
   color: ${({ theme }) => theme?.tabs?.tab?.color};
@@ -68,7 +65,7 @@ export const TabNavButton = styled(ButtonReset)`
     box-shadow: ${({ theme }) => theme?.tabs?.tab?.boxShadowDisabled};
   }
 
-  ${media.tablet`
+  ${({ theme }) => theme.media.tablet`
     width: 100%;
   `}
 `;
@@ -79,6 +76,7 @@ const Tab = ({ children, ...props }) => (
   </TabNav>
 );
 
+export const Tabs = props => <TabsBase {...props} />;
 Tabs.Item = Tab;
 
 export default Tabs;

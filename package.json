@@ -8,7 +8,7 @@
   "dependencies": {
     "framer-motion": "^2.9.5",
     "loaders.css": "^0.1.2",
-    "postcss": "^8.2.1",
+    "postcss": "^8.2.10",
     "prop-types": "^15.7.2",
     "sanitize.css": "^12.0.1"
   },

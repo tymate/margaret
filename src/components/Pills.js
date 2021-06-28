@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { media, ButtonReset, InlineList } from '../ui';
+import { ButtonReset, InlineList } from '../ui';
 
 export const PillsNavBar = styled.nav`
   display: flex;
@@ -15,7 +15,7 @@ export const PillsNavBar = styled.nav`
   white-space: nowrap;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 
-  ${media.medium`
+  ${({ theme }) => theme.media.medium`
     flex-wrap: wrap;
     justify-content: center;
     box-shadow: none;

@@ -1,4 +1,4 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs';
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
 import { action } from '@storybook/addon-actions';
 import {
   Text,
@@ -123,7 +123,7 @@ and font family—based on theme font key.
 Those values can be overriden by passing `color`, `fontWeight` and `fontFamily`
 props, based on the same mechanics.
 
-<Preview>
+<Canvas>
   <Story name="Text component">
     <Text type="h1Mega">The quick brown fox jumps over the lazy dog</Text>
     <Text type="h1">The quick brown fox jumps over the lazy dog</Text>
@@ -143,7 +143,7 @@ props, based on the same mechanics.
       box-inherited props
     </Text>
   </Story>
-</Preview>
+</Canvas>
 
 ## Shortcuts
 
@@ -151,7 +151,7 @@ For the sake of code readability, Margaret provides shortcuts for our in-house
 frequently-used font stacks. Below is the same output as above, but using those
 shorcuts components.
 
-<Preview>
+<Canvas>
   <Story name="Shortcuts">
     <MainTitle>The quick brown fox jumps over the lazy dog</MainTitle>
     <Title>The quick brown fox jumps over the lazy dog</Title>
@@ -170,7 +170,7 @@ shorcuts components.
       box-inherited props
     </Legend>
   </Story>
-</Preview>
+</Canvas>
 
 ## `theme.fontStyles`
 

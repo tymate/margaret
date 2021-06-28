@@ -93,7 +93,7 @@ export const theme = {
     tab: {
       direction: 'column',
       alignX: 'center',
-      padding: '14px',
+      padding: '0.5rem 1rem',
       fontWeight: 600,
       fontSize: '1rem',
       borderRadius: '3px',
@@ -105,17 +105,17 @@ export const theme = {
       boxShadow: '',
       color: 'var(--colors-gray-0)',
 
-      backgroundHover: 'var(--colors-gray-0)',
-      boxShadowHover: `0px 9px 18px var(--ui-separator), 0px 2px 5px var(--ui-separatorDark)`,
-      colorHover: 'var(--ui-primary)',
+      backgroundHover: 'var(--ui-primary-light)',
+      boxShadowHover: '0 2px 4px var(--ui-separator)',
+      colorHover: 'var(--colors-gray-0)',
 
       backgroundDisabled: '',
       boxShadowDisabled: '',
       colorDisabled: '',
 
-      backgroundActive: 'var(--colors-gray-0)',
-      boxShadowActive: '',
-      colorActive: 'var(--ui-primary)',
+      backgroundActive: 'var(--ui-primary-light)',
+      boxShadowActive: '0 2px 4px var(--ui-separator)',
+      colorActive: 'var(--colors-gray-0)',
     },
   },
 

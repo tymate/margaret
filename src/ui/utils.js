@@ -14,7 +14,23 @@ export const viewportSizes = { ...breakpoints };
 
 const mediaQuery =
   (...query) =>
+  (...rules) =>
+    css`
+      @media ${css(...query)} {
+        ${css(...rules)};
+      }
+    `;
+
+const deprecatedMediaQuery =
+  (...query) =>
   (...rules) => {
+    if (process.env.NODE_ENV !== 'production') {
+      // eslint-disable-next-line no-console
+      console.warn(`Using the standalone media function is deprecated. \n
+Please use theme.media instead.
+    `);
+    }
+
     return css`
       @media ${css(...query)} {
         ${css(...rules)};
@@ -23,9 +39,9 @@ const mediaQuery =
   };
 
 export const media = {
-  tablet: mediaQuery`(min-width: ${breakpoints.tablet / 16}em)`,
-  medium: mediaQuery`(min-width: ${breakpoints.medium / 16}em)`,
-  desktop: mediaQuery`(min-width: ${breakpoints.desktop / 16}em)`,
+  tablet: deprecatedMediaQuery`(min-width: ${breakpoints.tablet / 16}em)`,
+  medium: deprecatedMediaQuery`(min-width: ${breakpoints.medium / 16}em)`,
+  desktop: deprecatedMediaQuery`(min-width: ${breakpoints.desktop / 16}em)`,
 };
 
 const cssLock = ({

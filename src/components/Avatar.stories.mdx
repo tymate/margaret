@@ -1,4 +1,4 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { action } from '@storybook/addon-actions';
 import Avatar from './Avatar';
 import Stack from './Stack';
@@ -14,13 +14,13 @@ import { FaUserCircle } from 'react-icons/fa';
 
 # Avatar
 
-<Props of={Avatar} />
+<ArgsTable of={Avatar} />
 
 ## Sizes
 
 Margaret provides defaults sizes: `default`, `tiny`, `small`, `medium`, `large` and `huge`.
 
-<Preview>
+<Canvas>
   <Story name="Sizes">
     <Stack alignY="center" gap={1}>
       <Avatar firstName="Cynthia" lastName="Henaff" size="small" />
@@ -30,7 +30,7 @@ Margaret provides defaults sizes: `default`, `tiny`, `small`, `medium`, `large` 
       <Avatar firstName="Vincent" lastName="Larcher" size="huge" />
     </Stack>
   </Story>
-</Preview>
+</Canvas>
 
 Those size can be overriden using by setting a custom `theme.avatarSizes`. The default
 values are as is:
@@ -63,7 +63,7 @@ const theme = {
 
 …would give this results in-app.
 
-<Preview>
+<Canvas>
   <Story name="Custom Sizes">
     <MargaretProvider
       theme={{
@@ -74,22 +74,22 @@ const theme = {
         },
       }}
     >
-      <Stack alignY="center" gutterSize={1}>
+      <Stack alignY="center" gap={1}>
         <Avatar name="MissT Helga" size="micro" />
         <Avatar name="Gretchen Darcie" />
         <Avatar name="Bingley Bubulle" size="mega" />
       </Stack>
     </MargaretProvider>
   </Story>
-</Preview>
+</Canvas>
 
 ## Modes
 
 Avatar content can be provided via five props: `imageUrl`, `icon`, `firstName` + `lastName`, and `name`, in importance decreasing order.
 
-<Preview>
+<Canvas>
   <Story name="Kinds">
-    <Stack alignY="center" gutterSize={1}>
+    <Stack alignY="center" gap={1}>
       <Avatar
         imageUrl="https://picsum.photos/256/256"
         firstName="Nino"
@@ -109,21 +109,21 @@ Avatar content can be provided via five props: `imageUrl`, `icon`, `firstName` +
       <Avatar />
     </Stack>
   </Story>
-</Preview>
+</Canvas>
 
 ## Variants
 
 Three variants are provided. They set the avatar as round, rounded or square.
 
-<Preview>
+<Canvas>
   <Story name="Variants">
-    <Stack alignY="center" gutterSize={1}>
+    <Stack alignY="center" gap={1}>
       <Avatar imageUrl="https://picsum.photos/256/256" />
       <Avatar imageUrl="https://picsum.photos/256/256" variant="rounded" />
       <Avatar imageUrl="https://picsum.photos/256/256" variant="square" />
     </Stack>
   </Story>
-</Preview>
+</Canvas>
 
 ## Overrides
 
@@ -153,9 +153,9 @@ const colors = {
 
 …would enable the following component-level customization:
 
-<Preview>
+<Canvas>
   <Story name="Component-level customization">
-    <Stack alignY="center" gutterSize={1}>
+    <Stack alignY="center" gap={1}>
       <MargaretProvider
         theme={{
           borderRadius: {
@@ -184,4 +184,4 @@ const colors = {
       </MargaretProvider>
     </Stack>
   </Story>
-</Preview>
+</Canvas>
