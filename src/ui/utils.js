@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import { keys } from 'lodash';
+import { keys, isObject, kebabCase } from 'lodash';
 
 export const BASE = 1;
 export const spacing = (input = 1) => `${input}rem`;
@@ -14,12 +14,13 @@ export const viewportSizes = { ...breakpoints };
 
 const mediaQuery =
   (...query) =>
-  (...rules) =>
-    css`
+  (...rules) => {
+    return css`
       @media ${css(...query)} {
         ${css(...rules)};
       }
     `;
+  };
 
 export const media = {
   tablet: mediaQuery`(min-width: ${breakpoints.tablet / 16}em)`,
@@ -38,7 +39,34 @@ const cssLock = ({
     lowerBreakpoint / 16
   }rem) / (${higherBreakpoint / 16} - ${lowerBreakpoint / 16})))`;
 
-export const injectMargaret = theme => {
+export const injectPalette = ({ palette, prefix }) =>
+  css`
+    ${keys(palette).reduce((colors, color) => {
+      if (isObject(palette[color])) {
+        return [
+          ...colors,
+          ...keys(palette[color]).reduce(
+            (shades, shade) => [
+              ...shades,
+              `--${prefix}-${color}-${shade}: ${palette[color][shade]};`,
+            ],
+            [],
+          ),
+        ];
+      }
+      return [...colors, `--${prefix}-${kebabCase(color)}: ${palette[color]};`];
+    }, [])}
+  `;
+
+export const injectMargaret = ({ theme, colors = {} }) => {
+  theme.colors = colors?.palette || {};
+  theme.ui = {};
+
+  keys(colors.ui).forEach(colorName => {
+    theme.ui[colorName] = colors.ui?.[colorName];
+    theme[colorName] = colors.ui?.[colorName];
+  });
+
   theme.breakpoints =
     theme.breakpoints || theme.viewportSizes || breakpoints || {};
 

@@ -1,8 +1,8 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs';
-import { ThemeProvider } from 'styled-components';
 import { action } from '@storybook/addon-actions';
 import Avatar from './Avatar';
 import Stack from './Stack';
+import MargaretProvider from './MargaretProvider';
 import { theme, injectMargaret } from '..';
 import { FaUserCircle } from 'react-icons/fa';
 
@@ -18,12 +18,170 @@ import { FaUserCircle } from 'react-icons/fa';
 
 ## Sizes
 
+Margaret provides defaults sizes: `default`, `tiny`, `small`, `medium`, `large` and `huge`.
+
+<Preview>
+  <Story name="Sizes">
+    <Stack alignY="center" gap={1}>
+      <Avatar firstName="Cynthia" lastName="Henaff" size="small" />
+      <Avatar firstName="Henri" lastName="Michel" />
+      <Avatar firstName="Sonia" lastName="Si Moussi" size="medium" />
+      <Avatar firstName="Benoît" lastName="Carquillat" size="large" />
+      <Avatar firstName="Vincent" lastName="Larcher" size="huge" />
+    </Stack>
+  </Story>
+</Preview>
+
+Those size can be overriden using by setting a custom `theme.avatarSizes`. The default
+values are as is:
+
+```javascript
+const theme = {
+  ...
+  avatarSizes: {
+    tiny: '1rem',
+    small: '2rem',
+    default: '3rem',
+    medium: '4rem',
+    large: '6rem',
+    huge: '8rem',
+  },
+};
+```
+
+For instance, setting `theme.avatarSizes` as follow…
+
+```javascript
+const theme = {
+  avatarSizes: {
+    micro: '32px',
+    default: '96px',
+    mega: '256px',
+  },
+};
+```
+
+…would give this results in-app.
+
+<Preview>
+  <Story name="Custom Sizes">
+    <MargaretProvider
+      theme={{
+        avatarSizes: {
+          micro: '32px',
+          default: '96px',
+          mega: '256px',
+        },
+      }}
+    >
+      <Stack alignY="center" gutterSize={1}>
+        <Avatar name="MissT Helga" size="micro" />
+        <Avatar name="Gretchen Darcie" />
+        <Avatar name="Bingley Bubulle" size="mega" />
+      </Stack>
+    </MargaretProvider>
+  </Story>
+</Preview>
+
+## Modes
+
+Avatar content can be provided via five props: `imageUrl`, `icon`, `firstName` + `lastName`, and `name`, in importance decreasing order.
+
+<Preview>
+  <Story name="Kinds">
+    <Stack alignY="center" gutterSize={1}>
+      <Avatar
+        imageUrl="https://picsum.photos/256/256"
+        firstName="Nino"
+        lastName="Quincampoix"
+        name="Nino19"
+        icon={<FaUserCircle size={32} />}
+      />
+      <Avatar
+        firstName="Nino"
+        lastName="Quincampoix"
+        name="Nino19"
+        icon={<FaUserCircle size={32} />}
+      />
+      <Avatar firstName="Nino" lastName="Quincampoix" name="Nino19" />
+      <Avatar lastName="Quincampoix" name="Nino19" />
+      <Avatar name="Nino19" />
+      <Avatar />
+    </Stack>
+  </Story>
+</Preview>
+
+## Variants
+
+Three variants are provided. They set the avatar as round, rounded or square.
+
 <Preview>
   <Story name="Variants">
-    <Stack alignY="center" gap={1}>
+    <Stack alignY="center" gutterSize={1}>
       <Avatar imageUrl="https://picsum.photos/256/256" />
       <Avatar imageUrl="https://picsum.photos/256/256" variant="rounded" />
       <Avatar imageUrl="https://picsum.photos/256/256" variant="square" />
+    </Stack>
+  </Story>
+</Preview>
+
+## Overrides
+
+The background and border radius can be overriden at the component level.
+If set, they take the value of the corresponding theme prop.
+
+For instance, using this theme…
+
+```javascript
+const theme = {
+  borderRadius: {
+    huge: '32px',
+  },
+  gradients: {
+    primaryGradient: 'linear-gradient(to bottom, #f5aba5, #406fb3)',
+  },
+};
+
+const colors = {
+  palette: {},
+  ui: {
+    primary: '#406fb3',
+    secondary: '#f5aba5',
+  },
+};
+```
+
+…would enable the following component-level customization:
+
+<Preview>
+  <Story name="Component-level customization">
+    <Stack alignY="center" gutterSize={1}>
+      <MargaretProvider
+        theme={{
+          borderRadius: {
+            huge: '32px',
+          },
+          gradients: {
+            primaryGradient: 'linear-gradient(to bottom, #f5aba5, #406fb3)',
+          },
+        }}
+        colors={{
+          palette: {},
+          ui: {
+            primary: '#406fb3',
+            secondary: '#f5aba5',
+          },
+        }}
+      >
+        <Avatar
+          size="huge"
+          icon={<FaUserCircle />}
+          background="primaryGradient"
+        />
+        <Avatar size="huge" icon={<FaUserCircle />} background="primary" />
+        <Avatar size="huge" icon={<FaUserCircle />} background="secondary" />
+        <Avatar size="huge" icon={<FaUserCircle />} borderRadius="huge" />
+      </MargaretProvider>
     </Stack>
   </Story>
 </Preview>
