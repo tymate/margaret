@@ -201,7 +201,7 @@ export const theme = {
     },
   },
 
-  viewportSizes: {
+  breakpoints: {
     desktop: 1200,
     medium: 1000,
     tablet: 750,

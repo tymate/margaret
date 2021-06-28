@@ -1,6 +1,7 @@
 import React, { useState, createContext, useContext } from 'react';
 import styled, { useTheme } from 'styled-components';
-import { media, Stack, ButtonReset } from '../ui';
+import { media, ButtonReset } from '../ui';
+import { Stack } from './';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMargaret } from './MargaretProvider';
