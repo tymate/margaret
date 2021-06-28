@@ -39,7 +39,8 @@ const setPropertyBreakpoint = ({
     case 'color':
     case 'backgroundColor':
       return css`
-        ${formatProperty({ prefix, property })}: ${theme.colors?.[value]};
+        ${formatProperty({ prefix, property })}: ${theme.colors?.[value] ||
+        theme?.[value]};
       `;
 
     case 'paddingHorizontal':

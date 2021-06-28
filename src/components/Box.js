@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { setProperty } from '../utils';
 
 const Box = styled.div`
@@ -61,6 +61,18 @@ const Box = styled.div`
           value: props?.[property],
         }),
       )}
+
+  ${({ size }) =>
+    size === 'full' &&
+    css`
+      width: 100%;
+    `}
+
+  ${({ size }) =>
+    size === 'fit-content' &&
+    css`
+      width: fit-content;
+    `}
 `;
 
 export default Box;

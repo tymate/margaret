@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { injectMargaret, theme as defaultTheme, viewportSizes } from '../ui';
+import { injectMargaret, theme as defaultTheme } from '../ui';
 import { createBreakpoint } from 'react-use';
 import 'sanitize.css';
 import 'sanitize.css/typography.css';
@@ -21,10 +21,10 @@ export const useMargaret = () => {
 export const useBreakpoint = createBreakpoint({
   loading: 0,
   mobile: 1,
-  ...viewportSizes,
+  ...defaultTheme?.breakpoints,
 });
 
-const MargaretProvider = ({ theme, children }) => {
+const MargaretProvider = ({ theme, children, colors }) => {
   const [mainNavIsExpanded, setMainNavIsExpanded] = useState();
   const breakpoint = useBreakpoint();
 

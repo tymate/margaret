@@ -59,7 +59,7 @@ const SegmentedControls = ({
   ...props
 }) => (
   <Stack>
-    <SegmentedWrapper gutterSize={0} {...props}>
+    <SegmentedWrapper gap={0} {...props}>
       {options.map(
         (
           {
