@@ -1,6 +1,6 @@
 import React from 'react';
 import { ButtonReset as StyledButtonReset, List as StyledList } from '../ui';
-import { Stack as StyledStack } from './';
+import StyledStack from './Stack';
 import PropTypes from 'prop-types';
 
 export const ButtonReset = props => <StyledButtonReset {...props} />;

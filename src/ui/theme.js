@@ -126,6 +126,18 @@ export const theme = {
     },
   },
 
+  tooltip: {
+    fontStyle: 'bodySmall',
+    fontSize: '14px',
+    fontWeight: '400',
+    color: '#fff',
+    background: 'hsl(137, 54%, 61%)',
+    borderRadius: '2px',
+    paddingVertical: '2px',
+    paddingHorizontal: '4px',
+    maxWidth: '120px',
+  },
+
   fonts: {
     title: '"Archivo Narrow", sans-serif',
     body: '"Chivo", sans-serif',

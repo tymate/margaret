@@ -14,6 +14,7 @@ export { default as SegmentedControl } from './SegmentedControls';
 export { default as Spinner } from './Spinner';
 export { default as Stack } from './Stack';
 export { default as Tabs } from './Tabs';
+export { default as Tooltip } from './Tooltip';
 
 export * from './MargaretProvider';
 export * from './Pills';
