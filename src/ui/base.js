@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import { Stack, Box } from '../components';
+import Stack from '../components/Stack';
+import Box from '../components/Box';
 
 export const Name = styled.span`
   font-weight: 500;

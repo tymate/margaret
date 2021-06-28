@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Stack } from './';
+import Stack from './Stack';
 
 const Container = styled(Stack).attrs({
   direction: 'column',

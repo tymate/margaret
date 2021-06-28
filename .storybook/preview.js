@@ -28,7 +28,6 @@ const history = createBrowserHistory();
 
 addParameters({
   options: {
-    showRoots: true,
     showCanvas: false,
     storySort: {
       order: ['Intro', ['Getting Started', 'Basics', 'Theming', 'Typography']],

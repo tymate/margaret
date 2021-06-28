@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Stack } from '../components';
+import Stack from './Stack';
 
 const Card = styled(Stack).attrs({
   direction: 'column',

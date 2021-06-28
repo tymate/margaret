@@ -10,12 +10,16 @@ export const breakpoints = {
   tablet: 750,
 };
 
-const mediaQuery = (...query) => (...rules) =>
-  css`
-    @media ${css(...query)} {
-      ${css(...rules)};
-    }
-  `;
+export const viewportSizes = { ...breakpoints };
+
+const mediaQuery =
+  (...query) =>
+  (...rules) =>
+    css`
+      @media ${css(...query)} {
+        ${css(...rules)};
+      }
+    `;
 
 export const media = {
   tablet: mediaQuery`(min-width: ${breakpoints.tablet / 16}em)`,
@@ -35,9 +39,12 @@ const cssLock = ({
   }rem) / (${higherBreakpoint / 16} - ${lowerBreakpoint / 16})))`;
 
 export const injectMargaret = theme => {
+  theme.breakpoints =
+    theme.breakpoints || theme.viewportSizes || breakpoints || {};
+
   theme.spacing = (input = 1) => `${input * 1}rem`;
 
-  theme.media = keys(theme.breakpoints || breakpoints).reduce(
+  theme.media = keys(theme.breakpoints).reduce(
     (media, breakpoint) => ({
       ...media,
       [breakpoint]: mediaQuery`(min-width: ${
@@ -59,9 +66,9 @@ export const injectMargaret = theme => {
             minValue: theme.fontStacks?.[breakpoint]?.sizeMinRem,
             maxValue: theme.fontStacks?.[breakpoint]?.sizeMaxRem,
             lowerBreakpoint:
-              theme.breakpoints[theme.cssLockLowerBreakpoint || 'tablet'],
+              theme.breakpoints?.[theme.cssLockLowerBreakpoint || 'tablet'],
             higherBreakpoint:
-              theme.breakpoints[theme.cssLockHigherBreakpoint || 'desktop'],
+              theme.breakpoints?.[theme.cssLockHigherBreakpoint || 'desktop'],
           })};
         `}
 
@@ -84,9 +91,9 @@ export const injectMargaret = theme => {
             minValue: theme.fontStacks?.[breakpoint]?.lineHeightMin,
             maxValue: theme.fontStacks?.[breakpoint]?.lineHeightMax,
             lowerBreakpoint:
-              theme.breakpoints[theme.cssLockLowerBreakpoint || 'tablet'],
+              theme.breakpoints?.[theme.cssLockLowerBreakpoint || 'tablet'],
             higherBreakpoint:
-              theme.breakpoints[theme.cssLockHigherBreakpoint || 'desktop'],
+              theme.breakpoints?.[theme.cssLockHigherBreakpoint || 'desktop'],
           })};
         `}
 

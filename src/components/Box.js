@@ -1,15 +1,66 @@
 import styled, { css } from 'styled-components';
-import { spacings } from '../ui/utils';
+import { setProperty } from '../utils';
 
 const Box = styled.div`
-  ${spacings()}
+  ${({ theme, ...props }) =>
+    [
+      'display',
 
-  ${({ theme, color }) =>
-    Boolean(color) &&
-    (Boolean(theme?.colors?.[color]) || Boolean(theme?.[color])) &&
-    css`
-      color: ${({ theme }) => theme?.colors?.[color] || theme?.[color]};
-    `}
+      'position',
+      'top',
+      'right',
+      'bottom',
+      'left',
+
+      'padding',
+      'paddingVertical',
+      'paddingHorizontal',
+      'paddingTop',
+      'paddingRight',
+      'paddingBottom',
+      'paddingLeft',
+
+      'marginAuto',
+
+      'color',
+      'backgroundColor',
+
+      'flex',
+      'flexGrow',
+      'flexShrink',
+      'flexBasis',
+      'order',
+
+      'width',
+      'height',
+      'minWidth',
+      'minHeight',
+
+      'overflow',
+      'overflowX',
+      'overflowY',
+
+      'textDecoration',
+      'fontWeight',
+      'fontStyle',
+
+      'boxShadow',
+      'borderRadius',
+
+      'gridArea',
+      'gridColumnStart',
+      'gridColumnEnd',
+      'gridRowStart',
+      'gridRowEnd',
+    ]
+      .filter(property => props?.[property] !== undefined)
+      .map(property =>
+        setProperty({
+          theme,
+          property,
+          value: props?.[property],
+        }),
+      )}
 
   ${({ size }) =>
     size === 'full' &&

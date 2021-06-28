@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Pills, PillItem, PillButton } from './Pills';
-import { Stack } from './';
+import Stack from './Stack';
 
 const SegmentedWrapper = styled(Pills)`
   box-shadow: inset 0 0 0 1px ${({ theme }) => theme.separator};
@@ -59,7 +59,7 @@ const SegmentedControls = ({
   ...props
 }) => (
   <Stack>
-    <SegmentedWrapper gutterSize={0} {...props}>
+    <SegmentedWrapper gap={0} {...props}>
       {options.map(
         (
           {

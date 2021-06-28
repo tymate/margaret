@@ -5,6 +5,7 @@ export { default as Card } from './Card';
 export { default as ConfirmButton } from './ConfirmButton';
 export { default as Container } from './Container';
 export { default as Dropdown } from './Dropdown';
+export { default as Grid } from './Grid';
 export { default as MainNav, useSectionPanel } from './MainNav';
 export { default as MargaretProvider } from './MargaretProvider';
 export { default as Modal } from './Modal';

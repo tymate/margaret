@@ -1,150 +1,143 @@
 import styled, { css } from 'styled-components';
-import { gutterSizes, media } from '../ui/utils';
+import { isPlainObject, keys } from 'lodash';
+import { setProperty, entries } from '../utils';
 import Box from './Box';
-import { keys } from 'lodash';
+
+const generateAlign = ({ value, direction, theme, property, breakpoint }) => {
+  if (breakpoint === 'default') {
+    return (direction?.default || 'row') === 'row'
+      ? property === 'alignX'
+        ? css`
+            justify-content: ${value?.default};
+          `
+        : css`
+            align-items: ${value?.default};
+          `
+      : property === 'alignX'
+      ? css`
+          align-items: ${value?.default};
+        `
+      : css`
+          justify-content: ${value?.default};
+        `;
+  }
+
+  const breakpointSize = theme.breakpoints?.[breakpoint];
+  const sortedBreakpoints = entries(theme.breakpoints)
+    .sort((a, b) => b[1] - a[1])
+    .filter(breakpoint => breakpoint[1] <= breakpointSize);
+  const directionBreakpoint =
+    sortedBreakpoints.filter(
+      breakpoint => direction?.[breakpoint?.[0]] !== undefined,
+    )?.[0]?.[0] || 'default';
+  const alignBreakpoint =
+    sortedBreakpoints.filter(
+      breakpoint => value?.[breakpoint?.[0]] !== undefined,
+    )?.[0]?.[0] || 'default';
+
+  return (direction?.[directionBreakpoint] || 'row') === 'row'
+    ? property === 'alignX'
+      ? css`
+          justify-content: ${value?.[alignBreakpoint]};
+        `
+      : css`
+          align-items: ${value?.[alignBreakpoint]};
+        `
+    : property === 'alignX'
+    ? css`
+        align-items: ${value?.[alignBreakpoint]};
+      `
+    : css`
+        justify-content: ${value?.[alignBreakpoint]};
+      `;
+};
+
+const generateAligns = ({ value, direction, theme, property }) => {
+  if (!isPlainObject(value)) {
+    value = { default: value };
+  }
+  if (!isPlainObject(direction)) {
+    direction = { default: direction };
+  }
+
+  return css`
+    ${generateAlign({
+      breakpoint: 'default',
+      value,
+      direction,
+      theme,
+      property,
+    })}
+
+    ${[...new Set(keys(value).concat(keys(direction)))]
+      .sort(
+        (breakpointA, breakpointB) =>
+          theme.breakpoints?.[breakpointA] - theme.breakpoints?.[breakpointB],
+      )
+      .filter(
+        breakpoint =>
+          breakpoint !== 'default' && Boolean(theme.media?.[breakpoint]),
+      )
+      .map(
+        breakpoint => theme.media[breakpoint]`
+          ${generateAlign({
+            value,
+            breakpoint,
+            direction,
+            theme,
+            property,
+          })}
+        `,
+      )}
+  `;
+};
 
 const Stack = styled(Box)`
   display: flex;
 
-  ${({ direction }) =>
-    typeof direction === 'string' &&
+  ${({ wrap }) =>
+    wrap === 'wrap' &&
     css`
-      flex-direction: ${({ direction }) => direction};
+      flex-wrap: wrap;
     `}
 
-  ${({ direction }) =>
-    typeof direction === 'object' &&
+  ${({ gap, gutterSize, theme }) =>
+    (gap !== undefined || gutterSize !== undefined) &&
     css`
-      flex-direction: ${({ direction }) => direction?.default};
-      align-items: ${({ alignX, alignY }) =>
-        direction?.default === 'row'
-          ? typeof alignY === 'object'
-            ? alignY?.default
-            : alignY
-          : typeof alignX === 'object'
-          ? alignX?.default
-          : alignX};
-      justify-content: ${({ alignX, alignY }) =>
-        direction?.default === 'row'
-          ? typeof alignX === 'object'
-            ? alignX?.default
-            : alignX
-          : typeof alignY === 'object'
-          ? alignY?.default
-          : alignY};
+      ${setProperty({
+        theme,
+        property: 'margin',
+        value: gap || gutterSize,
+        multiplier: -0.5,
+      })}
 
-      > * + * {
-        ${({ theme, gutterSize }) =>
-          gutterSizes({
-            theme,
-            gutterSize,
-            direction: direction?.default === 'column' ? 'top' : 'left',
-          })};
-      }
-
-      ${keys(direction)
-        .filter(key => key !== 'default')
-        .map(
-          breakpoint => media[breakpoint]`
-            flex-direction: ${({ direction }) => direction[breakpoint]};
-            align-items: ${({ alignX, alignY }) =>
-              direction[breakpoint] === 'row'
-                ? typeof alignY === 'object'
-                  ? alignY[breakpoint]
-                  : alignY
-                : typeof alignX === 'object'
-                ? alignX[breakpoint]
-                : alignX};
-            justify-content: ${({ alignX, alignY }) =>
-              direction[breakpoint] === 'row'
-                ? typeof alignX === 'object'
-                  ? alignX[breakpoint]
-                  : alignX
-                : typeof alignY === 'object'
-                ? alignY[breakpoint]
-                : alignY};
-
-            > * + * {
-              ${({ theme, gutterSize }) =>
-                gutterSizes({
-                  theme,
-                  gutterSize: 0,
-                  direction:
-                    direction[breakpoint] === 'column' ? 'left' : 'top',
-                })};
-
-              ${({ theme, gutterSize }) =>
-                gutterSizes({
-                  theme,
-                  gutterSize,
-                  direction:
-                    direction[breakpoint] === 'column' ? 'top' : 'left',
-                })};
-                
-              align-items: ${({ alignX, alignY }) =>
-                direction[breakpoint] === 'column' ? alignX : alignY};
-              justify-content: ${({ alignX, alignY }) =>
-                direction[breakpoint] === 'column' ? alignY : alignX};
-            }
-          `,
-        )}
-    `}
-
-  ${({ direction }) =>
-    direction === 'row' &&
-    css`
-      align-items: ${({ alignY }) => alignY};
-      justify-content: ${({ alignX }) => alignX};
-
-      > * + * {
-        ${({ theme, gutterSize }) =>
-          gutterSizes({ theme, gutterSize, direction: 'left' })};
-      }
-
-      ${({ variant }) =>
-        variant === 'multiLine' &&
-        css`
-          flex-wrap: wrap;
-
-          ${({ theme, gutterSize }) =>
-            gutterSizes({
-              theme,
-              gutterSize: -1 * gutterSize,
-              direction: 'left',
-            })};
-          ${({ theme, gutterSize }) =>
-            gutterSizes({
-              theme,
-              gutterSize: -1 * gutterSize,
-              direction: 'top',
-            })};
-
-          > * {
-            ${({ theme, gutterSize }) =>
-              gutterSizes({ theme, gutterSize, direction: 'left' })};
-            ${({ theme, gutterSize }) =>
-              gutterSizes({ theme, gutterSize, direction: 'top' })};
-          }
-        `}
-    `}
-
-  ${({ direction }) =>
-    direction === 'column' &&
-    css`
-      align-items: ${({ alignX }) => alignX};
-      justify-content: ${({ alignY }) => alignY};
-
-      > * + * {
-        ${({ theme, gutterSize }) =>
-          gutterSizes({ theme, gutterSize, direction: 'top' })};
+      > * {
+        ${setProperty({
+          theme,
+          property: 'margin',
+          value: gap || gutterSize,
+          multiplier: 0.5,
+        })}
       }
     `}
+
+  ${({ theme, direction }) =>
+    Boolean(direction) &&
+    setProperty({
+      theme,
+      property: 'Direction',
+      value: direction,
+      prefix: 'flex',
+    })}
+
+
+  ${({ alignX, direction, theme }) =>
+    alignX !== undefined &&
+    generateAligns({ value: alignX, direction, theme, property: 'alignX' })}
+
+  ${({ alignY, direction, theme }) =>
+    alignY !== undefined &&
+    generateAligns({ value: alignY, direction, theme, property: 'alignY' })}
 `;
-
-Stack.defaultProps = {
-  direction: 'row',
-  alignX: 'flex-start',
-  alignY: 'flex-start',
-};
 
 export default Stack;

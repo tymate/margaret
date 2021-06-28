@@ -1,8 +1,8 @@
 import React, { useState, createContext, useContext } from 'react';
 import styled, { useTheme } from 'styled-components';
-import { media, ButtonReset } from '../ui';
-import { Stack } from './';
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import Stack from './Stack';
+import { ButtonReset } from '../ui';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMargaret } from './MargaretProvider';
 
@@ -50,7 +50,7 @@ const MainNavBase = styled(Stack).attrs(({ as, theme }) => ({
   box-shadow: ${({ theme }) => theme.mainNav.boxShadow};
   z-index: 2;
 
-  ${media.tablet`
+  ${({ theme }) => theme.media.tablet`
     left: 0;
     background: ${({ theme }) => theme.mainNav.background.tablet};
 
@@ -228,7 +228,7 @@ const MainNavSectionHeader = ({ children, isExpanded, onToggle, ...props }) => {
       isExpanded={isExpanded}
       {...props}
     >
-      <Stack gutterSize={0.5} alignY="center">
+      <Stack gap={0.5} alignY="center">
         <span>{children}</span>
       </Stack>
       {Boolean(onToggle) && (
