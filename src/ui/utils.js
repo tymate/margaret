@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import { keys } from 'lodash';
+import { keys, isObject, kebabCase } from 'lodash';
 
 export const BASE = 1;
 export const spacing = (input = 1) => `${input}rem`;
@@ -21,10 +21,27 @@ const mediaQuery =
       }
     `;
 
+const deprecatedMediaQuery =
+  (...query) =>
+  (...rules) => {
+    if (process.env.NODE_ENV !== 'production') {
+      // eslint-disable-next-line no-console
+      console.warn(`Using the standalone media function is deprecated. \n
+Please use theme.media instead.
+    `);
+    }
+
+    return css`
+      @media ${css(...query)} {
+        ${css(...rules)};
+      }
+    `;
+  };
+
 export const media = {
-  tablet: mediaQuery`(min-width: ${breakpoints.tablet / 16}em)`,
-  medium: mediaQuery`(min-width: ${breakpoints.medium / 16}em)`,
-  desktop: mediaQuery`(min-width: ${breakpoints.desktop / 16}em)`,
+  tablet: deprecatedMediaQuery`(min-width: ${breakpoints.tablet / 16}em)`,
+  medium: deprecatedMediaQuery`(min-width: ${breakpoints.medium / 16}em)`,
+  desktop: deprecatedMediaQuery`(min-width: ${breakpoints.desktop / 16}em)`,
 };
 
 const cssLock = ({
@@ -38,7 +55,34 @@ const cssLock = ({
     lowerBreakpoint / 16
   }rem) / (${higherBreakpoint / 16} - ${lowerBreakpoint / 16})))`;
 
-export const injectMargaret = theme => {
+export const injectPalette = ({ palette, prefix }) =>
+  css`
+    ${keys(palette).reduce((colors, color) => {
+      if (isObject(palette[color])) {
+        return [
+          ...colors,
+          ...keys(palette[color]).reduce(
+            (shades, shade) => [
+              ...shades,
+              `--${prefix}-${color}-${shade}: ${palette[color][shade]};`,
+            ],
+            [],
+          ),
+        ];
+      }
+      return [...colors, `--${prefix}-${kebabCase(color)}: ${palette[color]};`];
+    }, [])}
+  `;
+
+export const injectMargaret = ({ theme, colors = {} }) => {
+  theme.colors = colors?.palette || {};
+  theme.ui = {};
+
+  keys(colors.ui).forEach(colorName => {
+    theme.ui[colorName] = colors.ui?.[colorName];
+    theme[colorName] = colors.ui?.[colorName];
+  });
+
   theme.breakpoints =
     theme.breakpoints || theme.viewportSizes || breakpoints || {};
 
