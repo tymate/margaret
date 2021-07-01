@@ -1,28 +1,48 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { action } from '@storybook/addon-actions';
-import Button from './Button';
-import { Buttons } from '../ui';
+import { Tabs } from './Tabs';
 
 <Meta
   title="Design System/Tabs"
-  component={Button}
+  component={Tabs}
   parameters={{ previewTabs: { canvas: { hidden: true } } }}
 />
 
-<!-- # Button
+# Tabs
 
-Buttons allow users to take actions, make choices or navigate within a product or website.
+Tabs allow users to take actions, make choices or navigate within a product or website.
 
-{/* <Props of={Button} /> */}
+<ArgsTable of={Tabs} />
 
 ## States
 
-<Preview>
+<Canvas>
   <Story name="DefaultButton">
-    <Buttons alignment="left">
-      <Button>Hello Button</Button>
-      <Button disabled>Hello Button</Button>
-      <Button isLoading>Hello Button</Button>
-    </Buttons>
+    {() => {
+      const [activeTabIndex, setActiveTabIndex] = useState(1);
+      return (
+        <Tabs gap={1}>
+          <Tabs.Item
+            onClick={() => setActiveTabIndex(1)}
+            isActive={activeTabIndex === 1}
+          >
+            One
+          </Tabs.Item>
+          <Tabs.Item
+            onClick={() => setActiveTabIndex(2)}
+            isActive={activeTabIndex === 2}
+          >
+            Two
+          </Tabs.Item>
+          <Tabs.Item
+            onClick={() => setActiveTabIndex(3)}
+            isActive={activeTabIndex === 3}
+          >
+            Three
+          </Tabs.Item>
+        </Tabs>
+      );
+    }}
   </Story>
-</Preview> -->
+</Canvas>

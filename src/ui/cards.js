@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { media } from './utils';
 
 export const CardWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.separator};
@@ -22,14 +21,14 @@ export const CardWrapper = styled.div`
   ${({ gridColumnStart }) =>
     gridColumnStart &&
     css`
-      ${media.desktop`
+      ${({ theme }) => theme.media.desktop`
       grid-column-start: ${({ gridColumnStart }) => gridColumnStart}`};
     `}
 
   ${props =>
     props.gridColumnEnd &&
     css`
-      ${media.desktop`
+      ${({ theme }) => theme.media.desktop`
       grid-column-end: ${({ gridColumnEnd }) => gridColumnEnd}`};
     `}
 
@@ -66,7 +65,7 @@ export const CardContent = styled.div`
     css`
       padding: ${({ theme }) => theme.spacing()};
 
-      ${media.tablet`
+      ${({ theme }) => theme.media.tablet`
       padding: ${({ theme }) => theme.spacing(2)}`};
     `}
 

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { spacings } from './base';
+import { spacings } from './utils';
 
 export const Text = styled.div.attrs(({ theme, type, as }) => ({
   as: as || theme?.fontStacks?.[type]?.defaultTag,

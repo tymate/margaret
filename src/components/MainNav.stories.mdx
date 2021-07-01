@@ -1,4 +1,4 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { action } from '@storybook/addon-actions';
 import MainNav from './MainNav';
 
@@ -16,27 +16,27 @@ A set of compound components to easily create mobile-first top-level navigations
 
 ### `<MainNav />`
 
-<Props of={MainNav} />
+<ArgsTable of={MainNav} />
 
 ### `<MainNav.Section />`
 
-<Props of={MainNav.Section} />
+<ArgsTable of={MainNav.Section} />
 
 ### `<MainNav.MainContent />`
 
-<Props of={MainNav.MainContent} />
+<ArgsTable of={MainNav.MainContent} />
 
 ### `<MainNav.Items />`
 
-<Props of={MainNav.Items} />
+<ArgsTable of={MainNav.Items} />
 
 ### `<MainNav.Item />`
 
-<Props of={MainNav.Item} />
+<ArgsTable of={MainNav.Item} />
 
 ### `<MainNav.Header />`
 
-<Props of={MainNav.Header} />
+<ArgsTable of={MainNav.Header} />
 
 ### `<MainNav.Trigger />`
 
@@ -44,7 +44,7 @@ A set of compound components to easily create mobile-first top-level navigations
 
 ## Usage
 
-<Preview>
+<Canvas>
   <Story name="Default">
     <div style={{ height: 400, backgroundColor: '#f4f5f6', paddingLeft: 300 }}>
       <MainNav>
@@ -68,4 +68,4 @@ A set of compound components to easily create mobile-first top-level navigations
       <MainNav.Trigger />
     </div>
   </Story>
-</Preview>
+</Canvas>

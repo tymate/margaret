@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import { Stack } from '../ui';
+import Stack from './Stack';
 import 'loaders.css';
 
 const Spin = styled.div`

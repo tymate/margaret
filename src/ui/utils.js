@@ -1,26 +1,47 @@
 import { css } from 'styled-components';
-import { keys } from 'lodash';
+import { keys, isObject, kebabCase } from 'lodash';
 
 export const BASE = 1;
 export const spacing = (input = 1) => `${input}rem`;
 
-export const viewportSizes = {
+export const breakpoints = {
   desktop: 1200,
   medium: 1000,
   tablet: 750,
 };
 
-const mediaQuery = (...query) => (...rules) =>
-  css`
-    @media ${css(...query)} {
-      ${css(...rules)};
+export const viewportSizes = { ...breakpoints };
+
+const mediaQuery =
+  (...query) =>
+  (...rules) =>
+    css`
+      @media ${css(...query)} {
+        ${css(...rules)};
+      }
+    `;
+
+const deprecatedMediaQuery =
+  (...query) =>
+  (...rules) => {
+    if (process.env.NODE_ENV !== 'production') {
+      // eslint-disable-next-line no-console
+      console.warn(`Using the standalone media function is deprecated. \n
+Please use theme.media instead.
+    `);
     }
-  `;
+
+    return css`
+      @media ${css(...query)} {
+        ${css(...rules)};
+      }
+    `;
+  };
 
 export const media = {
-  tablet: mediaQuery`(min-width: ${viewportSizes.tablet / 16}em)`,
-  medium: mediaQuery`(min-width: ${viewportSizes.medium / 16}em)`,
-  desktop: mediaQuery`(min-width: ${viewportSizes.desktop / 16}em)`,
+  tablet: deprecatedMediaQuery`(min-width: ${breakpoints.tablet / 16}em)`,
+  medium: deprecatedMediaQuery`(min-width: ${breakpoints.medium / 16}em)`,
+  desktop: deprecatedMediaQuery`(min-width: ${breakpoints.desktop / 16}em)`,
 };
 
 const cssLock = ({
@@ -34,14 +55,44 @@ const cssLock = ({
     lowerBreakpoint / 16
   }rem) / (${higherBreakpoint / 16} - ${lowerBreakpoint / 16})))`;
 
-export const injectMargaret = theme => {
+export const injectPalette = ({ palette, prefix }) =>
+  css`
+    ${keys(palette).reduce((colors, color) => {
+      if (isObject(palette[color])) {
+        return [
+          ...colors,
+          ...keys(palette[color]).reduce(
+            (shades, shade) => [
+              ...shades,
+              `--${prefix}-${color}-${shade}: ${palette[color][shade]};`,
+            ],
+            [],
+          ),
+        ];
+      }
+      return [...colors, `--${prefix}-${kebabCase(color)}: ${palette[color]};`];
+    }, [])}
+  `;
+
+export const injectMargaret = ({ theme, colors = {} }) => {
+  theme.colors = colors?.palette || {};
+  theme.ui = {};
+
+  keys(colors.ui).forEach(colorName => {
+    theme.ui[colorName] = colors.ui?.[colorName];
+    theme[colorName] = colors.ui?.[colorName];
+  });
+
+  theme.breakpoints =
+    theme.breakpoints || theme.viewportSizes || breakpoints || {};
+
   theme.spacing = (input = 1) => `${input * 1}rem`;
 
-  theme.media = keys(theme.viewportSizes || viewportSizes).reduce(
+  theme.media = keys(theme.breakpoints).reduce(
     (media, breakpoint) => ({
       ...media,
       [breakpoint]: mediaQuery`(min-width: ${
-        theme.viewportSizes?.[breakpoint] / 16
+        theme.breakpoints?.[breakpoint] / 16
       }em)`,
     }),
     {},
@@ -59,9 +110,9 @@ export const injectMargaret = theme => {
             minValue: theme.fontStacks?.[breakpoint]?.sizeMinRem,
             maxValue: theme.fontStacks?.[breakpoint]?.sizeMaxRem,
             lowerBreakpoint:
-              theme.viewportSizes[theme.cssLockLowerBreakpoint || 'tablet'],
+              theme.breakpoints?.[theme.cssLockLowerBreakpoint || 'tablet'],
             higherBreakpoint:
-              theme.viewportSizes[theme.cssLockHigherBreakpoint || 'desktop'],
+              theme.breakpoints?.[theme.cssLockHigherBreakpoint || 'desktop'],
           })};
         `}
 
@@ -84,9 +135,9 @@ export const injectMargaret = theme => {
             minValue: theme.fontStacks?.[breakpoint]?.lineHeightMin,
             maxValue: theme.fontStacks?.[breakpoint]?.lineHeightMax,
             lowerBreakpoint:
-              theme.viewportSizes[theme.cssLockLowerBreakpoint || 'tablet'],
+              theme.breakpoints?.[theme.cssLockLowerBreakpoint || 'tablet'],
             higherBreakpoint:
-              theme.viewportSizes[theme.cssLockHigherBreakpoint || 'desktop'],
+              theme.breakpoints?.[theme.cssLockHigherBreakpoint || 'desktop'],
           })};
         `}
 
@@ -124,3 +175,127 @@ export const injectMargaret = theme => {
 
   return theme;
 };
+
+export const getSpacingFromSize = ({ theme, gutterSize }) => {
+  if (typeof gutterSize === 'number') {
+    return theme.spacing(gutterSize);
+  }
+
+  return 0;
+};
+
+export const gutterSizes = ({ theme, gutterSize, direction }) => {
+  if (typeof gutterSize === 'object') {
+    return css`
+      margin-${direction}: ${getSpacingFromSize({
+      theme,
+      gutterSize: gutterSize?.default,
+    })};
+
+    ${keys(gutterSize)
+      .filter(key => key !== 'default')
+      .map(
+        breakpoint => media[breakpoint]`
+          
+          margin-${direction}: ${getSpacingFromSize({
+          theme,
+          gutterSize: gutterSize[breakpoint],
+        })}
+        `,
+      )};`;
+  }
+
+  return css`
+    margin-${direction}: ${getSpacingFromSize({ theme, gutterSize })}
+  `;
+};
+
+export const spacings = props => css`
+  ${({ margin }) =>
+    (Boolean(margin) || margin === 0) &&
+    css`
+      margin: ${({ theme }) => theme.spacing(margin)};
+    `}
+
+  ${({ marginVertical }) =>
+    (Boolean(marginVertical) || marginVertical === 0) &&
+    css`
+      margin-top: ${({ theme }) => theme.spacing(marginVertical)};
+      margin-bottom: ${({ theme }) => theme.spacing(marginVertical)};
+    `}
+
+  ${({ marginHorizontal }) =>
+    (Boolean(marginHorizontal) || marginHorizontal === 0) &&
+    css`
+      margin-left: ${({ theme }) => theme.spacing(marginHorizontal)};
+      margin-right: ${({ theme }) => theme.spacing(marginHorizontal)};
+    `}
+
+  ${({ marginTop }) =>
+    (Boolean(marginTop) || marginTop === 0) &&
+    css`
+      margin-top: ${({ theme }) => theme.spacing(marginTop)};
+    `}
+
+  ${({ marginBottom }) =>
+    (Boolean(marginBottom) || marginBottom === 0) &&
+    css`
+      margin-bottom: ${({ theme }) => theme.spacing(marginBottom)};
+    `}
+
+  ${({ marginLeft }) =>
+    (Boolean(marginLeft) || marginLeft === 0) &&
+    css`
+      margin-left: ${({ theme }) => theme.spacing(marginLeft)};
+    `}
+
+  ${({ marginRight }) =>
+    (Boolean(marginRight) || marginRight === 0) &&
+    css`
+      margin-right: ${({ theme }) => theme.spacing(marginRight)};
+    `}
+
+  ${({ padding }) =>
+    (Boolean(padding) || padding === 0) &&
+    css`
+      padding: ${({ theme }) => theme.spacing(padding)};
+    `}
+
+  ${({ paddingVertical }) =>
+    (Boolean(paddingVertical) || paddingVertical === 0) &&
+    css`
+      padding-top: ${({ theme }) => theme.spacing(paddingVertical)};
+      padding-bottom: ${({ theme }) => theme.spacing(paddingVertical)};
+    `}
+
+  ${({ paddingHorizontal }) =>
+    (Boolean(paddingHorizontal) || paddingHorizontal === 0) &&
+    css`
+      padding-left: ${({ theme }) => theme.spacing(paddingHorizontal)};
+      padding-right: ${({ theme }) => theme.spacing(paddingHorizontal)};
+    `}
+
+  ${({ paddingTop }) =>
+    (Boolean(paddingTop) || paddingTop === 0) &&
+    css`
+      padding-top: ${({ theme }) => theme.spacing(paddingTop)};
+    `}
+
+  ${({ paddingBottom }) =>
+    (Boolean(paddingBottom) || paddingBottom === 0) &&
+    css`
+      padding-bottom: ${({ theme }) => theme.spacing(paddingBottom)};
+    `}
+
+  ${({ paddingLeft }) =>
+    (Boolean(paddingLeft) || paddingLeft === 0) &&
+    css`
+      padding-left: ${({ theme }) => theme.spacing(paddingLeft)};
+    `}
+
+  ${({ paddingRight }) =>
+    (Boolean(paddingRight) || paddingRight === 0) &&
+    css`
+      padding-right: ${({ theme }) => theme.spacing(paddingRight)};
+    `}
+`;

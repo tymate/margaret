@@ -1,9 +1,9 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Spinner from './Spinner';
 import Button from './Button';
-import { Stack } from '../ui';
+import Stack from './Stack';
 
 <Meta
   title="Design System/Spinner"
@@ -13,13 +13,13 @@ import { Stack } from '../ui';
 
 # Spinner
 
-<Props of={Spinner} />
+<ArgsTable of={Spinner} />
 
 ## Default
 
-<Preview>
+<Canvas>
   <Story name="DefaultSpinner">
-    <Stack direction="column" gutterSize={0.5} size="full" alignX="center">
+    <Stack direction="column" gap={0.5} size="full" alignX="center">
       <Spinner />
       <Spinner />
       <Spinner />
@@ -30,13 +30,13 @@ import { Stack } from '../ui';
       <Spinner />
     </Stack>
   </Story>
-</Preview>
+</Canvas>
 
 ## Buttons
 
-<Preview>
+<Canvas>
   <Story name="Buttons">
-    <Stack direction="column" gutterSize={0.5}>
+    <Stack direction="column" gap={0.5}>
       <Button
         isLoading
         variant="primary"
@@ -52,4 +52,4 @@ import { Stack } from '../ui';
       </Button>
     </Stack>
   </Story>
-</Preview>
+</Canvas>

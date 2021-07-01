@@ -1,6 +1,7 @@
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { action } from '@storybook/addon-actions';
 import Button from './Button';
+import Stack from './Stack';
 import { Buttons } from '../ui';
 
 <Meta
@@ -11,64 +12,11 @@ import { Buttons } from '../ui';
   }}
 />
 
-export const Template = args => <Button {...args}>Hello Tymate</Button>;
-
-export const TemplateVariant = args => (
-  <Button {...args} variant="primary">
-    Hello Tymate
-  </Button>
-);
-
 # Button
 
 <Canvas>
-  <Story
-    name="Button"
-    argTypes={{
-      disabled: {
-        control: 'radio',
-      },
-      loader: {
-        control: {
-          type: 'select',
-          options: [
-            'ball-pulse',
-            'ball-pulse-sync',
-            'ball-scale',
-            'ball-scale-random',
-            'ball-rotate',
-            'ball-clip-rotate',
-            'ball-clip-rotate-pulse',
-            'ball-clip-rotate-multiple',
-            'ball-scale-ripple',
-            'ball-scale-ripple-multiple',
-            'ball-beat',
-            'ball-scale-multiple',
-            'ball-triangle-path',
-            'ball-pulse-rise',
-            'ball-grid-beat',
-            'ball-grid-pulse',
-            'ball-spin-fade-loader',
-            'ball-spin-loader',
-            'ball-zig-zag',
-            'ball-zig-zag-deflect',
-            'line-scale',
-            'line-scale-random',
-            'line-scale-pulse-out',
-            'line-scale-pulse-out-rapid',
-            'line-spin-fade-loader',
-            'triangle-skew-spin',
-            'square-spin',
-            'pacman',
-            'cube-transition',
-            'semi-circle-spin',
-          ],
-        },
-      },
-    }}
-    args={{ loader: 'ball-rotate' }}
-  >
-    {Template.bind({})}
+  <Story name="Button">
+    <Button>Hello Tymate</Button>
   </Story>
 </Canvas>
 
@@ -82,17 +30,17 @@ Example with the variant primary:
 ```javascript
 button: {
   primary: {
-    background: 'hsl(137, 54%, 61%)',
-    color: '#fff',
+    background: 'var(--ui-primary)', // Can be hex, hsla, rgba…
+    color: 'var(--colors-gray-0)',
     boxShadow: '',
 
-    backgroundHover: 'hsl(137, 54%, 70%)',
+    backgroundHover: 'var(--ui-primary-light)',
     colorHover: '',
     transformHover: '',
     boxShadowHover: '',
 
-    backgroundDisabled: 'rgba(4%, 6%, 13%, 0.2)',
-    colorDisabled: 'rgba(0, 0, 0, 0.38)',
+    backgroundDisabled: 'var(--ui-disabled)',
+    colorDisabled: 'var(--colors-gray-400)',
     boxShadowDisabled: '',
     transformDisabled: '',
 
@@ -100,58 +48,28 @@ button: {
     paddingVertical: '14px',
     borderRadius: '6px',
     minWidth: '220px',
-  }
+  },
 }
 ```
 
 <Canvas>
-  <Story
-    name="Button with variant"
-    argTypes={{
-      disabled: {
-        control: 'radio',
-      },
-      loader: {
-        control: {
-          type: 'select',
-          options: [
-            'ball-pulse',
-            'ball-pulse-sync',
-            'ball-scale',
-            'ball-scale-random',
-            'ball-rotate',
-            'ball-clip-rotate',
-            'ball-clip-rotate-pulse',
-            'ball-clip-rotate-multiple',
-            'ball-scale-ripple',
-            'ball-scale-ripple-multiple',
-            'ball-beat',
-            'ball-scale-multiple',
-            'ball-triangle-path',
-            'ball-pulse-rise',
-            'ball-grid-beat',
-            'ball-grid-pulse',
-            'ball-spin-fade-loader',
-            'ball-spin-loader',
-            'ball-zig-zag',
-            'ball-zig-zag-deflect',
-            'line-scale',
-            'line-scale-random',
-            'line-scale-pulse-out',
-            'line-scale-pulse-out-rapid',
-            'line-spin-fade-loader',
-            'triangle-skew-spin',
-            'square-spin',
-            'pacman',
-            'cube-transition',
-            'semi-circle-spin',
-          ],
-        },
-      },
-    }}
-    args={{ loader: 'ball-rotate' }}
-  >
-    {TemplateVariant.bind({})}
+  <Story name="Button with variant">
+    <Stack direction="column" alignX="flex-start" gap={1}>
+      <Button variant="primary">Hello Tymate</Button>
+      <Button variant="primary" disabled>
+        Hello Tymate
+      </Button>
+      <Button variant="primary" isLoading>
+        Hello Tymate
+      </Button>
+      <Button
+        variant="primary"
+        isLoading
+        loadingAnimation="line-spin-fade-loader"
+      >
+        Hello Tymate
+      </Button>
+    </Stack>
   </Story>
 </Canvas>
 

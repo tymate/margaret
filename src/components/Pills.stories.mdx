@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
 import { action } from '@storybook/addon-actions';
 import { Pills, Pill } from './Pills';
-import { Stack } from '../ui';
+import Stack from './Stack';
 
 <Meta
   title="Design System/Pills"
@@ -16,7 +16,7 @@ Can be used as links between pages, as in-page filters, or as segmented controls
 
 ## As tabs
 
-<Preview>
+<Canvas>
   <Story name="As tabs" parameters={{ canvas: { disable: true } }}>
     <Pills>
       <Pill to="/" exact>
@@ -27,11 +27,11 @@ Can be used as links between pages, as in-page filters, or as segmented controls
       <Pill to="/catorce">Catorce</Pill>
     </Pills>
   </Story>
-</Preview>
+</Canvas>
 
-## As filters
+<!-- ## As filters
 
-<Preview>
+<Canvas>
   <Story name="As filters" parameters={{ canvas: { disable: true } }}>
     {() => {
       const [activeIndex, setActiveIndex] = useState([]);
@@ -67,11 +67,11 @@ Can be used as links between pages, as in-page filters, or as segmented controls
       );
     }}
   </Story>
-</Preview>
+</Canvas> -->
 
-## As segmented control
+<!-- ## As segmented control
 
-<Preview>
+<Canvas>
   <Story name="As segmented control" parameters={{ canvas: { disable: true } }}>
     {() => {
       const [activeIndex, setActiveIndex] = useState([]);
@@ -97,4 +97,4 @@ Can be used as links between pages, as in-page filters, or as segmented controls
       );
     }}
   </Story>
-</Preview>
+</Canvas> -->

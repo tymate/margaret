@@ -21,10 +21,10 @@ const AvatarWrapper = styled.span`
   ${({ size, theme }) =>
     Boolean(size) &&
     Boolean(theme?.avatarSizes?.[size]) &&
-    `
-      width: ${theme?.avatarSizes?.[size]};
-      height: ${theme?.avatarSizes?.[size]};
-      font-size: calc(${theme?.avatarSizes?.[size]} / 2);
+    css`
+      width: ${({ theme }) => theme?.avatarSizes?.[size]};
+      height: ${({ theme }) => theme?.avatarSizes?.[size]};
+      font-size: calc(${({ theme }) => theme?.avatarSizes?.[size]} / 2);
     `};
 
   ${({ variant }) =>
@@ -59,9 +59,11 @@ const getAvatarContent = ({ firstName, lastName, icon, imageUrl, name }) => {
   if (Boolean(imageUrl)) {
     return null;
   }
+
   if (Boolean(icon)) {
     return icon;
   }
+
   if (Boolean(firstName) || Boolean(lastName)) {
     return (
       <span>
@@ -70,7 +72,16 @@ const getAvatarContent = ({ firstName, lastName, icon, imageUrl, name }) => {
       </span>
     );
   }
-  return <span>{(name || '').charAt(0)}</span>;
+
+  return (
+    <span>
+      {(name || '')
+        .split(' ')
+        .map(chunk => chunk.charAt(0))
+        .slice(0, 2)
+        .join('')}
+    </span>
+  );
 };
 
 const Avatar = ({ size, imageUrl, ...props }) => (

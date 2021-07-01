@@ -1,6 +1,11 @@
 import React, { createContext, useState, useContext } from 'react';
-import { ThemeProvider } from 'styled-components';
-import { injectMargaret, theme as defaultTheme, viewportSizes } from '../ui';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import {
+  injectPalette,
+  injectMargaret,
+  theme as defaultTheme,
+  colors as defaultColors,
+} from '../ui';
 import { createBreakpoint } from 'react-use';
 import 'sanitize.css';
 import 'sanitize.css/typography.css';
@@ -21,10 +26,17 @@ export const useMargaret = () => {
 export const useBreakpoint = createBreakpoint({
   loading: 0,
   mobile: 1,
-  ...viewportSizes,
+  ...defaultTheme?.breakpoints,
 });
 
-const MargaretProvider = ({ theme, children }) => {
+export const GlobalVars = createGlobalStyle`
+  :root {
+    ${({ theme }) => injectPalette({ palette: theme.colors, prefix: 'colors' })}
+    ${({ theme }) => injectPalette({ palette: theme.ui, prefix: 'ui' })}
+  }
+`;
+
+const MargaretProvider = ({ theme, children, colors }) => {
   const [mainNavIsExpanded, setMainNavIsExpanded] = useState();
   const breakpoint = useBreakpoint();
 
@@ -49,7 +61,13 @@ const MargaretProvider = ({ theme, children }) => {
         isDesktop,
       }}
     >
-      <ThemeProvider theme={injectMargaret({ ...defaultTheme, ...theme })}>
+      <ThemeProvider
+        theme={injectMargaret({
+          theme: { ...defaultTheme, ...theme },
+          colors: { ...defaultColors, ...colors },
+        })}
+      >
+        <GlobalVars />
         {children}
       </ThemeProvider>
     </AppContext.Provider>

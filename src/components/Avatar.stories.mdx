@@ -1,8 +1,9 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import { ThemeProvider } from 'styled-components';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { action } from '@storybook/addon-actions';
 import Avatar from './Avatar';
-import { Stack, theme, injectMargaret } from '..';
+import Stack from './Stack';
+import MargaretProvider from './MargaretProvider';
+import { theme, injectMargaret } from '..';
 import { FaUserCircle } from 'react-icons/fa';
 
 <Meta
@@ -13,22 +14,23 @@ import { FaUserCircle } from 'react-icons/fa';
 
 # Avatar
 
-<Props of={Avatar} />
+<ArgsTable of={Avatar} />
 
 ## Sizes
 
 Margaret provides defaults sizes: `default`, `tiny`, `small`, `medium`, `large` and `huge`.
 
-<Preview>
+<Canvas>
   <Story name="Sizes">
-    <Stack alignY="center" gutterSize={1}>
-      <Avatar firstName="Nino" lastName="Quincampoix" size="small" />
-      <Avatar firstName="Nino" lastName="Quincampoix" />
-      <Avatar firstName="Nino" lastName="Quincampoix" size="medium" />
-      <Avatar firstName="Nino" lastName="Quincampoix" size="large" />
+    <Stack alignY="center" gap={1}>
+      <Avatar firstName="Cynthia" lastName="Henaff" size="small" />
+      <Avatar firstName="Henri" lastName="Michel" />
+      <Avatar firstName="Sonia" lastName="Si Moussi" size="medium" />
+      <Avatar firstName="Benoît" lastName="Carquillat" size="large" />
+      <Avatar firstName="Vincent" lastName="Larcher" size="huge" />
     </Stack>
   </Story>
-</Preview>
+</Canvas>
 
 Those size can be overriden using by setting a custom `theme.avatarSizes`. The default
 values are as is:
@@ -51,7 +53,6 @@ For instance, setting `theme.avatarSizes` as follow…
 
 ```javascript
 const theme = {
-  ...
   avatarSizes: {
     micro: '32px',
     default: '96px',
@@ -62,34 +63,33 @@ const theme = {
 
 …would give this results in-app.
 
-<Preview>
+<Canvas>
   <Story name="Custom Sizes">
-    <ThemeProvider
-      theme={injectMargaret({
-        ...theme,
+    <MargaretProvider
+      theme={{
         avatarSizes: {
           micro: '32px',
           default: '96px',
           mega: '256px',
         },
-      })}
+      }}
     >
-      <Stack alignY="center" gutterSize={1}>
-        <Avatar firstName="Nino" lastName="Quincampoix" size="micro" />
-        <Avatar firstName="Nino" lastName="Quincampoix" />
-        <Avatar firstName="Nino" lastName="Quincampoix" size="mega" />
+      <Stack alignY="center" gap={1}>
+        <Avatar name="MissT Helga" size="micro" />
+        <Avatar name="Gretchen Darcie" />
+        <Avatar name="Bingley Bubulle" size="mega" />
       </Stack>
-    </ThemeProvider>
+    </MargaretProvider>
   </Story>
-</Preview>
+</Canvas>
 
 ## Modes
 
 Avatar content can be provided via five props: `imageUrl`, `icon`, `firstName` + `lastName`, and `name`, in importance decreasing order.
 
-<Preview>
+<Canvas>
   <Story name="Kinds">
-    <Stack alignY="center" gutterSize={1}>
+    <Stack alignY="center" gap={1}>
       <Avatar
         imageUrl="https://picsum.photos/256/256"
         firstName="Nino"
@@ -109,21 +109,21 @@ Avatar content can be provided via five props: `imageUrl`, `icon`, `firstName` +
       <Avatar />
     </Stack>
   </Story>
-</Preview>
+</Canvas>
 
 ## Variants
 
 Three variants are provided. They set the avatar as round, rounded or square.
 
-<Preview>
+<Canvas>
   <Story name="Variants">
-    <Stack alignY="center" gutterSize={1}>
+    <Stack alignY="center" gap={1}>
       <Avatar imageUrl="https://picsum.photos/256/256" />
       <Avatar imageUrl="https://picsum.photos/256/256" variant="rounded" />
       <Avatar imageUrl="https://picsum.photos/256/256" variant="square" />
     </Stack>
   </Story>
-</Preview>
+</Canvas>
 
 ## Overrides
 
@@ -134,43 +134,44 @@ For instance, using this theme…
 
 ```javascript
 const theme = {
-  ...
   borderRadius: {
     huge: '32px',
-    ...
   },
   gradients: {
-    primaryGradient: 'linear-gradient(to bottom, #bada55, #c55)'
-    ...
+    primaryGradient: 'linear-gradient(to bottom, #f5aba5, #406fb3)',
   },
-  colors: {
-    primary: '#bada55'
-    ...
+};
+
+const colors = {
+  palette: {},
+  ui: {
+    primary: '#406fb3',
+    secondary: '#f5aba5',
   },
-  secondary: '#c55'
 };
 ```
 
 …would enable the following component-level customization:
 
-<Preview>
+<Canvas>
   <Story name="Component-level customization">
-    <Stack alignY="center" gutterSize={1}>
-      <ThemeProvider
-        theme={injectMargaret({
-          ...theme,
+    <Stack alignY="center" gap={1}>
+      <MargaretProvider
+        theme={{
           borderRadius: {
-            ...theme.borderRadius,
             huge: '32px',
           },
           gradients: {
             primaryGradient: 'linear-gradient(to bottom, #f5aba5, #406fb3)',
           },
-          colors: {
+        }}
+        colors={{
+          palette: {},
+          ui: {
             primary: '#406fb3',
+            secondary: '#f5aba5',
           },
-          secondary: '#f5aba5',
-        })}
+        }}
       >
         <Avatar
           size="huge"
@@ -180,7 +181,7 @@ const theme = {
         <Avatar size="huge" icon={<FaUserCircle />} background="primary" />
         <Avatar size="huge" icon={<FaUserCircle />} background="secondary" />
         <Avatar size="huge" icon={<FaUserCircle />} borderRadius="huge" />
-      </ThemeProvider>
+      </MargaretProvider>
     </Stack>
   </Story>
-</Preview>
+</Canvas>
