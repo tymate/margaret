@@ -1,5 +1,5 @@
 import React, { isValidElement, useEffect } from 'react';
-import styled, { css } from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
 import { MdClose } from 'react-icons/md';
@@ -7,63 +7,38 @@ import { ButtonReset } from '../ui';
 
 const StyledModal = styled(ReactModal)`
   position: absolute;
-  background-color: #fff;
+  z-index: 2147483646;
   top: 50%;
   left: 50%;
   right: auto;
   bottom: auto;
-  margin-right: -50%;
   transform: translate(-50%, -50%);
-  z-index: 2147483646;
+  margin-right: -50%;
   padding: 0;
   max-height: calc(100vh - 32px);
-  overflow-y: auto;
-  border-radius: 6px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  outline: none;
   border: 0;
-  width: 500px;
+  outline: ${({ theme }) => theme.modal.outline || 'none'};
+  overflow-y: auto;
+  background: ${({ theme }) => theme.modal.background};
+  border-radius: ${({ theme }) => theme.modal.borderRadius};
+  box-shadow: ${({ theme }) => theme.modal.boxShadow};
+  width: ${({ theme }) => theme.modal?.sizes?.default || '500px'};
   max-width: calc(100vw - 32px);
 
-  ${props =>
-    props.size === 'full' &&
-    css`
-      width: auto;
-    `}
-
-  ${props =>
-    props.size === 'medium' &&
-    css`
-      min-width: 800px;
-    `}
-  ${props =>
-    props.size === 'big' &&
-    css`
-      width: 1100px;
-    `}
+  ${({ size, theme }) =>
+    Boolean(size) &&
+    Boolean(theme?.modal?.sizes?.[size]) &&
+    `
+      width: ${theme?.modal?.sizes?.[size]};
+    `};
 `;
 
 export const CloseModalTriggerButton = styled(ButtonReset)`
-  font-size: 1.5em;
   position: absolute;
   z-index: 2;
+  font-size: 1.5em;
   top: ${({ theme }) => theme.spacing()};
   right: ${({ theme }) => theme.spacing()};
-  color: #c3b8c6;
-
-  ${props =>
-    props.variant === 'fullscreen' &&
-    css`
-      position: fixed;
-      border-radius: 100%
-      min-height: 32px;
-      min-width: 32px;
-      color: #fff;
-      display: flex
-      align-items: center;
-      justify-content: center;
-      background-color: ${({ theme }) => theme.separator};
-    `}
 `;
 
 const ModalTitle = styled.h1`
@@ -75,34 +50,23 @@ const ModalTitle = styled.h1`
 `;
 
 const Content = styled.div`
-  padding: ${({ theme }) => theme.spacing(2)};
+  padding: ${({ theme }) => theme.modal.padding};
   line-height: 1.5;
-
-  ${({ variant }) =>
-    variant === 'fullscreen' &&
-    `
-      height: 100%;
-      max-height: 100%;
-      width: 100%;
-    `}
-
-  ${({ size, variant }) =>
-    (size === 'full' || variant === 'fullscreen') &&
-    `
-      padding: 0;
-    `}
 `;
 
 const Modal = ({
   title,
   children,
   isOpen,
+  closeIcon,
   onRequestClose,
   variant,
-  background,
   overflow,
   size,
+  ...props
 }) => {
+  const theme = useTheme();
+
   useEffect(() => {
     if (isOpen) {
       document.documentElement.style.overflowY = 'hidden';
@@ -117,7 +81,7 @@ const Modal = ({
 
   const overlayStyles = {
     zIndex: 2147483646,
-    backgroundColor: background,
+    ...theme?.modal?.overlay,
   };
 
   return (
@@ -127,20 +91,19 @@ const Modal = ({
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       style={{
-        overlay: {
-          ...overlayStyles,
-        },
+        overlay: overlayStyles,
         content: { overflow },
       }}
       ariaHideApp={false}
+      {...props}
     >
       <Content variant={variant}>
         {Boolean(title) &&
           (isValidElement(title) ? title : <ModalTitle>{title}</ModalTitle>)}
 
         {onRequestClose && (
-          <CloseModalTriggerButton onClick={onRequestClose} variant={variant}>
-            <MdClose />
+          <CloseModalTriggerButton onClick={onRequestClose}>
+            {Boolean(closeIcon) ? closeIcon : <MdClose />}
           </CloseModalTriggerButton>
         )}
 
@@ -148,10 +111,6 @@ const Modal = ({
       </Content>
     </StyledModal>
   );
-};
-
-Modal.defaultProps = {
-  background: 'rgba(0, 0, 0, 0.8)',
 };
 
 Modal.propTypes = {
@@ -162,9 +121,8 @@ Modal.propTypes = {
   ]),
   isOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
-  size: PropTypes.oneOf(['medium', 'big', 'full']),
-  variant: PropTypes.oneOf(['fullscreen']),
-  background: PropTypes.string,
+  size: PropTypes.string,
+  closeIcon: PropTypes.element,
 };
 
 export default Modal;

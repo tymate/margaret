@@ -2,7 +2,6 @@ export { default as Avatar } from './Avatar';
 export { default as Box } from './Box';
 export { default as Button } from './Button';
 export { default as Card } from './Card';
-export { default as ConfirmButton } from './ConfirmButton';
 export { default as Container } from './Container';
 export { default as Dropdown } from './Dropdown';
 export { default as Grid } from './Grid';

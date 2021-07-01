@@ -14,7 +14,7 @@ const Container = styled(Stack).attrs({
     Boolean(size) &&
     Boolean(theme?.containerSizes?.[size]) &&
     `
-      width: ${theme?.containerSizes?.[size]}
+      width: ${theme?.containerSizes?.[size]};
     `};
 `;
 
