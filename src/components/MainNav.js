@@ -32,35 +32,37 @@ const MainNavBase = styled(Stack).attrs(({ as, theme }) => ({
   as: as || 'aside',
   direction: {
     default: 'column',
-    tablet: theme.mainNav.position === 'top' ? 'row' : 'column',
+    tablet: theme.mainNav?.position === 'top' ? 'row' : 'column',
   },
   alignX: 'stretch',
   alignY: {
     default: 'flex-start',
-    tablet: theme.mainNav.position === 'top' ? 'center' : 'flex-start',
+    tablet: theme.mainNav?.position === 'top' ? 'center' : 'flex-start',
   },
 }))`
   position: fixed;
   top: 0;
-  left: -${({ theme }) => theme.mainNav.width};
+  left: -${({ theme }) => theme.mainNav?.width};
   bottom: 0;
-  width: ${({ theme }) => theme.mainNav.width};
-  max-width: ${({ theme }) => theme.mainNav.maxWidth};
-  background: ${({ theme }) => theme.mainNav.background.mobile};
-  box-shadow: ${({ theme }) => theme.mainNav.boxShadow};
+  width: ${({ theme }) => theme.mainNav?.width};
+  max-width: ${({ theme }) => theme.mainNav?.maxWidth};
+  background: ${({ theme }) => theme.mainNav?.background.mobile};
+  box-shadow: ${({ theme }) => theme.mainNav?.boxShadow};
   z-index: 2;
 
-  ${({ theme }) => theme.media.tablet`
+  ${({ theme }) => theme.media[
+    theme.mainNav?.offCanvasToVisibleBreakpoint || 'tablet'
+  ]`
     left: 0;
-    background: ${({ theme }) => theme.mainNav.background.tablet};
+    background: ${({ theme }) => theme.mainNav?.background.tablet};
 
     ${({ theme }) =>
-      theme.mainNav.position === 'top' &&
+      theme.mainNav?.position === 'top' &&
       `
         bottom: auto;
         width: auto;
         right: 0;
-        height: ${theme.mainNav.height};
+        height: ${theme.mainNav?.height};
         position: absolute;
       `}
   `}
@@ -72,7 +74,7 @@ const Backdrop = styled(ButtonReset)`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: ${({ theme }) => theme.mainNav.backdropZIndex || 1};
+  z-index: ${({ theme }) => theme.mainNav?.backdropZIndex || 1};
   background-color: rgba(0, 0, 0, 0.48);
 `;
 
@@ -82,7 +84,7 @@ const MainNav = ({ header, children, hasBackdrop, ...props }) => {
 
   const mainNavVariants = {
     open: {
-      transform: `translateX(${theme.mainNav.width})`,
+      transform: `translateX(${theme.mainNav?.width})`,
       transition: { ease: 'easeInOut', duration: 0.2 },
     },
     closed: {
@@ -116,7 +118,7 @@ const MainNav = ({ header, children, hasBackdrop, ...props }) => {
         {...props}
       >
         {header}
-        {theme.mainNav.position === 'top' ? (
+        {theme.mainNav?.position === 'top' ? (
           children
         ) : (
           <Scrollbars>
@@ -142,7 +144,7 @@ const MainNavMainContent = styled.div`
 const MainNavItems = styled(Stack).attrs(({ theme }) => ({
   as: 'ul',
   direction:
-    theme.mainNav.position === 'left'
+    theme.mainNav?.position === 'left'
       ? 'column'
       : {
           default: 'column',
@@ -161,12 +163,12 @@ const MainNavItem = styled.li`
 `;
 
 const MainNavHeader = styled(Stack)`
-  color: ${({ theme }) => theme.mainNav.sectionPanelHeaderColor};
+  color: ${({ theme }) => theme.mainNav?.sectionPanelHeaderColor};
 
   ${({ isExpanded, theme }) =>
     isExpanded &&
     `
-      color: ${theme.mainNav.sectionPanelHeaderColorActive};
+      color: ${theme.mainNav?.sectionPanelHeaderColorActive};
     `};
 `;
 
@@ -304,11 +306,11 @@ const MainNavTrigger = props => {
           stroke="#ffffff"
           variants={{
             collapsed: {
-              stroke: theme.mainNav.triggerColor.collapsed,
+              stroke: theme.mainNav?.triggerColor.collapsed,
               d: 'M 2 2.5 L 20 2.5',
             },
             expanded: {
-              stroke: theme.mainNav.triggerColor.expanded,
+              stroke: theme.mainNav?.triggerColor.expanded,
               d: 'M 3 16.5 L 17 2.5',
             },
           }}
@@ -318,11 +320,11 @@ const MainNavTrigger = props => {
           stroke="#ffffff"
           variants={{
             collapsed: {
-              stroke: theme.mainNav.triggerColor.collapsed,
+              stroke: theme.mainNav?.triggerColor.collapsed,
               opacity: 1,
             },
             expanded: {
-              stroke: theme.mainNav.triggerColor.expanded,
+              stroke: theme.mainNav?.triggerColor.expanded,
               opacity: 0,
             },
           }}
@@ -334,11 +336,11 @@ const MainNavTrigger = props => {
           stroke="#ffffff"
           variants={{
             collapsed: {
-              stroke: theme.mainNav.triggerColor.collapsed,
+              stroke: theme.mainNav?.triggerColor.collapsed,
               d: 'M 2 16.346 L 20 16.346',
             },
             expanded: {
-              stroke: theme.mainNav.triggerColor.expanded,
+              stroke: theme.mainNav?.triggerColor.expanded,
               d: 'M 3 2.5 L 17 16.346',
             },
           }}
