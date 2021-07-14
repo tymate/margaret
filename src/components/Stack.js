@@ -1,6 +1,11 @@
 import styled, { css } from 'styled-components';
-import { isPlainObject, keys } from 'lodash';
-import { setProperty, entries } from '../utils';
+import { find, findIndex, isPlainObject, keys, orderBy } from 'lodash';
+import {
+  setProperty,
+  entries,
+  upperFirst,
+  setPropertyBreakpoint,
+} from '../utils';
 import Box from './Box';
 
 const generateAlign = ({ value, direction, theme, property, breakpoint }) => {
@@ -92,8 +97,115 @@ const generateAligns = ({ value, direction, theme, property }) => {
   `;
 };
 
+const getStackGapSideFromDirection = direction => {
+  switch (direction) {
+    case 'column':
+      return 'top';
+    case 'column-reverse':
+      return 'bottom';
+    case 'row-reverse':
+      return 'right';
+    case 'row':
+    default:
+      return 'left';
+  }
+};
+
+const generateStackMargin = ({ theme, gap, direction }) => {
+  if (typeof direction === 'string') {
+    return setProperty({
+      theme,
+      property: 'margin' + upperFirst(getStackGapSideFromDirection(direction)),
+      value: gap,
+    });
+  }
+
+  if (!isPlainObject(direction)) {
+    return;
+  }
+
+  const orderedBreakpoints = [
+    { breakpoint: 'default', value: 0 },
+    ...orderBy(
+      keys(theme.breakpoints ?? {}).map(breakpoint => ({
+        breakpoint,
+        value: theme.breakpoints?.[breakpoint],
+      })),
+      'value',
+      'asc',
+    ),
+  ]
+    .map(({ breakpoint }) => breakpoint)
+    .reverse();
+
+  return css`
+    ${setProperty({
+      theme,
+      property:
+        'margin' + upperFirst(getStackGapSideFromDirection(direction?.default)),
+      value: isPlainObject(gap) ? gap?.default : gap,
+    })}
+
+    ${[...new Set(keys(gap).concat(keys(direction)))]
+      .sort(
+        (breakpointA, breakpointB) =>
+          theme.breakpoints?.[breakpointA] - theme.breakpoints?.[breakpointB],
+      )
+      .filter(
+        breakpoint =>
+          breakpoint !== 'default' && Boolean(theme.media?.[breakpoint]),
+      )
+      .map(breakpoint => {
+        const closestDirectionBreakpoint = find(
+          orderBy(keys(direction), targetBreakpoint =>
+            findIndex(
+              orderedBreakpoints,
+              breakpoint => breakpoint === targetBreakpoint,
+            ),
+          ),
+          directionBreakpoint =>
+            orderedBreakpoints.indexOf(directionBreakpoint) >=
+            orderedBreakpoints.indexOf(breakpoint),
+        );
+
+        const closestGapBreakpoint = find(
+          orderBy(keys(gap), targetBreakpoint =>
+            findIndex(
+              orderedBreakpoints,
+              breakpoint => breakpoint === targetBreakpoint,
+            ),
+          ),
+          gapBreakpoint =>
+            orderedBreakpoints.indexOf(gapBreakpoint) >=
+            orderedBreakpoints.indexOf(breakpoint),
+        );
+
+        return theme.media[breakpoint]`
+          ${setProperty({
+            theme,
+            property: 'margin',
+            value: 'unset',
+          })}
+
+          ${setProperty({
+            theme,
+            property:
+              'margin' +
+              upperFirst(
+                getStackGapSideFromDirection(
+                  direction[closestDirectionBreakpoint],
+                ),
+              ),
+            value: isPlainObject(gap) ? gap?.[closestGapBreakpoint] : gap,
+          })}
+        `;
+      })}
+  `;
+};
+
 const Stack = styled(Box)`
   display: flex;
+  list-style-type: none;
 
   ${({ wrap }) =>
     wrap === 'wrap' &&
@@ -101,23 +213,15 @@ const Stack = styled(Box)`
       flex-wrap: wrap;
     `}
 
-  ${({ gap, gutterSize, theme }) =>
+  ${({ gap, gutterSize, theme, direction }) =>
     (gap !== undefined || gutterSize !== undefined) &&
     css`
-      ${setProperty({
-        theme,
-        property: 'margin',
-        value: gap || gutterSize,
-        multiplier: -0.5,
-      })}
-
-      > * {
-        ${setProperty({
+      > * + * {
+        ${generateStackMargin({
           theme,
-          property: 'margin',
-          value: gap || gutterSize,
-          multiplier: 0.5,
-        })}
+          gap: gap || gutterSize,
+          direction: direction || 'row',
+        })};
       }
     `}
 

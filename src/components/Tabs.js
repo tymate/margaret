@@ -3,16 +3,11 @@ import styled from 'styled-components';
 import { List, ButtonReset } from '../ui/base';
 
 export const TabsBase = styled(List)`
-  display: flex;
   max-width: 100vw;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   padding: ${({ theme }) => theme?.tabs?.padding};
   margin: ${({ theme }) => theme?.tabs?.margin};
-
-  ${({ theme }) => theme.media.tablet`
-    flex-wrap: wrap;
-  `}
 `;
 
 const TabNav = styled.li`
