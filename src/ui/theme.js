@@ -229,6 +229,7 @@ export const theme = {
       mobile: 'var(--colors-red-50)',
       tablet: 'var(--colors-red-50)',
     },
+    offCanvasToVisibleBreakpoint: 'tablet',
     boxShadow: `0 4px 4px var(--colors-gray-100)`,
     position: 'top',
     height: '80px',
@@ -275,10 +276,8 @@ export const theme = {
   fonts: {
     title:
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-    body:
-      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-    ui:
-      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+    body: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+    ui: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
   },
 
   cssLockLowerBreakpoint: 'tablet',
@@ -369,7 +368,6 @@ export const theme = {
     desktop: 1200,
     medium: 1000,
     tablet: 750,
-    foobar: 800,
   },
 
   containerSizes: {
