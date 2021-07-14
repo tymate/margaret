@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import Stack from './Stack';
+import { Text } from '../ui';
 
 const Card = styled(Stack).attrs({
   direction: 'column',
