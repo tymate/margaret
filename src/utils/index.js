@@ -72,9 +72,9 @@ const setPropertyBreakpoint = ({
     case 'gridRowGap':
     case 'gridColumnGap':
       return css`
-        ${formatProperty({ prefix, property })}: ${theme.spacing(
-          value * multiplier,
-        )};
+        ${formatProperty({ prefix, property })}: ${value === 'unset'
+          ? 'unset'
+          : theme.spacing(value * multiplier)};
       `;
 
     case 'display':

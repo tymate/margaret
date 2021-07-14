@@ -6,9 +6,7 @@ export const Name = styled.span`
   font-weight: 500;
 `;
 
-export const List = styled(Stack)`
-  list-style-type: none;
-`;
+export const List = props => <Stack {...props} />;
 
 List.defaultProps = {
   as: 'ul',
