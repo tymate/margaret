@@ -19,7 +19,7 @@ jobs:
       - name: Generate prerelease version
         run: yarn version --patch
       - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
+        uses: ad-m/github-push-action@v0.5.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Build version
