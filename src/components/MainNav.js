@@ -32,12 +32,14 @@ const MainNavBase = styled(Stack).attrs(({ as, theme }) => ({
   as: as || 'aside',
   direction: {
     default: 'column',
-    tablet: theme.mainNav?.position === 'top' ? 'row' : 'column',
+    [theme.mainNav?.offCanvasToVisibleBreakpoint || 'tablet']:
+      theme.mainNav?.position === 'top' ? 'row' : 'column',
   },
   alignX: 'stretch',
   alignY: {
     default: 'flex-start',
-    tablet: theme.mainNav?.position === 'top' ? 'center' : 'flex-start',
+    [theme.mainNav?.offCanvasToVisibleBreakpoint || 'tablet']:
+      theme.mainNav?.position === 'top' ? 'center' : 'flex-start',
   },
 }))`
   position: fixed;
@@ -54,7 +56,10 @@ const MainNavBase = styled(Stack).attrs(({ as, theme }) => ({
     theme.mainNav?.offCanvasToVisibleBreakpoint || 'tablet'
   ]`
     left: 0;
-    background: ${({ theme }) => theme.mainNav?.background.tablet};
+    background: ${({ theme }) =>
+      theme.mainNav?.background?.[
+        theme.mainNav?.offCanvasToVisibleBreakpoint || 'tablet'
+      ]};
 
     ${({ theme }) =>
       theme.mainNav?.position === 'top' &&
@@ -148,7 +153,7 @@ const MainNavItems = styled(Stack).attrs(({ theme }) => ({
       ? 'column'
       : {
           default: 'column',
-          tablet: 'row',
+          [theme.mainNav?.offCanvasToVisibleBreakpoint || 'tablet']: 'row',
         },
   alignX: 'stretch',
 }))`

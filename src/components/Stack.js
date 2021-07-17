@@ -1,11 +1,6 @@
 import styled, { css } from 'styled-components';
 import { find, findIndex, isPlainObject, keys, orderBy } from 'lodash';
-import {
-  setProperty,
-  entries,
-  upperFirst,
-  setPropertyBreakpoint,
-} from '../utils';
+import { setProperty, entries, upperFirst } from '../utils';
 import Box from './Box';
 
 const generateAlign = ({ value, direction, theme, property, breakpoint }) => {
