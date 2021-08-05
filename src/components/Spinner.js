@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import PropTypes from 'prop-types';
 import Stack from './Stack';
 import 'loaders.css';
 
@@ -106,41 +105,6 @@ const Spinner = ({ animation, variant, size }) => (
 
 Spinner.defaultProps = {
   animation: 'ball-spin-fade-loader',
-};
-
-Spinner.propTypes = {
-  animation: PropTypes.oneOf([
-    'ball-pulse',
-    'ball-pulse-sync',
-    'ball-scale',
-    'ball-scale-random',
-    'ball-rotate',
-    'ball-clip-rotate',
-    'ball-clip-rotate-pulse',
-    'ball-clip-rotate-multiple',
-    'ball-scale-ripple',
-    'ball-scale-ripple-multiple',
-    'ball-beat',
-    'ball-scale-multiple',
-    'ball-triangle-path',
-    'ball-pulse-rise',
-    'ball-grid-beat',
-    'ball-grid-pulse',
-    'ball-spin-fade-loader',
-    'ball-spin-loader',
-    'ball-zig-zag',
-    'ball-zig-zag-deflect',
-    'line-scale',
-    'line-scale-random',
-    'line-scale-pulse-out',
-    'line-scale-pulse-out-rapid',
-    'line-spin-fade-loader',
-    'triangle-skew-spin',
-    'square-spin',
-    'pacman',
-    'cube-transition',
-    'semi-circle-spin',
-  ]),
 };
 
 export default Spinner;

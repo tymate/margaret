@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { ButtonReset } from '../ui/base';
-import PropTypes from 'prop-types';
 import Spinner from './Spinner';
 import Stack from './Stack';
 
@@ -219,62 +218,6 @@ Button.defaultProps = {
   isLoading: false,
   disabled: false,
   fontSize: '1em',
-};
-
-Button.propTypes = {
-  /**
-   * Displays the spinner & disables the button
-   * */
-  isLoading: PropTypes.bool,
-  /**
-   * Changes the appearance of the button
-   */
-  variant: PropTypes.string,
-  disabled: PropTypes.bool,
-  as: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
-  onClick: PropTypes.func,
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]).isRequired,
-  icon: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-  size: PropTypes.oneOf(['full']),
-  fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  loader: PropTypes.oneOf([
-    'ball-pulse',
-    'ball-pulse-sync',
-    'ball-scale',
-    'ball-scale-random',
-    'ball-rotate',
-    'ball-clip-rotate',
-    'ball-clip-rotate-pulse',
-    'ball-clip-rotate-multiple',
-    'ball-scale-ripple',
-    'ball-scale-ripple-multiple',
-    'ball-beat',
-    'ball-scale-multiple',
-    'ball-triangle-path',
-    'ball-pulse-rise',
-    'ball-grid-beat',
-    'ball-grid-pulse',
-    'ball-spin-fade-loader',
-    'ball-spin-loader',
-    'ball-zig-zag',
-    'ball-zig-zag-deflect',
-    'line-scale',
-    'line-scale-random',
-    'line-scale-pulse-out',
-    'line-scale-pulse-out-rapid',
-    'line-spin-fade-loader',
-    'triangle-skew-spin',
-    'square-spin',
-    'pacman',
-    'cube-transition',
-    'semi-circle-spin',
-  ]),
 };
 
 export default Button;

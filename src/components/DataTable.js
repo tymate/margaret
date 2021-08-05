@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
-import { get, isEqual, orderBy, pickBy } from 'lodash';
+import { get, pickBy } from 'lodash';
 import queryString from 'query-string';
-import PropTypes from 'prop-types';
 import { MdUnfoldMore, MdKeyboardArrowDown } from 'react-icons/md';
 import {
   Table,
@@ -22,7 +21,6 @@ import Spinner from './Spinner';
 
 const history = createBrowserHistory();
 
-const ASC = 'asc';
 const DESC = 'desc';
 
 const TopActions = styled.div`
@@ -42,30 +40,6 @@ export const Preview = styled.p`
   margin-bottom: 0;
   margin-top: ${({ theme }) => theme.spacing(0.5)};
 `;
-
-const getInitialState = ({ headings, activeProp }) => {
-  let state = {};
-
-  if (activeProp) {
-    state = {
-      ...state,
-      activeProp,
-    };
-  }
-
-  // eslint-disable-next-line
-  for (const prop of headings) {
-    state = {
-      ...state,
-      propByKey: {
-        ...state.propByKey,
-        [prop.slug]: DESC,
-      },
-    };
-  }
-
-  return state;
-};
 
 const Content = ({ render, value }) =>
   render ? render() : <span>{value}</span>;
@@ -294,40 +268,5 @@ class DataTable extends Component {
     );
   }
 }
-
-DataTable.propTypes = {
-  headings: PropTypes.arrayOf(
-    PropTypes.shape({
-      slug: PropTypes.string,
-      label: PropTypes.string,
-      width: PropTypes.string,
-      textAlign: PropTypes.string,
-      hasNoLeftPadding: PropTypes.bool,
-      fixed: PropTypes.bool,
-    }),
-  ).isRequired,
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      slug: PropTypes.string,
-      label: PropTypes.string,
-      width: PropTypes.string,
-      textAlign: PropTypes.string,
-      hasNoLeftPadding: PropTypes.bool,
-      fixed: PropTypes.bool,
-      onClick: PropTypes.func,
-      isWarning: PropTypes.bool,
-      path: PropTypes.string,
-    }),
-  ),
-  fixedLines: PropTypes.arrayOf(PropTypes.object),
-  isLoading: PropTypes.bool,
-  isSearchable: PropTypes.bool,
-  shouldHideTableHead: PropTypes.bool,
-  filterable: PropTypes.bool,
-  action: PropTypes.node,
-  footer: PropTypes.node,
-  footerActions: PropTypes.node,
-  emptyState: PropTypes.node,
-};
 
 export default withRouter(DataTable);

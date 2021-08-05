@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { trim } from 'lodash';
-import PropTypes from 'prop-types';
 
 const AvatarWrapper = styled.span`
   position: relative;
@@ -95,13 +94,5 @@ const Avatar = ({ size, imageUrl, ...props }) => (
     {getAvatarContent({ imageUrl, ...props })}
   </AvatarWrapper>
 );
-
-Avatar.propTypes = {
-  firstName: PropTypes.string,
-  lastName: PropTypes.string,
-  name: PropTypes.string,
-  imageUrl: PropTypes.string,
-  size: PropTypes.string,
-};
 
 export default Avatar;

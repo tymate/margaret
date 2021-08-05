@@ -1,6 +1,5 @@
 import React, { isValidElement, useEffect } from 'react';
 import styled, { useTheme } from 'styled-components';
-import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
 import { MdClose } from 'react-icons/md';
 import { ButtonReset } from '../ui';
@@ -111,18 +110,6 @@ const Modal = ({
       </Content>
     </StyledModal>
   );
-};
-
-Modal.propTypes = {
-  title: PropTypes.string,
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-  isOpen: PropTypes.bool.isRequired,
-  onRequestClose: PropTypes.func.isRequired,
-  size: PropTypes.string,
-  closeIcon: PropTypes.element,
 };
 
 export default Modal;
