@@ -11,6 +11,7 @@ const Card = styled(Stack).attrs({
   border-radius: ${({ theme }) => theme.card?.borderRadius};
   background: ${({ theme }) => theme.card?.background};
   width: ${({ theme }) => theme.card?.size};
+  color: ${({ theme }) => theme.card?.color};
 
   &:hover {
     border: ${({ theme }) => theme.card?.borderHover};
@@ -30,12 +31,16 @@ const Card = styled(Stack).attrs({
         theme.card?.[variant]?.borderRadius || theme.card?.borderRadius};
       background: ${({ theme }) =>
         theme.card?.[variant]?.background || theme.card?.background};
+      color: ${({ theme }) =>
+        theme.card?.[variant]?.color || theme.card?.color};
       width: ${({ theme }) => theme.card?.[variant]?.size || theme.card?.size};
 
       &:hover {
         background: ${({ theme }) =>
           theme.card?.[variant]?.backgroundHover ||
           theme.card?.[variant]?.background};
+        color: ${({ theme }) =>
+          theme.card?.[variant]?.colorHover || theme.card?.[variant]?.color};
         border: ${({ theme }) =>
           theme.card?.[variant]?.borderHover || theme.card?.[variant]?.border};
         box-shadow: ${({ theme }) =>

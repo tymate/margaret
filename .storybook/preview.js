@@ -1,7 +1,7 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { addDecorator, addParameters } from '@storybook/react';
-import { MargaretProvider, theme } from '../src';
+import { MargaretProvider, theme, colors } from '../src';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
@@ -41,7 +41,7 @@ addParameters({
 });
 
 addDecorator(story => (
-  <MargaretProvider>
+  <MargaretProvider theme={theme} colors={colors}>
     <Router history={history}>
       <GlobalStyle />
       {story()}

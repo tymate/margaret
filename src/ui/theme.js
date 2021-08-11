@@ -187,6 +187,37 @@ export const theme = {
       borderRadius: '6px',
       minWidth: '180px',
     },
+    outline: {
+      background: 'transparent',
+      color: 'var(--ui-primary)',
+      boxShadow: '0 0 0 1px var(--ui-primary)',
+
+      backgroundHover: 'var(--ui-primary-background)',
+
+      backgroundDisabled: 'transparent',
+      colorDisabled: 'var(--colors-gray-400)',
+      boxShadowDisabled: '0 0 0 1px var(--colors-gray-400)',
+      transformDisabled: '',
+
+      paddingHorizontal: '24px',
+      paddingVertical: '12px',
+      borderRadius: '6px',
+      minWidth: '180px',
+    },
+    ghost: {
+      background: 'transparent',
+      color: 'var(--ui-primary)',
+
+      backgroundHover: 'var(--ui-primary-background)',
+
+      backgroundDisabled: 'var(--ui-disabled)',
+      colorDisabled: 'var(--colors-gray-400)',
+
+      paddingHorizontal: '24px',
+      paddingVertical: '12px',
+      borderRadius: '6px',
+      minWidth: '180px',
+    },
   },
 
   tabs: {
@@ -277,8 +308,10 @@ export const theme = {
   fonts: {
     title:
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-    body: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-    ui: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+    body:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+    ui:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
   },
 
   cssLockLowerBreakpoint: 'tablet',

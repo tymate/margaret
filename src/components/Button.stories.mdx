@@ -16,61 +16,23 @@ import { Buttons } from '../ui';
 
 <Canvas>
   <Story name="Button">
-    <Button>Hello Tymate</Button>
-  </Story>
-</Canvas>
-
-## Theming
-
-The Button component accept a variant prop, which allows you to define stylistic variations to override the default values.
-To add a variant to your button open the theme file (theme.js). It contains an object which holds values for common variables such as color, fonts, border, and more. In the button value you can add your variant with the style you want to apply.
-
-Example with the variant primary:
-
-```javascript
-button: {
-  primary: {
-    background: 'var(--ui-primary)', // Can be hex, hsla, rgba…
-    color: 'var(--colors-gray-0)',
-    boxShadow: '',
-
-    backgroundHover: 'var(--ui-primary-light)',
-    colorHover: '',
-    transformHover: '',
-    boxShadowHover: '',
-
-    backgroundDisabled: 'var(--ui-disabled)',
-    colorDisabled: 'var(--colors-gray-400)',
-    boxShadowDisabled: '',
-    transformDisabled: '',
-
-    paddingHorizontal: '24px',
-    paddingVertical: '14px',
-    borderRadius: '6px',
-    minWidth: '220px',
-  },
-}
-```
-
-<Canvas>
-  <Story name="Button with variant">
-    <Stack direction="column" alignX="flex-start" gap={1}>
-      <Button variant="primary">Hello Tymate</Button>
-      <Button variant="primary" disabled>
-        Hello Tymate
-      </Button>
-      <Button variant="primary" isLoading>
-        Hello Tymate
-      </Button>
-      <Button
-        variant="primary"
-        isLoading
-        loadingAnimation="line-spin-fade-loader"
-      >
-        Hello Tymate
-      </Button>
+    <Stack gap={2} direction="column">
+      <Stack gap={2}>
+        <Button variant="primary">Hello Tymate</Button>
+        <Button variant="outline">Hello Tymate</Button>
+        <Button variant="ghost">Hello Tymate</Button>
+      </Stack>
+      <Stack gap={2}>
+        <Button variant="primary" disabled>
+          Hello Tymate
+        </Button>
+        <Button variant="outline" disabled>
+          Hello Tymate
+        </Button>
+        <Button variant="ghost" disabled>
+          Hello Tymate
+        </Button>
+      </Stack>
     </Stack>
   </Story>
 </Canvas>
-
-<ArgsTable of={Button} />
