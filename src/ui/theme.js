@@ -38,16 +38,16 @@ export const colors = {
       900: '#0C2627',
     },
     gray: {
-      50: 'hsla(227, 53%, 8%, 0.03)',
-      100: 'hsla(227, 53%, 8%, 0.06)',
-      200: 'hsla(227, 53%, 8%, 0.12)',
-      300: 'hsla(227, 53%, 8%, 0.24)',
-      400: 'hsla(227, 53%, 8%, 0.36)',
-      500: 'hsla(227, 53%, 8%, 0.48)',
-      600: 'hsla(227, 53%, 8%, 0.64)',
-      700: 'hsla(227, 53%, 8%, 0.72)',
-      800: 'hsla(227, 53%, 8%, 0.87)',
-      900: 'hsl(227, 53%, 8%)',
+      50: '#f1f2f4',
+      100: '#d7d7d8',
+      200: '#bbbcbe',
+      300: '#a0a1a6',
+      400: '#85878e',
+      500: '#6b6d75',
+      600: '#53555a',
+      700: '#3c3d40',
+      800: '#232426',
+      900: '#121316',
     },
     red: {
       50: '#FFF0EE',
@@ -133,8 +133,18 @@ export const colors = {
     separator: 'var(--colors-gray-200)',
     separatorLight: 'var(--colors-gray-100)',
     separatorDark: 'var(--colors-gray-300)',
-    text: 'var(--colors-gray-900)',
-    textLight: 'var(--colors-gray-500)',
+    background: {
+      light: 'var(--colors-white)',
+      dark: 'var(--colors-gray-800)',
+    },
+    text: {
+      light: 'var(--colors-gray-800)',
+      dark: 'var(--colors-gray-200)',
+    },
+    textLight: {
+      light: 'var(--colors-gray-500)',
+      dark: 'var(--colors-gray-400)',
+    },
   },
 };
 

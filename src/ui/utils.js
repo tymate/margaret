@@ -79,8 +79,10 @@ export const injectMargaret = ({ theme, colors = {} }) => {
   theme.ui = {};
 
   keys(colors.ui).forEach(colorName => {
-    theme.ui[colorName] = colors.ui?.[colorName];
-    theme[colorName] = colors.ui?.[colorName];
+    theme.ui[colorName] = isObject(colors.ui?.[colorName])
+      ? colors.ui?.[colorName]?.[theme.colorMode || 'light']
+      : colors.ui?.[colorName];
+    theme[colorName] = theme.ui[colorName];
   });
 
   theme.breakpoints =
