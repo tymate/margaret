@@ -20,10 +20,19 @@ const Box = styled.div`
       'paddingBottom',
       'paddingLeft',
 
+      'margin',
+      'marginVertical',
+      'marginHorizontal',
+      'marginTop',
+      'marginRight',
+      'marginBottom',
+      'marginLeft',
       'marginAuto',
 
       'color',
       'backgroundColor',
+      'background',
+      'backgroundImage',
 
       'flex',
       'flexGrow',
@@ -40,6 +49,7 @@ const Box = styled.div`
       'overflowX',
       'overflowY',
 
+      'textAlign',
       'textDecoration',
       'fontWeight',
       'fontStyle',
@@ -52,6 +62,9 @@ const Box = styled.div`
       'gridColumnEnd',
       'gridRowStart',
       'gridRowEnd',
+
+      'transition',
+      'transform',
     ]
       .filter(property => props?.[property] !== undefined)
       .map(property =>

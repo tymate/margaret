@@ -1,6 +1,7 @@
 export const colors = {
   palette: {
     white: '#ffffff',
+    black: '#000000',
     green: {
       50: '#EDF8F3',
       100: '#CDEADC',
@@ -240,7 +241,7 @@ export const theme = {
       tablet: 'var(--colors-red-50)',
     },
     offCanvasToVisibleBreakpoint: 'tablet',
-    boxShadow: `0 4px 4px var(--colors-gray-100)`,
+    boxShadow: '0 4px 4px var(--colors-gray-100)',
     position: 'top',
     height: '80px',
     triggerColor: {

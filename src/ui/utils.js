@@ -1,5 +1,6 @@
 import { css } from 'styled-components';
 import { keys, isObject, kebabCase } from 'lodash';
+import { colors as defaultColors } from './theme';
 
 export const BASE = 1;
 export const spacing = (input = 1) => `${input}rem`;
@@ -75,10 +76,11 @@ export const injectPalette = ({ palette, prefix }) =>
   `;
 
 export const injectMargaret = ({ theme, colors = {} }) => {
-  theme.colors = colors?.palette || {};
+  theme.colors = { ...defaultColors?.palette, ...colors?.palette };
   theme.ui = {};
+  const uiColors = { ...defaultColors?.ui, ...colors?.ui };
 
-  keys(colors.ui).forEach(colorName => {
+  keys(uiColors).forEach(colorName => {
     theme.ui[colorName] = isObject(colors.ui?.[colorName])
       ? colors.ui?.[colorName]?.[theme.colorMode || 'light']
       : colors.ui?.[colorName];

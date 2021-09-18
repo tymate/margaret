@@ -30,10 +30,28 @@ const setPropertyBreakpoint = ({
         margin-right: auto;
       `;
 
+    case 'marginVertical':
+      return css`
+        margin-top: ${theme.spacing(value)};
+        margin-bottom: ${theme.spacing(value)};
+      `;
+
+    case 'marginHorizontal':
+      return css`
+        margin-left: ${theme.spacing(value)};
+        margin-right: ${theme.spacing(value)};
+      `;
+
     case 'paddingVertical':
       return css`
         padding-top: ${theme.spacing(value)};
         padding-bottom: ${theme.spacing(value)};
+      `;
+
+    case 'paddingHorizontal':
+      return css`
+        padding-left: ${theme.spacing(value)};
+        padding-right: ${theme.spacing(value)};
       `;
 
     case 'color':
@@ -43,12 +61,6 @@ const setPropertyBreakpoint = ({
         isPlainObject(theme?.[value])
           ? theme.value[theme.colorMode]
           : theme.value};
-      `;
-
-    case 'paddingHorizontal':
-      return css`
-        padding-left: ${theme.spacing(value)};
-        padding-right: ${theme.spacing(value)};
       `;
 
     case 'borderRadius':
@@ -92,9 +104,12 @@ const setPropertyBreakpoint = ({
     case 'overflow':
     case 'overflowX':
     case 'overflowY':
+    case 'textAlign':
     case 'textDecoration':
     case 'fontWeight':
     case 'fontStyle':
+    case 'transition':
+    case 'transform':
     case 'flex':
     case 'flexDirection':
     case 'flexGrow':
