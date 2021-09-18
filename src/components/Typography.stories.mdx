@@ -8,8 +8,10 @@ import {
   Heading,
   SubHeading,
   Legend,
+  ColorModeSampleBox,
 } from '../ui';
 import { MargaretProvider, theme } from '..';
+import { ColorModeSwitcherButton } from '../components';
 
 <Meta
   title="Intro/Typography"
@@ -125,7 +127,10 @@ props, based on the same mechanics.
 
 <Canvas>
   <Story name="Text component">
-    <Text type="h1Mega">The quick brown fox jumps over the lazy dog</Text>
+    <ColorModeSwitcherButton variant="primary" />
+    <ColorModeSampleBox>
+      <Text type="h1Mega">The quick brown fox jumps over the lazy dog</Text>
+    </ColorModeSampleBox>
     <Text type="h1">The quick brown fox jumps over the lazy dog</Text>
     <Text type="h2">The quick brown fox jumps over the lazy dog</Text>
     <Text type="heading">The quick brown fox jumps over the lazy dog</Text>

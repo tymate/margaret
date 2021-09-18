@@ -129,3 +129,12 @@ export const TitleAndAction = styled(Stack)`
       border-bottom: 1px solid ${theme.text}
     `}
 `;
+
+export const ColorModeSampleBox = styled(Box)`
+  background-color: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text};
+  padding: ${({ theme }) => theme.spacing()};
+  border-radius: ${({ theme }) => theme.borderRadius.large};
+  margin-top: ${({ theme }) => theme.spacing()};
+  margin-bottom: ${({ theme }) => theme.spacing()};
+`;

@@ -38,6 +38,7 @@ export const GlobalVars = createGlobalStyle`
 
 const MargaretProvider = ({ theme, children, colors }) => {
   const [mainNavIsExpanded, setMainNavIsExpanded] = useState();
+  const [colorMode, setColorMode] = useState('light');
   const breakpoint = useBreakpoint();
 
   const isMobile = breakpoint === 'mobile';
@@ -47,6 +48,8 @@ const MargaretProvider = ({ theme, children, colors }) => {
   const handleExpandMainNav = () => setMainNavIsExpanded(true);
   const handleCollapseMainNav = () => setMainNavIsExpanded(false);
   const handleToggleMainNav = () => setMainNavIsExpanded(!mainNavIsExpanded);
+  const handleSwitchColorMode = () =>
+    setColorMode(colorMode === 'light' ? 'dark' : 'light');
 
   return (
     <AppContext.Provider
@@ -59,11 +62,13 @@ const MargaretProvider = ({ theme, children, colors }) => {
         isMobile,
         isMobileOrTablet,
         isDesktop,
+        colorMode,
+        switchColorMode: handleSwitchColorMode,
       }}
     >
       <ThemeProvider
         theme={injectMargaret({
-          theme: { ...defaultTheme, ...theme },
+          theme: { ...defaultTheme, ...theme, colorMode },
           colors: { ...defaultColors, ...colors },
         })}
       >
