@@ -88,7 +88,7 @@ const Avatar = ({ size, imageUrl, ...props }) => (
   <AvatarWrapper
     size={size}
     style={{
-      backgroundImage: Boolean(imageUrl) ? `url(${imageUrl})` : undefined,
+      backgroundImage: Boolean(imageUrl) ? `url(${encodeURI(imageUrl)})` : undefined,
     }}
     {...props}
   >
